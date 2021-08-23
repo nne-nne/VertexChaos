@@ -1426,6 +1426,14 @@ PrefabInstance:
       propertyPath: maxRotSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: acceleration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: angularSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710193, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_RootOrder
       value: 1
