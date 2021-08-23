@@ -8,73 +8,51 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float maxRotSpeed, maxMovSpeed, movAcc, rotAcc, brake, drag, angDrag, inertia;
+    [SerializeField] private float maxMovSpeed, acceleration, angularSpeed;
 
     private Rigidbody rb;
-    private float speed, rotSpeed;
+    private Vector2 speed, direction;
+    private Quaternion rotation;
 
-    private Vector3 prevVelocity;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        prevVelocity = Vector3.zero;
     }
 
-    void UpdateMovementSpeed()
+    private void UpdateMovementSpeed()
     {
-        float verticalInput = Input.GetAxis("Vertical");
+        if (direction != Vector2.zero) direction.Normalize();
 
-        if (verticalInput > 0.0f)
+        speed = Vector2.Lerp(speed, direction * maxMovSpeed, acceleration * Time.deltaTime);
+    }
+
+    private void UpdateRotation()
+    {
+        Quaternion target;
+
+        if (rb.velocity != Vector3.zero)
         {
-            speed = Mathf.Lerp(speed, maxMovSpeed, movAcc * Time.deltaTime);
-        }
-        else if (verticalInput == 0.0f)
-        {
-            speed = Mathf.Lerp(speed, 0.0f, drag * Time.deltaTime);
+            target = Quaternion.LookRotation(rb.velocity.normalized);
         }
         else
         {
-            speed = Mathf.Lerp(speed, 0.0f, brake * Time.deltaTime);
+            target = transform.rotation;
         }
-    }
 
-    void UpdateRotationSpeed()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-
-        if (horizontalInput > 0.0f)
-        {
-            rotSpeed = Mathf.Lerp(rotSpeed, maxRotSpeed, rotAcc * Time.deltaTime);
-        }
-        else if (horizontalInput == 0.0f)
-        {
-            rotSpeed = Mathf.Lerp(rotSpeed, 0.0f, angDrag * Time.deltaTime);
-        }
-        else
-        {
-            rotSpeed = Mathf.Lerp(rotSpeed, -maxRotSpeed, rotAcc * Time.deltaTime);
-        }
+        float rotationSpeed = angularSpeed * rb.velocity.magnitude / maxMovSpeed;
+        rb.rotation = Quaternion.RotateTowards(transform.rotation, target, rotationSpeed);
     }
 
     void Update()
     {
+        direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         UpdateMovementSpeed();
-        UpdateRotationSpeed();
+        UpdateRotation();
     }
 
     void FixedUpdate()
     {
-        rb.angularVelocity = new Vector3(0f, rotSpeed, 0f);
-        
-        if(prevVelocity != Vector3.zero)
-        {
-            rb.velocity = Vector3.LerpUnclamped(transform.forward, prevVelocity.normalized, inertia) * speed;
-        }
-        else
-        {
-            rb.velocity = transform.forward * speed;
-        }
-        prevVelocity = rb.velocity;
+        rb.velocity = new Vector3(speed.x, 0f, speed.y);
     }
 }
