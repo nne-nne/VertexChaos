@@ -1486,7 +1486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: angularSpeed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710193, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_RootOrder
