@@ -1549,6 +1549,10 @@ PrefabInstance:
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: maxMovSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: maxRotSpeed
       value: 3
       objectReference: {fileID: 0}
