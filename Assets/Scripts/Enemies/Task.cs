@@ -10,6 +10,8 @@ namespace Enemies
     {
         public abstract void ExecuteUpdate(EnemyController controller);
 
+        public UnityEvent<EnemyController> InterruptedEvent { get; set; } = new UnityEvent<EnemyController>();
+        
         public UnityEvent<EnemyController> FinishedEvent { get; set; } = new UnityEvent<EnemyController>();
     }
 }

@@ -3,15 +3,13 @@ using UnityEngine;
 namespace Enemies
 {
     /// <summary>
-    /// Task representing continuous movement toward a certain target.
+    /// Task representing movement around the specified Target.
     /// </summary>
-    public class MoveToTask : Task
+    public class StrafeTask : Task
     {
         public ITarget Target { get; set; } = null;
 
-        public float DistanceThreshold { get; set; } = 1f;
-
-        public MoveToTask(ITarget target)
+        public StrafeTask(ITarget target)
         {
             Target = target;
         }
@@ -25,15 +23,8 @@ namespace Enemies
             {
                 targetPosition = Target.GetPosition();
             }
-
-            if (Vector3.Distance(currentPosition, targetPosition) > DistanceThreshold)
-            {
-                controller.UpdateMoveTo(targetPosition);
-            }
-            else
-            {
-                FinishedEvent.Invoke(controller);
-            }
+            
+            controller.UpdateStrafe(targetPosition);
         }
     }
 }

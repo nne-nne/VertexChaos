@@ -50,6 +50,23 @@ public class PlayerController : MonoBehaviour, ITarget
         float rotationSpeed = angularSpeed * rb.velocity.magnitude / maxMovSpeed;
         rb.rotation = Quaternion.RotateTowards(transform.rotation, target, rotationSpeed);
     }
+    
+    protected void UpdateRotationToFace(Vector3 targetPosition)
+    {
+        Quaternion target;
+
+        if (rb.velocity != Vector3.zero)
+        {
+            target = Quaternion.LookRotation(targetPosition.normalized);
+        }
+        else
+        {
+            target = transform.rotation;
+        }
+
+        float rotationSpeed = angularSpeed * rb.velocity.magnitude / maxMovSpeed;
+        rb.rotation = Quaternion.RotateTowards(transform.rotation, target, rotationSpeed);
+    }
 
     protected virtual void Update()
     {

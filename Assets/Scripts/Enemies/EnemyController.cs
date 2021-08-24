@@ -3,23 +3,35 @@ using UnityEngine;
 namespace Enemies
 {
     /// <summary>
-    /// Class which controls the Enemies' behaviour, including locomotion and interaction with player's pawn.
+    /// Class which controls the Enemies' behavior, including locomotion and interaction with player's pawn.
     /// </summary>
     public class EnemyController : PlayerController
     {
-        protected override void Awake()
-        {
-            base.Awake();
-            CurrentTask = new MoveToTask(new PointTarget(20f, 0f, -20f));
-        }
+        /// <summary> BehaviorSequence controls EnemyController actions' execution flow. </summary>
+        public BehaviorSequence Behavior { get; set; } = new BehaviorSequence();
 
         public void UpdateMoveTo(Vector3 targetPosition)
         {
             Vector3 currentPosition = transform.position;
+            
             Direction = new Vector2(targetPosition.x - currentPosition.x,
                 targetPosition.z - currentPosition.z).normalized;
+            
             UpdateMovementSpeed();
             UpdateRotation();
+        }
+
+        public void UpdateStrafe(Vector3 targetPosition)
+        {
+            Vector3 currentPosition = transform.position;
+            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
+                0f, targetPosition.z - currentPosition.z).normalized;
+            Vector3 rotatedDirectionVector = Quaternion.AngleAxis(90f, Vector3.up) * directionVector;
+            
+            Direction = new Vector2(rotatedDirectionVector.x, rotatedDirectionVector.z);
+            
+            UpdateMovementSpeed();
+            UpdateRotationToFace(directionVector);
         }
 
         public void Wait()
@@ -29,20 +41,21 @@ namespace Enemies
             UpdateRotation();
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
         protected override void Update()
         {
-            if (CurrentTask != null)
+            if (Behavior != null)
             {
-                CurrentTask.ExecuteUpdate(this);
+                Behavior.UpdateTaskExecution(this);
             }
             else
             {
                 Wait();
             }
         }
-        
-        /// <summary> Current Task keeps information about actions which EnemyController executes. </summary>
-        public Task CurrentTask { get; set; } = null;
-
     }
 }

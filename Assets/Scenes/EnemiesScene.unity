@@ -1479,6 +1479,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6922267231102003771, guid: d3c24738860b52b469d7120cc5168495, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922267231102003771, guid: d3c24738860b52b469d7120cc5168495, type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
     - target: {fileID: 7217388690386080259, guid: d3c24738860b52b469d7120cc5168495, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1489,15 +1497,15 @@ PrefabInstance:
       objectReference: {fileID: 682956110}
     - target: {fileID: 8083664517279266290, guid: d3c24738860b52b469d7120cc5168495, type: 3}
       propertyPath: maxMovSpeed
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8083664517279266290, guid: d3c24738860b52b469d7120cc5168495, type: 3}
       propertyPath: acceleration
-      value: 8
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8083664517279266290, guid: d3c24738860b52b469d7120cc5168495, type: 3}
       propertyPath: angularSpeed
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8083664517279266290, guid: d3c24738860b52b469d7120cc5168495, type: 3}
       propertyPath: previewTarget
@@ -1643,6 +1651,10 @@ PrefabInstance:
     - target: {fileID: 7358976883842710199, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_AngularDrag
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358976883842710199, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: m_Constraints
+      value: 84
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
