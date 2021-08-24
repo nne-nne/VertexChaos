@@ -1464,6 +1464,10 @@ PrefabInstance:
       propertyPath: bulletForce
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1093594764742558466, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: cooldownTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: rotAcc
       value: 4

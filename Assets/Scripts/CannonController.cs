@@ -5,29 +5,48 @@ using UnityEngine;
 public class CannonController : MonoBehaviour
 {
     public Transform pivotPoint;
-    [SerializeField] private float bulletForce;
+    [SerializeField] private float cooldownTime;
+    private List<BulletModifier> bms;
+    private float cooldown;
 
     void Start()
     {
-        
+        bms = new List<BulletModifier>();
+        cooldown = 0.0f;
+    }
+
+    private void ManageCooldown()
+    {
+        cooldown -= Time.deltaTime;
+    }
+
+    private void ResetCooldown()
+    {
+        cooldown = cooldownTime;
     }
 
     private void Shoot()
     {
-        GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
-        if(bullet != null)
+        if (cooldown <= 0.0f)
         {
-            bullet.transform.position = pivotPoint.position;
-            bullet.transform.rotation = transform.rotation;
-
-            Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
-            if(bulletRb != null)
+            GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
+            if (bullet != null)
             {
-                bulletRb.velocity = bullet.transform.forward * bulletForce;
-            }
+                bullet.transform.position = pivotPoint.position;
+                bullet.transform.rotation = transform.rotation;
 
-            bullet.SetActive(true);
+                BulletSc bulletSc = bullet.GetComponent<BulletSc>();
+
+                if (bulletSc != null)
+                {
+                    //following method sets bullet active in hierarchy
+                    bulletSc.Shoot();
+                    bulletSc.AddModifiers(bms);
+                }
+            }
+            ResetCooldown();
         }
+        
     }
 
     private void TraceMouse()
@@ -40,10 +59,16 @@ public class CannonController : MonoBehaviour
     void Update()
     {
         TraceMouse();
+        ManageCooldown();
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetButton("Fire1"))
         {
             Shoot();
         }
+
+        ///DO DEBUGOWANIA
+        ///~PATRYK
+        if (Input.GetKeyDown(KeyCode.Q))
+            bms.Add(new AddSpeed());
     }
 }
