@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// WASD/arrows controller for player movement
 /// 
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ITarget
 {
     [SerializeField] private float maxMovSpeed, acceleration, angularSpeed;
 
@@ -14,20 +16,25 @@ public class PlayerController : MonoBehaviour
     private Vector2 speed, direction;
     private Quaternion rotation;
 
+    protected Vector2 Direction
+    {
+        get => direction;
+        set => direction = value;
+    }
 
-    void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void UpdateMovementSpeed()
+    protected void UpdateMovementSpeed()
     {
         if (direction != Vector2.zero) direction.Normalize();
 
         speed = Vector2.Lerp(speed, direction * maxMovSpeed, acceleration * Time.deltaTime);
     }
 
-    private void UpdateRotation()
+    protected void UpdateRotation()
     {
         Quaternion target;
 
@@ -44,7 +51,7 @@ public class PlayerController : MonoBehaviour
         rb.rotation = Quaternion.RotateTowards(transform.rotation, target, rotationSpeed);
     }
 
-    void Update()
+    protected virtual void Update()
     {
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         UpdateMovementSpeed();
@@ -54,5 +61,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector3(speed.x, 0f, speed.y);
+    }
+
+    Vector3 ITarget.GetPosition()
+    {
+        return transform.position;
     }
 }
