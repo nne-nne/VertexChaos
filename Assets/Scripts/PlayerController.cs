@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour, ITarget
     private Rigidbody rb;
     private Vector2 speed, direction;
     private Quaternion rotation;
+    
+    protected Affiliation affiliation = Affiliation.Friend;
+
+    public static string PlayerName { get; } = "Player";
 
     protected Vector2 Direction
     {

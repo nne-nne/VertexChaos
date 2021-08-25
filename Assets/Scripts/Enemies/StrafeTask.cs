@@ -9,6 +9,12 @@ namespace Enemies
     {
         public ITarget Target { get; set; } = null;
 
+        public EnemyController.StrafeDirection StrafeDirection = EnemyController.StrafeDirection.Clockwise;
+        
+        public float DistanceThreshold { get; set; } = 15f;
+
+        public StrafeTask() {}
+        
         public StrafeTask(ITarget target)
         {
             Target = target;
@@ -24,7 +30,14 @@ namespace Enemies
                 targetPosition = Target.GetPosition();
             }
             
-            controller.UpdateStrafe(targetPosition);
+            if (Vector3.Distance(currentPosition, targetPosition) <= DistanceThreshold)
+            {
+                controller.UpdateStrafe(targetPosition, StrafeDirection);
+            }
+            else
+            {
+                InterruptedEvent.Invoke(controller);
+            }
         }
     }
 }

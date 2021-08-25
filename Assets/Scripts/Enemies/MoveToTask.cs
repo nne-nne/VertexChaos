@@ -11,6 +11,8 @@ namespace Enemies
 
         public float DistanceThreshold { get; set; } = 1f;
 
+        public MoveToTask() {}
+        
         public MoveToTask(ITarget target)
         {
             Target = target;

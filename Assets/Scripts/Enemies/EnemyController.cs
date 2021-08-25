@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Enemies
@@ -8,7 +9,15 @@ namespace Enemies
     public class EnemyController : PlayerController
     {
         /// <summary> BehaviorSequence controls EnemyController actions' execution flow. </summary>
-        public BehaviorSequence Behavior { get; set; } = new BehaviorSequence();
+        public BehaviorSequence Behavior { get; set; } = null;
+
+        public float minTargetDistance = 10f;
+
+        public float maxTargetDistance = 30f;
+
+        public float maxStrafeDistanceBias = 5f;
+
+        public float timeBetweenShots = 2f;
 
         public void UpdateMoveTo(Vector3 targetPosition)
         {
@@ -21,13 +30,19 @@ namespace Enemies
             UpdateRotation();
         }
 
-        public void UpdateStrafe(Vector3 targetPosition)
+        public void UpdateStrafe(Vector3 targetPosition, StrafeDirection strafeDirection)
         {
             Vector3 currentPosition = transform.position;
             Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
                 0f, targetPosition.z - currentPosition.z).normalized;
-            Vector3 rotatedDirectionVector = Quaternion.AngleAxis(90f, Vector3.up) * directionVector;
-            
+
+            Vector3 rotatedDirectionVector = strafeDirection switch
+            {
+                StrafeDirection.Clockwise => Quaternion.AngleAxis(-90f, Vector3.up) * directionVector,
+                StrafeDirection.Counterclockwise => Quaternion.AngleAxis(90f, Vector3.up) * directionVector,
+                _ => new Vector3()
+            };
+
             Direction = new Vector2(rotatedDirectionVector.x, rotatedDirectionVector.z);
             
             UpdateMovementSpeed();
@@ -41,9 +56,22 @@ namespace Enemies
             UpdateRotation();
         }
 
+        public void Shoot()
+        {
+            Debug.Log("Pium!");
+        }
+
         protected override void Awake()
         {
             base.Awake();
+            Behavior = gameObject.AddComponent<BehaviorSequence>();
+            affiliation = Affiliation.Enemy;
+            PlayerController player = GameObject.Find(PlayerName).GetComponent<PlayerController>();
+            if (player is ITarget target && Behavior != null)
+            {
+                Behavior.Target = target;
+                Behavior.SetupTasks(this);
+            }
         }
 
         protected override void Update()
@@ -56,6 +84,12 @@ namespace Enemies
             {
                 Wait();
             }
+        }
+        
+        public enum StrafeDirection
+        {
+            Clockwise,
+            Counterclockwise
         }
     }
 }
