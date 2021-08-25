@@ -71,6 +71,6 @@ public class CannonController : MonoBehaviour
         ///DO DEBUGOWANIA
         ///~PATRYK
         if (Input.GetKeyDown(KeyCode.Q))
-            bms.Add(new AddSpeed());
+            bms.Add(new HomingBullet());
     }
 }
