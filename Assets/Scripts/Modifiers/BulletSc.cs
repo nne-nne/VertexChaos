@@ -15,16 +15,26 @@ public class BulletSc : MonoBehaviour
     private List<BulletModifier> bms;
     private float start_life;
     private Rigidbody rb;
+    float base_damage, base_speed, base_lifetime;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        base_damage = damage;
+        base_speed = speed;
+        base_lifetime = lifetime;
+    }
+
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+        start_life = Time.time;
     }
 
     public void Shoot()
     {
-        gameObject.SetActive(true);
-        start_life = Time.time;
+        //gameObject.SetActive(true);
+        //start_life = Time.time;
         rb.AddForce(transform.forward * speed);
     }
 
@@ -65,6 +75,9 @@ public class BulletSc : MonoBehaviour
         }
         rb.velocity = Vector3.zero;
         rb.rotation = Quaternion.Euler(Vector3.zero);
+        damage = base_damage;
+        speed = base_speed;
+        lifetime = base_lifetime;
     }
 
     public void AddModifiers(List<BulletModifier> new_bms)
