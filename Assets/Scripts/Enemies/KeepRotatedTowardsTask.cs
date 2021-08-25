@@ -3,12 +3,12 @@ using UnityEngine;
 namespace Enemies
 {
     /// <summary>
-    /// Task representing continuous movement toward a certain target.
+    /// Task representing continuous rotating to face a certain target.
     /// </summary>
-    public class MoveToTask : Task
+    public class KeepRotatedTowardsTask : Task
     {
         public float DistanceThreshold { get; set; } = 1f;
-
+        
         public override void ExecuteUpdate(EnemyController controller)
         {
             Vector3 currentPosition = controller.transform.position;
@@ -18,14 +18,14 @@ namespace Enemies
             {
                 targetPosition = Target.GetPosition();
             }
-
-            if (Vector3.Distance(currentPosition, targetPosition) > DistanceThreshold)
+            
+            if (Vector3.Distance(currentPosition, targetPosition) <= DistanceThreshold)
             {
-                controller.UpdateMoveTo(targetPosition);
+                controller.UpdateKeepRotatedTowards(targetPosition);
             }
             else
             {
-                FinishedEvent.Invoke(controller);
+                InterruptedEvent.Invoke(controller);
             }
         }
     }
