@@ -3,13 +3,13 @@ using UnityEngine;
 namespace Enemies
 {
     /// <summary>
-    /// Task representing shooting at specified target.
+    /// Task representing exploding to damage specified target.
     /// </summary>
-    public class ShootTask : Task
+    public class ExplodeTask : Task
     {
         public override void ExecuteUpdate(EnemyController controller)
         {
-            controller.Shoot();
+            controller.Explode();
             FinishedEvent.Invoke(controller);
         }
     }

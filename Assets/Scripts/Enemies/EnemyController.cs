@@ -19,18 +19,21 @@ namespace Enemies
 
         public float timeBetweenShots = 2f;
 
+        public BehaviorType behaviorType = BehaviorType.Simple;
+
         public void UpdateMoveTo(Vector3 targetPosition)
         {
             Vector3 currentPosition = transform.position;
-            
+
             Direction = new Vector2(targetPosition.x - currentPosition.x,
                 targetPosition.z - currentPosition.z).normalized;
-            
+
             UpdateMovementSpeed();
             UpdateRotation();
         }
 
-        public void UpdateStrafe(Vector3 targetPosition, StrafeDirection strafeDirection)
+        public void UpdateStrafe(Vector3 targetPosition,
+            RotationDirection strafeDirection = RotationDirection.Clockwise)
         {
             Vector3 currentPosition = transform.position;
             Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
@@ -38,22 +41,85 @@ namespace Enemies
 
             Vector3 rotatedDirectionVector = strafeDirection switch
             {
-                StrafeDirection.Clockwise => Quaternion.AngleAxis(-90f, Vector3.up) * directionVector,
-                StrafeDirection.Counterclockwise => Quaternion.AngleAxis(90f, Vector3.up) * directionVector,
+                RotationDirection.Clockwise => Quaternion.AngleAxis(-90f, Vector3.up) * directionVector,
+                RotationDirection.Counterclockwise => Quaternion.AngleAxis(90f, Vector3.up) * directionVector,
                 _ => new Vector3()
             };
 
             Direction = new Vector2(rotatedDirectionVector.x, rotatedDirectionVector.z);
-            
+
             UpdateMovementSpeed();
             UpdateRotationToFace(directionVector);
         }
 
-        public void Wait()
+        public void UpdateKeepRotatedTowards(Vector3 targetPosition)
         {
+            Vector3 currentPosition = transform.position;
+            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
+                0f, targetPosition.z - currentPosition.z).normalized;
+
             Direction = Vector2.zero;
+
             UpdateMovementSpeed();
-            UpdateRotation();
+            UpdateRotationNoVelocity(directionVector);
+        }
+
+        public void InstantlyRotateTo(Vector3 targetPosition)
+        {
+            Vector3 currentPosition = transform.position;
+            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
+                0f, targetPosition.z - currentPosition.z).normalized;
+            
+            SetRotation(directionVector);
+        }
+        
+        public void UpdateSpinMoveTo(Vector3 targetPosition, RotationDirection spinDirection)
+        {
+            Vector3 currentPosition = transform.position;
+            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
+                0f, targetPosition.z - currentPosition.z).normalized;
+
+            Vector3 spinDirectionVector = spinDirection switch
+            {
+                RotationDirection.Clockwise => Quaternion.AngleAxis(-90f, Vector3.up) * transform.forward,
+                RotationDirection.Counterclockwise => Quaternion.AngleAxis(90f, Vector3.up) * transform.forward,
+                _ => new Vector3()
+            };
+
+            Direction = new Vector2(directionVector.x, directionVector.z);
+
+            UpdateMovementSpeed();
+            UpdateRotationToFace(spinDirectionVector);
+            ResetRigidbodyVelocity(false, true);
+        }
+        
+        public void UpdateSpinStrafe(Vector3 targetPosition,
+            RotationDirection strafeDirection = RotationDirection.Clockwise,
+            RotationDirection spinDirection = RotationDirection.Clockwise)
+        {
+            Vector3 currentPosition = transform.position;
+            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
+                0f, targetPosition.z - currentPosition.z).normalized;
+
+            Vector3 rotatedDirectionVector = strafeDirection switch
+            {
+                RotationDirection.Clockwise => Quaternion.AngleAxis(-90f, Vector3.up) * directionVector,
+                RotationDirection.Counterclockwise => Quaternion.AngleAxis(90f, Vector3.up) * directionVector,
+                _ => new Vector3()
+            };
+            
+            Vector3 spinDirectionVector = spinDirection switch
+            {
+                RotationDirection.Clockwise => Quaternion.AngleAxis(-90f, Vector3.up) * transform.forward,
+                RotationDirection.Counterclockwise => Quaternion.AngleAxis(90f, Vector3.up) * transform.forward,
+                _ => new Vector3()
+            };
+
+            Direction = new Vector2(rotatedDirectionVector.x, rotatedDirectionVector.z);
+
+            UpdateMovementSpeed();
+            UpdateRotationToFace(spinDirectionVector);
+            ResetRigidbodyVelocity(false, true);
         }
 
         public void Shoot()
@@ -61,17 +127,25 @@ namespace Enemies
             Debug.Log("Pium!");
         }
 
+        public void Explode()
+        {
+            Debug.Log("Bum!");
+        }
+
+        public void Wait()
+        {
+            Direction = Vector2.zero;
+            
+            UpdateMovementSpeed();
+            UpdateRotation();
+        }
+
         protected override void Awake()
         {
             base.Awake();
-            Behavior = gameObject.AddComponent<BehaviorSequence>();
+
             affiliation = Affiliation.Enemy;
-            PlayerController player = GameObject.Find(PlayerName).GetComponent<PlayerController>();
-            if (player is ITarget target && Behavior != null)
-            {
-                Behavior.Target = target;
-                Behavior.SetupTasks(this);
-            }
+            InitializeBehavior();
         }
 
         protected override void Update()
@@ -85,11 +159,39 @@ namespace Enemies
                 Wait();
             }
         }
+
+        private void InitializeBehavior()
+        {
+            Behavior = behaviorType switch
+            {
+                BehaviorType.Simple => gameObject.AddComponent<SimpleBehavior>(),
+                BehaviorType.Agile => gameObject.AddComponent<BehaviorSequence>(),
+                BehaviorType.Exploding => gameObject.AddComponent<ExplodingBehavior>(),
+                BehaviorType.Spinning => gameObject.AddComponent<SpinningBehavior>(),
+                _ => Behavior
+            };
+
+            PlayerController player = GameObject.Find(PlayerName).GetComponent<PlayerController>();
+            if (player is ITarget target && Behavior != null)
+            {
+                Behavior.Target = target;
+                Behavior.SetupTasks(this);
+            }
+        }
         
-        public enum StrafeDirection
+        public enum RotationDirection
         {
             Clockwise,
             Counterclockwise
+        }
+
+        public enum BehaviorType
+        {
+            Simple,
+            Agile,
+            Exploding,
+            [InspectorName("Spin2Win")]
+            Spinning
         }
     }
 }

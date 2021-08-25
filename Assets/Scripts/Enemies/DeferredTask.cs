@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Enemies
 {
     /// <summary>
-    /// Task allowing deferred actions
+    /// Task for actions that should be deferred or happen periodically.
     /// </summary>
     public class DeferredTask : MonoBehaviour
     {
@@ -18,23 +17,13 @@ namespace Enemies
             set { timeToWait = value; timeRemaining = value; }
         }
 
-        public bool shouldRun = false;
+        public bool shouldExecute = false;
 
-        public bool shouldLoop = false;
+        public bool shouldLoop = true;
 
-        public DeferredTask(Task task, EnemyController controller, float timeToWait, bool shouldRun, bool shouldLoop)
+        private void FixedUpdate()
         {
-            this.task = task;
-            this.controller = controller;
-            this.timeToWait = timeToWait;
-            this.shouldRun = shouldRun;
-            this.shouldLoop = shouldLoop;
-            this.timeRemaining = timeToWait;
-        }
-
-        void FixedUpdate()
-        {
-            if (shouldRun)
+            if (shouldExecute)
             {
                 if (timeRemaining > 0)
                 {
@@ -51,7 +40,7 @@ namespace Enemies
                     else
                     {
                         timeRemaining = 0f;
-                        shouldRun = false;
+                        shouldExecute = false;
                     }
                 }
             }

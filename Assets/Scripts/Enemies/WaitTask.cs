@@ -3,13 +3,13 @@ using UnityEngine;
 namespace Enemies
 {
     /// <summary>
-    /// Task representing shooting at specified target.
+    /// Task representing waiting.
     /// </summary>
-    public class ShootTask : Task
+    public class WaitTask : Task
     {
         public override void ExecuteUpdate(EnemyController controller)
         {
-            controller.Shoot();
+            controller.Wait();
             FinishedEvent.Invoke(controller);
         }
     }

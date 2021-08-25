@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour, ITarget
 
     public static string PlayerName { get; } = "Player";
 
+    public void ResetRigidbodyVelocity(bool resetLinear = true, bool resetAngular = true)
+    {
+        if (resetLinear) { rb.velocity = Vector3.zero; }
+        if (resetAngular) { rb.angularVelocity = Vector3.zero; }
+    }
+
     protected Vector2 Direction
     {
         get => direction;
@@ -54,14 +60,14 @@ public class PlayerController : MonoBehaviour, ITarget
         float rotationSpeed = angularSpeed * rb.velocity.magnitude / maxMovSpeed;
         rb.rotation = Quaternion.RotateTowards(transform.rotation, target, rotationSpeed);
     }
-    
-    protected void UpdateRotationToFace(Vector3 targetPosition)
+
+    protected void UpdateRotationToFace(Vector3 targetDirection)
     {
         Quaternion target;
 
         if (rb.velocity != Vector3.zero)
         {
-            target = Quaternion.LookRotation(targetPosition.normalized);
+            target = Quaternion.LookRotation(targetDirection.normalized);
         }
         else
         {
@@ -70,6 +76,24 @@ public class PlayerController : MonoBehaviour, ITarget
 
         float rotationSpeed = angularSpeed * rb.velocity.magnitude / maxMovSpeed;
         rb.rotation = Quaternion.RotateTowards(transform.rotation, target, rotationSpeed);
+    }
+
+    protected void UpdateRotationNoVelocity(Vector3 targetDirection)
+    {
+        Quaternion target = Quaternion.LookRotation(targetDirection.normalized);
+
+        float rotationSpeed = angularSpeed / maxMovSpeed;
+        rb.angularVelocity = Vector3.zero;
+        rb.rotation = Quaternion.RotateTowards(transform.rotation, target, rotationSpeed);
+    }
+
+    protected void SetRotation(Vector3 targetDirection)
+    {
+        Quaternion target = Quaternion.LookRotation(targetDirection.normalized);
+
+        const float fullAngle = 180f;
+        rb.angularVelocity = Vector3.zero;
+        rb.rotation = Quaternion.RotateTowards(transform.rotation, target, fullAngle);
     }
 
     protected virtual void Update()

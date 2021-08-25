@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,25 +5,31 @@ namespace Enemies
 {
     /// <summary>
     /// BehaviorSequence is a collection of Tasks and logic controlling blending between them.
+    /// Default behavior is agile strafing around player's pawn.
+    /// Can be freely extended to support other behaviors.
     /// </summary>
     public class BehaviorSequence : MonoBehaviour
     {
-        public MoveToTask Patrol { get; set; } = new MoveToTask();
+        public ITarget Target
+        {
+            get => target;
+            set
+            {
+                target = value;
+                
+                if (CurrentTask != null)
+                {
+                    CurrentTask.Target = target;
+                }
 
-        public StrafeTask Combat { get; set; } = new StrafeTask();
-
-        public MoveToTask Chase { get; set; } = new MoveToTask();
-
-        public ShootTask Shoot { get; set; } = new ShootTask();
-        
-        public ITarget Target { get; set; } = new PointTarget();
+                if (ParallelTask != null && ParallelTask.task != null)
+                {
+                    ParallelTask.task.Target = target;
+                }
+            }
+        }
 
         public BehaviorSequence() {}
-
-        private void Awake()
-        {
-            ParallelTask = gameObject.AddComponent<DeferredTask>();
-        }
 
         public void UpdateTaskExecution(EnemyController controller)
         {
@@ -36,15 +41,15 @@ namespace Enemies
             CurrentTask?.InterruptedEvent?.Invoke(controller);
         }
 
-        public void SetupTasks(EnemyController controller)
+        public virtual void SetupTasks(EnemyController controller)
         {
             Patrol.Target = Target;
             Patrol.FinishedEvent.AddListener(StartCombat);
             
             Combat.Target = Target;
-            Combat.FinishedEvent.AddListener(StartPatrol);
             Combat.InterruptedEvent.AddListener(StartChase);
-            
+            Combat.FinishedEvent.AddListener(StartPatrol);
+
             Chase.Target = Target;
             Chase.FinishedEvent.AddListener(StartCombat);
 
@@ -53,45 +58,60 @@ namespace Enemies
             ParallelTask.task = Shoot;
             ParallelTask.controller = controller;
             ParallelTask.TimeToWait = controller.timeBetweenShots;
-            ParallelTask.shouldRun = true;
-            ParallelTask.shouldLoop = true;
-            
+
             StartPatrol(controller);
         }
 
-        public void StartPatrol(EnemyController controller)
+        protected MoveToTask Patrol { get; set; } = new MoveToTask();
+
+        protected StrafeTask Combat { get; set; } = new StrafeTask();
+
+        protected MoveToTask Chase { get; set; } = new MoveToTask();
+
+        protected ShootTask Shoot { get; set; } = new ShootTask();
+
+        protected virtual void StartPatrol(EnemyController controller)
         {
             Patrol.DistanceThreshold = Random.Range(controller.minTargetDistance, controller.maxTargetDistance);
             
             CurrentTask = Patrol;
             
-            ParallelTask.shouldRun = false;
+            ParallelTask.shouldExecute = false;
         }
 
-        public void StartCombat(EnemyController controller)
+        protected virtual void StartCombat(EnemyController controller)
         {
             Combat.DistanceThreshold = controller.maxTargetDistance + controller.maxStrafeDistanceBias;
             Combat.StrafeDirection = Random.Range(0f, 1f) < 0.5f ?
-                EnemyController.StrafeDirection.Clockwise : EnemyController.StrafeDirection.Counterclockwise;
+                EnemyController.RotationDirection.Clockwise : EnemyController.RotationDirection.Counterclockwise;
             
             CurrentTask = Combat;
             
-            ParallelTask.shouldRun = true;
+            ParallelTask.shouldExecute = true;
         }
 
-        public void StartChase(EnemyController controller)
+        protected virtual void StartChase(EnemyController controller)
         {
             Chase.DistanceThreshold = Random.Range(controller.minTargetDistance, controller.maxTargetDistance);
             
             CurrentTask = Chase;
 
-            ParallelTask.shouldRun = true;
+            ParallelTask.shouldExecute = true;
         }
 
         /// <summary> Current Task keeps information about actions which EnemyController executes. </summary>
-        private Task CurrentTask { get; set; } = null;
+        protected Task CurrentTask { get; set; } = null;
 
         /// <summary> Parallel Task is optional task executed while CurrentTask is executing. </summary>
-        private DeferredTask ParallelTask { get; set; } = null;
+        protected DeferredTask ParallelTask { get; set; } = null;
+
+        private ITarget target = new PointTarget();
+
+        private void Awake()
+        {
+            ParallelTask = gameObject.AddComponent<DeferredTask>();
+            ParallelTask.shouldExecute = false;
+            ParallelTask.shouldLoop = true;
+        }
     }
 }

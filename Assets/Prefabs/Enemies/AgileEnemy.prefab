@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 8083664517279266290}
   - component: {fileID: 6922267231102003771}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: AgileEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,6 +61,11 @@ MonoBehaviour:
   maxMovSpeed: 30
   acceleration: 30
   angularSpeed: 30
+  minTargetDistance: 10
+  maxTargetDistance: 30
+  maxStrafeDistanceBias: 5
+  timeBetweenShots: 2
+  behaviorType: 1
 --- !u!54 &6922267231102003771
 Rigidbody:
   m_ObjectHideFlags: 0

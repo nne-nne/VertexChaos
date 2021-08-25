@@ -13,5 +13,7 @@ namespace Enemies
         public UnityEvent<EnemyController> InterruptedEvent { get; set; } = new UnityEvent<EnemyController>();
         
         public UnityEvent<EnemyController> FinishedEvent { get; set; } = new UnityEvent<EnemyController>();
+        
+        public ITarget Target { get; set; } = null;
     }
 }
