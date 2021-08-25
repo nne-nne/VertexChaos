@@ -40,8 +40,10 @@ public class CannonController : MonoBehaviour
                 if (bulletSc != null)
                 {
                     //following method sets bullet active in hierarchy
-                    bulletSc.Shoot();
+                    bulletSc.Activate();
                     bulletSc.AddModifiers(bms);
+                    bulletSc.Shoot();
+
                 }
             }
             ResetCooldown();
