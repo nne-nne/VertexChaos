@@ -2,13 +2,10 @@ using UnityEngine;
 
 namespace Enemies
 {
-    /// <summary>
-    /// Task representing continuous movement toward a certain target.
-    /// </summary>
-    public class MoveToTask : Task
+    public class SpinMoveToTask : MoveToTask
     {
-        public float DistanceThreshold { get; set; } = 1f;
-
+        public EnemyController.RotationDirection SpinDirection = EnemyController.RotationDirection.Clockwise;
+        
         public override void ExecuteUpdate(EnemyController controller)
         {
             Vector3 currentPosition = controller.transform.position;
@@ -21,7 +18,7 @@ namespace Enemies
 
             if (Vector3.Distance(currentPosition, targetPosition) > DistanceThreshold)
             {
-                controller.UpdateMoveTo(targetPosition);
+                controller.UpdateSpinMoveTo(targetPosition, SpinDirection);
             }
             else
             {

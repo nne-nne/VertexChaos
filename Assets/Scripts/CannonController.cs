@@ -40,8 +40,10 @@ public class CannonController : MonoBehaviour
                 if (bulletSc != null)
                 {
                     //following method sets bullet active in hierarchy
-                    bulletSc.Shoot();
+                    bulletSc.Activate();
                     bulletSc.AddModifiers(bms);
+                    bulletSc.Shoot();
+
                 }
             }
             ResetCooldown();
@@ -69,6 +71,6 @@ public class CannonController : MonoBehaviour
         ///DO DEBUGOWANIA
         ///~PATRYK
         if (Input.GetKeyDown(KeyCode.Q))
-            bms.Add(new AddSpeed());
+            bms.Add(new HomingBullet());
     }
 }
