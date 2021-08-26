@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Enemies.Behaviors;
 
@@ -137,7 +138,23 @@ namespace Enemies
         /// <remarks> Add shooting mechanic </remarks> 
         public void Shoot()
         {
-            Debug.Log("Pium!");
+            GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
+            if (bullet != null)
+            {
+                bullet.transform.position = transform.position;
+                bullet.transform.rotation = transform.rotation;
+
+                BulletSc bulletSc = bullet.GetComponent<BulletSc>();
+
+                if (bulletSc != null)
+                {
+                    //following method sets bullet active in hierarchy
+                    bulletSc.Activate();
+                    bulletSc.AddModifiers(bulletModifiers);
+                    bulletSc.Shoot();
+
+                }
+            }
         }
 
         /// <remarks> Add exploding mechanic </remarks> 
@@ -177,6 +194,8 @@ namespace Enemies
             }
         }
 
+        private List<BulletModifier> bulletModifiers = new List<BulletModifier>();
+        
         private void InitializeBehavior()
         {
             Behavior = behaviorType switch
