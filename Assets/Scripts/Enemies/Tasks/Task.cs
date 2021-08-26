@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Enemies
+namespace Enemies.Tasks
 {
     /// <summary>
     /// Task is a series of instructions executed by EnemyController.

@@ -1,14 +1,14 @@
 using UnityEngine;
 
-namespace Enemies
+namespace Enemies.Tasks
 {
     /// <summary>
-    /// Task representing movement around the specified Target.
+    /// Task representing continuous rotating to face a certain target.
     /// </summary>
-    public class SpinStrafeTask : StrafeTask
+    public class KeepRotatedTowardsTask : Task
     {
-        public EnemyController.RotationDirection SpinDirection = EnemyController.RotationDirection.Clockwise;
-
+        public float DistanceThreshold { get; set; } = 1f;
+        
         public override void ExecuteUpdate(EnemyController controller)
         {
             Vector3 currentPosition = controller.transform.position;
@@ -17,7 +17,7 @@ namespace Enemies
             
             if (Vector3.Distance(currentPosition, targetPosition) <= DistanceThreshold)
             {
-                controller.UpdateSpinStrafe(targetPosition, StrafeDirection, SpinDirection);
+                controller.UpdateKeepRotatedTowards(targetPosition);
             }
             else
             {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enemies
+namespace Enemies.Tasks
 {
     /// <summary>
     /// Task for actions that should be deferred or happen periodically.
