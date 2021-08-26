@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enemies
+namespace Enemies.Tasks
 {
     /// <summary>
     /// Task representing shooting at specified target.

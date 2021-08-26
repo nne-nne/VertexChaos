@@ -1731,11 +1731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8083664517279266290, guid: d3c24738860b52b469d7120cc5168495, type: 3}
       propertyPath: maxTargetDistance
-      value: 45
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8083664517279266290, guid: d3c24738860b52b469d7120cc5168495, type: 3}
       propertyPath: minTargetDistance
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8083664517279266290, guid: d3c24738860b52b469d7120cc5168495, type: 3}
       propertyPath: maxStrafeDistanceBias

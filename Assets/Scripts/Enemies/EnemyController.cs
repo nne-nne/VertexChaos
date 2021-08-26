@@ -1,15 +1,27 @@
-using System;
 using UnityEngine;
+using Enemies.Behaviors;
 
 namespace Enemies
 {
     /// <summary>
-    /// Class which controls the Enemies' behavior, including locomotion and interaction with player's pawn.
+    /// Class which controls the Enemies' actions, including locomotion and interaction with player's pawn.
     /// </summary>
     public class EnemyController : PlayerController
     {
-        /// <summary> BehaviorSequence controls EnemyController actions' execution flow. </summary>
-        public BehaviorSequence Behavior { get; set; } = null;
+        public enum RotationDirection
+        {
+            Clockwise,
+            Counterclockwise
+        }
+
+        public enum BehaviorType
+        {
+            Simple,
+            Agile,
+            Exploding,
+            [InspectorName("Spin2Win")]
+            Spinning
+        }
 
         public float minTargetDistance = 10f;
 
@@ -72,7 +84,7 @@ namespace Enemies
             
             SetRotation(directionVector);
         }
-        
+
         public void UpdateSpinMoveTo(Vector3 targetPosition, RotationDirection spinDirection)
         {
             Vector3 currentPosition = transform.position;
@@ -92,7 +104,7 @@ namespace Enemies
             UpdateRotationToFace(spinDirectionVector);
             ResetRigidbodyVelocity(false, true);
         }
-        
+
         public void UpdateSpinStrafe(Vector3 targetPosition,
             RotationDirection strafeDirection = RotationDirection.Clockwise,
             RotationDirection spinDirection = RotationDirection.Clockwise)
@@ -122,11 +134,13 @@ namespace Enemies
             ResetRigidbodyVelocity(false, true);
         }
 
+        /// <remarks> Add shooting mechanic </remarks> 
         public void Shoot()
         {
             Debug.Log("Pium!");
         }
 
+        /// <remarks> Add exploding mechanic </remarks> 
         public void Explode()
         {
             Debug.Log("Bum!");
@@ -139,6 +153,9 @@ namespace Enemies
             UpdateMovementSpeed();
             UpdateRotation();
         }
+
+        /// <summary> BehaviorSequence controls EnemyController actions' execution flow. </summary>
+        protected BehaviorSequence Behavior { get; set; } = null;
 
         protected override void Awake()
         {
@@ -177,21 +194,6 @@ namespace Enemies
                 Behavior.Target = target;
                 Behavior.SetupTasks(this);
             }
-        }
-        
-        public enum RotationDirection
-        {
-            Clockwise,
-            Counterclockwise
-        }
-
-        public enum BehaviorType
-        {
-            Simple,
-            Agile,
-            Exploding,
-            [InspectorName("Spin2Win")]
-            Spinning
         }
     }
 }

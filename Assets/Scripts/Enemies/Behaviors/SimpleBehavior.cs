@@ -1,4 +1,6 @@
 using UnityEngine;
+using Enemies.Behaviors;
+using Enemies.Tasks;
 
 namespace Enemies
 {

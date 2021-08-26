@@ -1,4 +1,6 @@
 using UnityEngine;
+using Enemies.Behaviors;
+using Enemies.Tasks;
 
 namespace Enemies
 {
@@ -9,15 +11,8 @@ namespace Enemies
     {
         SpinningBehavior()
         {
-            EnemyController.RotationDirection spinDirection = EnemyController.RotationDirection.Counterclockwise;
-
-            SpinStrafeTask spinStrafeTask = new SpinStrafeTask();
-            spinStrafeTask.SpinDirection = spinDirection;
-            Combat = spinStrafeTask;
-
-            SpinMoveToTask spinMoveToTask = new SpinMoveToTask();
-            spinMoveToTask.SpinDirection = spinDirection;
-            Chase = spinMoveToTask;
+            Combat = new SpinStrafeTask();
+            Chase = new SpinMoveToTask();
         }
 
         public override void SetupTasks(EnemyController controller)
