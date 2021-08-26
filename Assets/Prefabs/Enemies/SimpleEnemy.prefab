@@ -58,15 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be485fd292c5451aaad2066c8786270f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:Assets/Prefabs/Enemy.prefab
-  maxMovSpeed: 10
-  acceleration: 8
-  angularSpeed: 10
-=======
   maxMovSpeed: 30
   acceleration: 30
   angularSpeed: 30
->>>>>>> main:Assets/Prefabs/Enemies/SimpleEnemy.prefab
 --- !u!54 &6922267231102003771
 Rigidbody:
   m_ObjectHideFlags: 0
