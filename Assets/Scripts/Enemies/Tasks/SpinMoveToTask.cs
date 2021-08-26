@@ -1,27 +1,23 @@
 using UnityEngine;
 
-namespace Enemies
+namespace Enemies.Tasks
 {
     /// <summary>
-    /// Task representing continuous movement toward a certain target.
+    /// Task representing moving to specified Target while spinning.
     /// </summary>
-    public class MoveToTask : Task
+    public class SpinMoveToTask : MoveToTask
     {
-        public float DistanceThreshold { get; set; } = 1f;
-
+        public EnemyController.RotationDirection SpinDirection = EnemyController.RotationDirection.Clockwise;
+        
         public override void ExecuteUpdate(EnemyController controller)
         {
             Vector3 currentPosition = controller.transform.position;
             Vector3 targetPosition = currentPosition;
-
-            if (Target != null)
-            {
-                targetPosition = Target.GetPosition();
-            }
+            if (Target != null) { targetPosition = Target.GetPosition(); }
 
             if (Vector3.Distance(currentPosition, targetPosition) > DistanceThreshold)
             {
-                controller.UpdateMoveTo(targetPosition);
+                controller.UpdateSpinMoveTo(targetPosition, SpinDirection);
             }
             else
             {

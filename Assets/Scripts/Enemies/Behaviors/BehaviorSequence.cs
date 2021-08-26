@@ -1,7 +1,8 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Enemies.Tasks;
 
-namespace Enemies
+namespace Enemies.Behaviors
 {
     /// <summary>
     /// BehaviorSequence is a collection of Tasks and logic controlling blending between them.
@@ -28,8 +29,6 @@ namespace Enemies
                 }
             }
         }
-
-        public BehaviorSequence() {}
 
         public void UpdateTaskExecution(EnemyController controller)
         {
@@ -99,10 +98,10 @@ namespace Enemies
             ParallelTask.shouldExecute = true;
         }
 
-        /// <summary> Current Task keeps information about actions which EnemyController executes. </summary>
+        /// <summary> Task executed each frame. </summary>
         protected Task CurrentTask { get; set; } = null;
 
-        /// <summary> Parallel Task is optional task executed while CurrentTask is executing. </summary>
+        /// <summary> Task executed continuously or periodically while CurrentTask executes. </summary>
         protected DeferredTask ParallelTask { get; set; } = null;
 
         private ITarget target = new PointTarget();
