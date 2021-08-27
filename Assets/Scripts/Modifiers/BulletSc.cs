@@ -72,7 +72,7 @@ public class BulletSc : MonoBehaviour
                 if (other.CompareTag("Enemy"))
                 {
                     var enemyController = other.GetComponentInParent<EnemyController>();
-                    enemyController.ReceiveDamage(damage);
+                    if (enemyController) { enemyController.ReceiveDamage(damage); }
                     life--;
                 }
                 break;
@@ -81,7 +81,7 @@ public class BulletSc : MonoBehaviour
                 if (other.CompareTag("Player"))
                 {
                     var playerController = other.GetComponentInParent<PlayerController>();
-                    playerController.ReceiveDamage(damage);
+                    if (playerController) { playerController.ReceiveDamage(damage); }
                     life--;
                 }
                 break;
