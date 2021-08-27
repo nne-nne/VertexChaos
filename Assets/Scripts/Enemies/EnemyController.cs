@@ -35,7 +35,7 @@ namespace Enemies
 
         public BehaviorType behaviorType = BehaviorType.Simple;
 
-        public UnityEvent DeathEvent { get; set; } = new UnityEvent();
+        public static string EnemyName = "Enemy";
 
         public void UpdateMoveTo(Vector3 targetPosition)
         {
@@ -127,8 +127,7 @@ namespace Enemies
             UpdateRotationToFace(spinDirectionVector);
             ResetRigidbodyVelocity(false, true);
         }
-
-        /// <remarks> Add shooting mechanic </remarks> 
+        
         public void Shoot()
         {
             GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
@@ -141,7 +140,7 @@ namespace Enemies
 
                 if (bulletSc != null)
                 {
-                    //following method sets bullet active in hierarchy
+                    bulletSc.affiliation = affiliation;
                     bulletSc.Activate();
                     bulletSc.AddModifiers(bulletModifiers);
                     bulletSc.Shoot();
@@ -149,11 +148,10 @@ namespace Enemies
                 }
             }
         }
-
-        /// <remarks> Add exploding mechanic </remarks> 
+        
         public void Explode()
         {
-            Debug.Log("Bum!");
+            DeathEvent.Invoke();
         }
 
         public void Wait()
@@ -172,7 +170,8 @@ namespace Enemies
             base.Awake();
 
             affiliation = Affiliation.Enemy;
-            gameObject.tag = "Enemy";
+            gameObject.tag = EnemyName;
+            gameObject.GetComponentInChildren<Collider>().tag = EnemyName;
             InitializeBehavior();
         }
 
@@ -186,6 +185,12 @@ namespace Enemies
             {
                 Wait();
             }
+        }
+
+        protected override void Die()
+        {
+            Behavior.StopAllTasks();
+            base.Die();
         }
 
         private List<BulletModifier> bulletModifiers = new List<BulletModifier>();

@@ -28,8 +28,6 @@ namespace Enemies
             ExplodingCombat.Target = Target;
             ExplodingCombat.InterruptedEvent.AddListener(StartChase);
             ExplodingCombat.FinishedEvent.AddListener(StartWait);
-
-            Wait.Target = Target;
         }
 
         protected override void StartCombat(EnemyController controller)
@@ -48,13 +46,6 @@ namespace Enemies
             ParallelTask.shouldExecute = false;
         }
 
-        private void StartWait(EnemyController controller)
-        {
-            CurrentTask = Wait;
-        }
-
         private ExplodeTask ExplodingCombat { get; set; } = new ExplodeTask();
-
-        private WaitTask Wait { get; set; } = new WaitTask();
     }
 }

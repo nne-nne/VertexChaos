@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 /// <summary>
@@ -16,17 +18,28 @@ public class PlayerController : MonoBehaviour, ITarget
     private Vector2 speed, direction;
     private Quaternion rotation;
     
-    protected Affiliation affiliation = Affiliation.Friend;
+    protected Affiliation affiliation = Affiliation.Player;
 
-    public float Health { get; set; } = 100f;
+    [FormerlySerializedAs("Health")] [SerializeField]
+    public float health = 10f;
+
+    [FormerlySerializedAs("MaxHealth")] [SerializeField]
+    public float maxHealth = 10f;
 
     public static string PlayerName { get; } = "Player";
+    
+    public ParticleSystem DeathParticles { get; set; } = null;
 
     public void ResetRigidbodyVelocity(bool resetLinear = true, bool resetAngular = true)
     {
         if (resetLinear) { rb.velocity = Vector3.zero; }
         if (resetAngular) { rb.angularVelocity = Vector3.zero; }
     }
+    
+    public UnityEvent DeathEvent { get; set; } = new UnityEvent();
+
+    /// <remarks> For cosmetics or UI </remarks>
+    public UnityEvent<float> ReceiveDamageEvent { get; set; }= new UnityEvent<float>();
 
     protected Vector2 Direction
     {
@@ -37,6 +50,11 @@ public class PlayerController : MonoBehaviour, ITarget
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        
+        gameObject.GetComponentInChildren<Collider>().tag = PlayerName;
+        DeathParticles = gameObject.GetComponent<ParticleSystem>();
+        DeathEvent.AddListener(Die);
+        gameObject.tag = PlayerName;
     }
 
     protected void UpdateMovementSpeed()
@@ -104,6 +122,32 @@ public class PlayerController : MonoBehaviour, ITarget
         UpdateMovementSpeed();
         UpdateRotation();
     }
+    
+    public virtual void ReceiveDamage(float amount)
+    {
+        ReceiveDamageEvent.Invoke(amount);
+
+        if (health - amount <= 0f)
+        {
+            health = 0f;
+            DeathEvent.Invoke();
+        }
+        else
+        {
+            health -= amount;
+        }
+        
+        Debug.Log("Player health: " + health);
+    }
+
+    protected virtual void Die()
+    {
+        if (DeathParticles)
+        {
+            DeathParticles.Play(true);
+        }
+        gameObject.SetActive(false);
+    }
 
     void FixedUpdate()
     {
@@ -113,5 +157,10 @@ public class PlayerController : MonoBehaviour, ITarget
     Vector3 ITarget.GetPosition()
     {
         return transform.position;
+    }
+
+    UnityEvent ITarget.GetDeathEvent()
+    {
+        return DeathEvent;
     }
 }

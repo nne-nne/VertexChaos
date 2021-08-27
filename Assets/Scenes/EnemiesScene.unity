@@ -335,6 +335,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1577947353}
     m_Modifications:
+    - target: {fileID: 6922267231102003771, guid: 88984c21df9dcbf49bf81174023bdaa7, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 7217388690386080259, guid: 88984c21df9dcbf49bf81174023bdaa7, type: 3}
       propertyPath: m_Name
       value: ExplodingEnemy
@@ -677,6 +681,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1577947353}
     m_Modifications:
+    - target: {fileID: 6922267231102003771, guid: 98f796ac29e260048b3912a5029c0367, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 7217388690386080259, guid: 98f796ac29e260048b3912a5029c0367, type: 3}
       propertyPath: m_Name
       value: AgileEnemy
@@ -867,7 +875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   objectToPool: {fileID: 3761079661039920746, guid: 5f8070445ce73274888107c9bbb63310, type: 3}
-  amountToPool: 50
+  amountToPool: 500
 --- !u!4 &1048681184 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7358976883842710193, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
@@ -1163,6 +1171,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1577947353}
     m_Modifications:
+    - target: {fileID: 6922267231102003771, guid: 6c57d2481f70483439cfc56b201f7ca8, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 7217388690386080259, guid: 6c57d2481f70483439cfc56b201f7ca8, type: 3}
       propertyPath: m_Name
       value: SpinningEnemy

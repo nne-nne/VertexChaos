@@ -7,7 +7,7 @@ namespace Enemies
     /// </summary>
     public enum Affiliation
     {
-        Friend,
+        Player,
         Enemy
     }
 }

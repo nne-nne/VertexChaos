@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Enemies.Tasks;
@@ -40,6 +41,15 @@ namespace Enemies.Behaviors
             CurrentTask?.InterruptedEvent?.Invoke(controller);
         }
 
+        public void StopAllTasks()
+        {
+            CurrentTask = null;
+            if (ParallelTask)
+            {
+                ParallelTask.shouldExecute = false;
+            }
+        }
+
         public virtual void SetupTasks(EnemyController controller)
         {
             Patrol.Target = Target;
@@ -57,6 +67,10 @@ namespace Enemies.Behaviors
             ParallelTask.task = Shoot;
             ParallelTask.controller = controller;
             ParallelTask.TimeToWait = controller.timeBetweenShots;
+            
+            Wait.Target = Target;
+            
+            Target.GetDeathEvent().AddListener(OnTargetDeath);
 
             StartPatrol(controller);
         }
@@ -68,6 +82,8 @@ namespace Enemies.Behaviors
         protected MoveToTask Chase { get; set; } = new MoveToTask();
 
         protected ShootTask Shoot { get; set; } = new ShootTask();
+        
+        protected WaitTask Wait { get; set; } = new WaitTask();
 
         protected virtual void StartPatrol(EnemyController controller)
         {
@@ -97,6 +113,13 @@ namespace Enemies.Behaviors
 
             ParallelTask.shouldExecute = true;
         }
+        
+        protected virtual void StartWait(EnemyController controller)
+        {
+            CurrentTask = Wait;
+            
+            ParallelTask.shouldExecute = false;
+        }
 
         /// <summary> Task executed each frame. </summary>
         protected Task CurrentTask { get; set; } = null;
@@ -111,6 +134,12 @@ namespace Enemies.Behaviors
             ParallelTask = gameObject.AddComponent<DeferredTask>();
             ParallelTask.shouldExecute = false;
             ParallelTask.shouldLoop = true;
+        }
+
+        private void OnTargetDeath()
+        {
+            CurrentTask = Wait;
+            ParallelTask.shouldExecute = false;
         }
     }
 }

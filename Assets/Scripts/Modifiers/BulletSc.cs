@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
 
@@ -16,6 +17,8 @@ public class BulletSc : MonoBehaviour
     private float start_life;
     private Rigidbody rb;
     float base_damage, base_speed, base_lifetime;
+
+    public Affiliation affiliation = Affiliation.Player;
 
     void Awake()
     {
@@ -57,10 +60,23 @@ public class BulletSc : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        switch (affiliation)
         {
-            other.GetComponent<EnemyScript>();
-            gameObject.SetActive(false);
+            case Affiliation.Player:
+                if (other.CompareTag("Enemy"))
+                {
+                    var enemyController = other.GetComponentInParent<EnemyController>();
+                    enemyController.ReceiveDamage(damage);
+                }
+                break;
+            
+            case Affiliation.Enemy:
+                if (other.CompareTag("Player"))
+                {
+                    var playerController = other.GetComponentInParent<PlayerController>();
+                    playerController.ReceiveDamage(damage);
+                }
+                break;
         }
     }
 

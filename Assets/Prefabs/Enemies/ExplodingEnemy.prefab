@@ -61,6 +61,8 @@ MonoBehaviour:
   maxMovSpeed: 10
   acceleration: 2
   angularSpeed: 10
+  health: 2
+  maxHealth: 2
   minTargetDistance: 3
   maxTargetDistance: 3
   maxStrafeDistanceBias: 5
@@ -80,7 +82,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1001 &3281513740799033869
 PrefabInstance:
