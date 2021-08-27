@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour, ITarget
     
     protected Affiliation affiliation = Affiliation.Friend;
 
+    public float Health { get; set; } = 100f;
+
     public static string PlayerName { get; } = "Player";
 
     public void ResetRigidbodyVelocity(bool resetLinear = true, bool resetAngular = true)

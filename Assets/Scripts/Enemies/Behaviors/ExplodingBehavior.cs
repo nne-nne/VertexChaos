@@ -12,10 +12,16 @@ namespace Enemies
     {
         public const float ExplosionRange = 5f;
 
+        public ExplodingBehavior()
+        {
+            Patrol = new SpinMoveToTask();
+            Chase = new SpinMoveToTask();
+        }
+
         public override void SetupTasks(EnemyController controller)
         {
             base.SetupTasks(controller);
-
+            
             Patrol.DistanceThreshold = ExplosionRange;
             Chase.DistanceThreshold = ExplosionRange;
 

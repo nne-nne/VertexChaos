@@ -9,7 +9,7 @@ namespace Enemies
     /// </summary>
     public class SpinningBehavior : BehaviorSequence
     {
-        SpinningBehavior()
+        public SpinningBehavior()
         {
             Combat = new SpinStrafeTask();
             Chase = new SpinMoveToTask();

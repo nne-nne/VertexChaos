@@ -58,13 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be485fd292c5451aaad2066c8786270f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMovSpeed: 30
-  acceleration: 30
-  angularSpeed: 30
-  minTargetDistance: 10
+  maxMovSpeed: 10
+  acceleration: 10
+  angularSpeed: 10
+  minTargetDistance: 25
   maxTargetDistance: 30
   maxStrafeDistanceBias: 5
-  timeBetweenShots: 2
+  timeBetweenShots: 0.33
   behaviorType: 0
 --- !u!54 &6922267231102003771
 Rigidbody:
@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5754084199372789682, guid: 270831106bf73684fb24d09dd57cecda, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8819033808473109966, guid: b32926d128f7c924cb002e02af476118, type: 3}
     - target: {fileID: 919132149155446097, guid: 270831106bf73684fb24d09dd57cecda, type: 3}
       propertyPath: m_Name
       value: Angel

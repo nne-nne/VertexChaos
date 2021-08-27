@@ -15,5 +15,14 @@ namespace Enemies.Tasks
         public UnityEvent<EnemyController> FinishedEvent { get; set; } = new UnityEvent<EnemyController>();
         
         public ITarget Target { get; set; } = null;
+
+        protected (Vector3 currentPosition, Vector3 targetPosition) CalculatePositions(EnemyController controller)
+        {
+            Vector3 currentPosition = controller.transform.position;
+            Vector3 targetPosition = currentPosition;
+            if (Target != null) { targetPosition = Target.GetPosition(); }
+            
+            return (currentPosition, targetPosition);
+        }
     }
 }

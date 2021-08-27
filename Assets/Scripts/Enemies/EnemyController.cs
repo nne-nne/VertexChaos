@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enemies.Behaviors;
+using UnityEngine.Events;
 
 namespace Enemies
 {
@@ -34,6 +35,8 @@ namespace Enemies
 
         public BehaviorType behaviorType = BehaviorType.Simple;
 
+        public UnityEvent DeathEvent { get; set; } = new UnityEvent();
+
         public void UpdateMoveTo(Vector3 targetPosition)
         {
             Vector3 currentPosition = transform.position;
@@ -48,9 +51,7 @@ namespace Enemies
         public void UpdateStrafe(Vector3 targetPosition,
             RotationDirection strafeDirection = RotationDirection.Clockwise)
         {
-            Vector3 currentPosition = transform.position;
-            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
-                0f, targetPosition.z - currentPosition.z).normalized;
+            Vector3 directionVector = CalculateDirection(targetPosition);
 
             Vector3 rotatedDirectionVector = strafeDirection switch
             {
@@ -67,9 +68,7 @@ namespace Enemies
 
         public void UpdateKeepRotatedTowards(Vector3 targetPosition)
         {
-            Vector3 currentPosition = transform.position;
-            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
-                0f, targetPosition.z - currentPosition.z).normalized;
+            Vector3 directionVector = CalculateDirection(targetPosition);
 
             Direction = Vector2.zero;
 
@@ -79,18 +78,14 @@ namespace Enemies
 
         public void InstantlyRotateTo(Vector3 targetPosition)
         {
-            Vector3 currentPosition = transform.position;
-            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
-                0f, targetPosition.z - currentPosition.z).normalized;
+            Vector3 directionVector = CalculateDirection(targetPosition);
             
             SetRotation(directionVector);
         }
 
         public void UpdateSpinMoveTo(Vector3 targetPosition, RotationDirection spinDirection)
         {
-            Vector3 currentPosition = transform.position;
-            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
-                0f, targetPosition.z - currentPosition.z).normalized;
+            Vector3 directionVector = CalculateDirection(targetPosition);
 
             Vector3 spinDirectionVector = spinDirection switch
             {
@@ -110,9 +105,7 @@ namespace Enemies
             RotationDirection strafeDirection = RotationDirection.Clockwise,
             RotationDirection spinDirection = RotationDirection.Clockwise)
         {
-            Vector3 currentPosition = transform.position;
-            Vector3 directionVector = new Vector3(targetPosition.x - currentPosition.x,
-                0f, targetPosition.z - currentPosition.z).normalized;
+            Vector3 directionVector = CalculateDirection(targetPosition);
 
             Vector3 rotatedDirectionVector = strafeDirection switch
             {
@@ -179,6 +172,7 @@ namespace Enemies
             base.Awake();
 
             affiliation = Affiliation.Enemy;
+            gameObject.tag = "Enemy";
             InitializeBehavior();
         }
 
@@ -213,6 +207,13 @@ namespace Enemies
                 Behavior.Target = target;
                 Behavior.SetupTasks(this);
             }
+        }
+
+        private Vector3 CalculateDirection(Vector3 targetPosition)
+        {
+            Vector3 currentPosition = transform.position;
+            return new Vector3(targetPosition.x - currentPosition.x,
+                0f, targetPosition.z - currentPosition.z).normalized;
         }
     }
 }
