@@ -28,8 +28,8 @@ public class HomingBullet : BulletModifier
         Vector3 position = bullet.transform.position;
         foreach (GameObject go in gos)
         {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
+            
+            float curDistance = Vector3.Distance(go.transform.position, bullet.transform.position);
             if (curDistance < distance)
             {
                 closest = go;
