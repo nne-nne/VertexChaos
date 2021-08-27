@@ -15,6 +15,8 @@ namespace Enemies
 
             SimpleCombat.Target = Target;
             SimpleCombat.InterruptedEvent.AddListener(StartChase);
+
+            ParallelTask.shouldExecute = true;
         }
 
         protected override void StartCombat(EnemyController controller)

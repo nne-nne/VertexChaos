@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Enemies
 {
@@ -8,5 +9,7 @@ namespace Enemies
     public interface ITarget
     {
         public Vector3 GetPosition();
+
+        public UnityEvent GetDeathEvent();
     }
 }

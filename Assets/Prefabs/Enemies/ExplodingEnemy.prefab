@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 8083664517279266290}
   - component: {fileID: 6922267231102003771}
   m_Layer: 0
-  m_Name: ExplodingEnemy 1
+  m_Name: ExplodingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,13 +58,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be485fd292c5451aaad2066c8786270f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMovSpeed: 30
-  acceleration: 30
-  angularSpeed: 30
-  minTargetDistance: 10
-  maxTargetDistance: 30
+  maxMovSpeed: 10
+  acceleration: 2
+  angularSpeed: 10
+  health: 2
+  maxHealth: 2
+  minTargetDistance: 3
+  maxTargetDistance: 3
   maxStrafeDistanceBias: 5
-  timeBetweenShots: 2
+  timeBetweenShots: 1
   behaviorType: 2
 --- !u!54 &6922267231102003771
 Rigidbody:
@@ -80,7 +82,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1001 &3281513740799033869
 PrefabInstance:
@@ -133,6 +135,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 270831106bf73684fb24d09dd57cecda, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2cc49facbf16f4e4594628e0dac5a8b3, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 270831106bf73684fb24d09dd57cecda, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8896984177722006103, guid: 242173611b5300043888c6e2f8a08de6, type: 3}
     - target: {fileID: 919132149155446097, guid: 270831106bf73684fb24d09dd57cecda, type: 3}
       propertyPath: m_Name
       value: Angel
