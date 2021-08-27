@@ -12,18 +12,22 @@ namespace Enemies
     {
         public const float ExplosionRange = 5f;
 
+        public ExplodingBehavior()
+        {
+            Patrol = new SpinMoveToTask();
+            Chase = new SpinMoveToTask();
+        }
+
         public override void SetupTasks(EnemyController controller)
         {
             base.SetupTasks(controller);
-
+            
             Patrol.DistanceThreshold = ExplosionRange;
             Chase.DistanceThreshold = ExplosionRange;
 
             ExplodingCombat.Target = Target;
             ExplodingCombat.InterruptedEvent.AddListener(StartChase);
             ExplodingCombat.FinishedEvent.AddListener(StartWait);
-
-            Wait.Target = Target;
         }
 
         protected override void StartCombat(EnemyController controller)
@@ -42,13 +46,6 @@ namespace Enemies
             ParallelTask.shouldExecute = false;
         }
 
-        private void StartWait(EnemyController controller)
-        {
-            CurrentTask = Wait;
-        }
-
         private ExplodeTask ExplodingCombat { get; set; } = new ExplodeTask();
-
-        private WaitTask Wait { get; set; } = new WaitTask();
     }
 }

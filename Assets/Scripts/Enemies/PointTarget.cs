@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Enemies
 {
@@ -19,6 +20,11 @@ namespace Enemies
         public Vector3 GetPosition()
         {
             return Position;
+        }
+
+        public UnityEvent GetDeathEvent()
+        {
+            return new UnityEvent();
         }
     }
 }
