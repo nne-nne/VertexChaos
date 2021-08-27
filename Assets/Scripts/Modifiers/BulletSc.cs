@@ -13,6 +13,7 @@ public class BulletSc : MonoBehaviour
     public float damage = 1;
     public float speed = 0.1f;
     public float lifetime = 5.0f;
+    public int life = 1;
     private List<BulletModifier> bms;
     private float start_life;
     private Rigidbody rb;
@@ -60,6 +61,11 @@ public class BulletSc : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        foreach (BulletModifier bm in bms)
+        {
+            bm.trigger_effect(gameObject, other);
+        }
+
         switch (affiliation)
         {
             case Affiliation.Player:
@@ -67,6 +73,7 @@ public class BulletSc : MonoBehaviour
                 {
                     var enemyController = other.GetComponentInParent<EnemyController>();
                     enemyController.ReceiveDamage(damage);
+                    life--;
                 }
                 break;
             
@@ -75,10 +82,17 @@ public class BulletSc : MonoBehaviour
                 {
                     var playerController = other.GetComponentInParent<PlayerController>();
                     playerController.ReceiveDamage(damage);
+                    life--;
                 }
                 break;
         }
+        
+        if (life <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
+
 
     private void OnDisable()
     {
@@ -94,6 +108,8 @@ public class BulletSc : MonoBehaviour
         damage = base_damage;
         speed = base_speed;
         lifetime = base_lifetime;
+        life = 1;
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void AddModifiers(List<BulletModifier> new_bms)
@@ -104,5 +120,15 @@ public class BulletSc : MonoBehaviour
         {
             bm.create_effect(gameObject);
         }
+    }
+
+    public List<BulletModifier> GetBulletModifiers()
+    {
+        return bms;
+    }
+
+    public void removeModifier(BulletModifier mod)
+    {
+        bms.Remove(mod);
     }
 }

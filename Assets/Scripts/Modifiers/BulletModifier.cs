@@ -15,6 +15,11 @@ public class BulletModifier
 
     }
 
+    virtual public void trigger_effect(GameObject bullet, Collider other)
+    {
+
+    }
+
     virtual public void update_effect(GameObject bullet)
     {
 

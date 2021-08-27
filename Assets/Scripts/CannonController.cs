@@ -73,6 +73,14 @@ public class CannonController : MonoBehaviour
         ///DO DEBUGOWANIA
         ///~PATRYK
         if (Input.GetKeyDown(KeyCode.Q))
+            bms.Add(new CanonModifier());
+        if (Input.GetKeyDown(KeyCode.E))
+            bms.Add(new PierceModifier());
+        if (Input.GetKeyDown(KeyCode.R))
+            bms.Add(new FourWayShootModifier());
+        if (Input.GetKeyDown(KeyCode.T))
+            bms.Add(new ScatterModifier());
+        if (Input.GetKeyDown(KeyCode.P))
             bms.Add(new HomingBullet());
     }
 
