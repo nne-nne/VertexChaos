@@ -6,7 +6,7 @@ public class AddSpeed : BulletModifier
 {
     public override void create_effect(GameObject bullet)
     {
-        Bullet bullet_script = bullet.GetComponent<Bullet>();
+        BulletSc bullet_script = bullet.GetComponent<BulletSc>();
         bullet_script.speed *= 1.05f;
     }
 

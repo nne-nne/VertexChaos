@@ -1,31 +1,17 @@
 using UnityEngine;
 
-namespace Enemies
+namespace Enemies.Tasks
 {
     /// <summary>
     /// Task representing continuous movement toward a certain target.
     /// </summary>
     public class MoveToTask : Task
     {
-        public MoveToTask(ITarget target)
-        {
-            Target = target;
-            FinishedEvent.AddListener(OnFinished);
-        }
-        
-        public ITarget Target { get; set; } = null;
-
         public float DistanceThreshold { get; set; } = 1f;
-        
+
         public override void ExecuteUpdate(EnemyController controller)
         {
-            Vector3 currentPosition = controller.transform.position;
-            Vector3 targetPosition = currentPosition;
-
-            if (Target != null)
-            {
-                targetPosition = Target.GetPosition();
-            }
+            (Vector3 currentPosition, Vector3 targetPosition) = CalculatePositions(controller);
 
             if (Vector3.Distance(currentPosition, targetPosition) > DistanceThreshold)
             {
@@ -35,11 +21,6 @@ namespace Enemies
             {
                 FinishedEvent.Invoke(controller);
             }
-        }
-
-        private void OnFinished(EnemyController controller)
-        {
-            controller.CurrentTask = null;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
 public class CannonController : MonoBehaviour
@@ -40,8 +41,11 @@ public class CannonController : MonoBehaviour
                 if (bulletSc != null)
                 {
                     //following method sets bullet active in hierarchy
-                    bulletSc.Shoot();
+                    bulletSc.affiliation = affiliation;
+                    bulletSc.Activate();
                     bulletSc.AddModifiers(bms);
+                    bulletSc.Shoot();
+
                 }
             }
             ResetCooldown();
@@ -69,6 +73,16 @@ public class CannonController : MonoBehaviour
         ///DO DEBUGOWANIA
         ///~PATRYK
         if (Input.GetKeyDown(KeyCode.Q))
-            bms.Add(new AddSpeed());
+            bms.Add(new CanonModifier());
+        if (Input.GetKeyDown(KeyCode.E))
+            bms.Add(new PierceModifier());
+        if (Input.GetKeyDown(KeyCode.R))
+            bms.Add(new FourWayShootModifier());
+        if (Input.GetKeyDown(KeyCode.T))
+            bms.Add(new ScatterModifier());
+        if (Input.GetKeyDown(KeyCode.P))
+            bms.Add(new HomingBullet());
     }
+
+    private Affiliation affiliation = Affiliation.Player;
 }
