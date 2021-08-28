@@ -156,6 +156,7 @@ public class PlayerController : MonoBehaviour, ITarget
         PostDeathDummy dummy = Instantiate(postDeathDummy);
         dummy.gameObject.transform.position = transform.position;
         PlayDeathSound(dummy);
+
         PlayDeathParticles(dummy);
         gameObject.SetActive(false);
     }

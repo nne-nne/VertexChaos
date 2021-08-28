@@ -178,6 +178,8 @@ namespace Enemies
         protected override void Awake()
         {
             base.Awake();
+            
+            CopyBaseStats();
 
             CopyToBaseStats();
 
@@ -241,6 +243,7 @@ namespace Enemies
                 0f, targetPosition.z - currentPosition.z).normalized;
         }
         
+
         private void CopyToBaseStats()
         {
             baseStats.health = health;
@@ -250,6 +253,7 @@ namespace Enemies
             baseStats.maxStrafeDistanceBias = maxStrafeDistanceBias;
             baseStats.timeBetweenShots = timeBetweenShots;
             baseStats.behaviorType = behaviorType;
+
             baseStats.localScale = transform.localScale;
         }
 
@@ -267,6 +271,7 @@ namespace Enemies
 
         private void OnEnable()
         {
+
             CopyBaseStatsToActual();
             ApplyEnemyModifiers();
             Behavior.SetupTasks(this);

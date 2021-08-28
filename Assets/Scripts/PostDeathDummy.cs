@@ -31,6 +31,7 @@ public class PostDeathDummy : MonoBehaviour
 
     public float explosionDamage = 0;
     
+
     private void FixedUpdate()
     {
         if (timeToDeactivate > 0)
