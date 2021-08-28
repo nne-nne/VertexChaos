@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyModifier 
 {
+    public float strenght = 1;
     virtual public void create_effect(GameObject enemy)
     {
 
