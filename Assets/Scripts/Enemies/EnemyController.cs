@@ -282,6 +282,8 @@ namespace Enemies
 
         public void AddModifier(EnemyModifier mod)
         {
+            baseStats.maxHealth += 0.5f;
+            baseStats.health += 0.5f;
             bool exists = false;
             EnemyModifier existingOne = null;
             Type typ = mod.GetType();

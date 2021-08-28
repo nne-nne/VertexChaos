@@ -2143,22 +2143,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interLevelMenu: {fileID: 2049998991}
-
   LS: {fileID: 1905807230}
-
   bulletModifierNames:
-  - AddDemage
-  - AddLifeTime
-  - AddSpeed
-  - CanonModifier
-  - AddDemage
-  - ExplotionModifier
-  - FourWayShootModifier
-  - HomingBullet
-  - PierceModifier
-  - ScatterModifier
-  - ShieldModifier
-  - TargetModifier
+  - Add Damage
+  - Add Life Time
+  - Add Speed
+  - Canon Modifier
+  - Add Damage
+  - Exploding Bullets
+  - All Way Bullets
+  - Homing Bullets
+  - Piercing Bullets
+  - Scatter Bullets
+  - Shield Bullets
+  - Targetter Bullets
   buttons:
   - {fileID: 869911579}
   - {fileID: 412430622}
@@ -2187,14 +2185,14 @@ MonoBehaviour:
   - Bomb Drop
   - Fire Rate Up
   - More Health
-  - Shoot On Death
+  - Shoot on Death
   enemyModifierMessages:
   - Angels move faster
   - Angels are bigger but slower
   - Angels drop bomb after death
   - Couses Angels to shoot faster
   - Angels can take more shots
-  - Angels shoot in all direction when they die
+  - Angels shoot in all directions when they die
 --- !u!1 &1828578065
 GameObject:
   m_ObjectHideFlags: 0
