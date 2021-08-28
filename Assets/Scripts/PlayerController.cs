@@ -14,7 +14,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class PlayerController : MonoBehaviour, ITarget
 {
-    [SerializeField] private float maxMovSpeed, acceleration, angularSpeed;
+    public float maxMovSpeed, acceleration, angularSpeed;
 
     private Rigidbody rb;
     private Vector2 speed, direction;
@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour, ITarget
     public List<AudioClip> deathSounds = new List<AudioClip>();
     
     public List<AudioClip> shootSounds = new List<AudioClip>();
+
+    public PostDeathDummy postDeathDummy;
 
     protected Vector2 Direction
     {
@@ -153,7 +155,9 @@ public class PlayerController : MonoBehaviour, ITarget
 
     protected virtual void Die()
     {
-        PlayDeathSound();
+        PostDeathDummy dummy = Instantiate(postDeathDummy);
+        dummy.gameObject.transform.position = transform.position;
+        PlayDeathSound(dummy);
         if (deathParticles)
         {
             deathParticles.Play(true);
@@ -161,13 +165,13 @@ public class PlayerController : MonoBehaviour, ITarget
         gameObject.SetActive(false);
     }
 
-    protected virtual void PlayDeathSound()
+    protected virtual void PlayDeathSound(PostDeathDummy dummy)
     {
         if (audioSource != null && deathSounds != null && deathSounds.Count > 0)
         {
             int audioIndex = Random.Range(0, deathSounds.Count);
             AudioClip audioClip = deathSounds[audioIndex];
-            audioSource.PlayOneShot(audioClip);
+            dummy.DeathSound = audioClip;
         }
     }
     

@@ -1572,12 +1572,12 @@ MonoBehaviour:
   - {fileID: 651092221}
   - {fileID: 1062746005}
   enemyFrequencies:
+  - 2
   - 1
   - 1
   - 1
-  - 1
-  randomFrac: 0
-  difficultyMultiplier: 1
+  randomFrac: 0.3
+  difficultyMultiplier: 0.5
   arenaRadius: 50
 --- !u!1 &1928136412
 GameObject:

@@ -69,6 +69,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eb8600d97cd060b4c8e4fae0c48b8674, type: 3}
   - {fileID: 8300000, guid: e1a98840a13f41f4aaa6d4280295f83f, type: 3}
   shootSounds: []
+  postDeathDummy: {fileID: -2973822939495057721, guid: 812cdae785f484f4986de2470a2b3253, type: 3}
   minTargetDistance: 3
   maxTargetDistance: 3
   maxStrafeDistanceBias: 5
