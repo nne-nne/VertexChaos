@@ -2185,12 +2185,14 @@ MonoBehaviour:
   - Bomb Drop
   - Fire Rate Up
   - More Health
+  - Shoot On Death
   enemyModifierMessages:
   - Angels move faster
   - Angels are bigger but slower
   - Angels drop bomb after death
   - Couses Angels to shoot faster
   - Angels can take more shots
+  - Angels shoot in all direction when they die
 --- !u!1 &1828578065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2616,7 @@ MonoBehaviour:
   - 0.3
   randomFrac: 0.3
   difficultyMultiplier: 0.5
-  arenaRadius: 50
+  arenaRadius: 100
 --- !u!1 &1928136412
 GameObject:
   m_ObjectHideFlags: 0
