@@ -25,10 +25,8 @@ public class LevelsScript : MonoBehaviour
     {
         foreach (NotSharedPool pool in enemyPools)
         {
-            Debug.Log("pula");
             foreach(Transform enemy in pool.gameObject.transform)
             {
-                Debug.Log("wróg");
                 EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
                 enemyController.DeathEvent.AddListener(CheckNextLevel);
             }
@@ -48,10 +46,8 @@ public class LevelsScript : MonoBehaviour
     private void CheckNextLevel()
     {
         enemiesLeft -= 1;
-        Debug.LogError(enemiesLeft);
         if (enemiesLeft == 0)
         {
-            Debug.LogError("NEXT LEVEL!");
             NextLevel();
         }
     }
@@ -107,7 +103,6 @@ public class LevelsScript : MonoBehaviour
             if (enemyInstances < 0) enemyInstances = 0;
             amounts.Add(enemyInstances);
         }
-        PrintList(amounts);
         return amounts;
     }
 
@@ -125,7 +120,6 @@ public class LevelsScript : MonoBehaviour
         int level = 0;
         for (int i = 0; i < numberOfTests; i++)
         {
-            PrintList(CalculateAmounts(level));
             level += 1;
         }
     }
