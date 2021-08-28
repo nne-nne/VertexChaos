@@ -13,13 +13,13 @@ public class PostDeathDummy : MonoBehaviour
         set { deathSound = value; audioSource.PlayOneShot(deathSound); }
     }
     
+    public GameObject deathParticlesPrefab = null;
+    
     private AudioClip deathSound;
-
-    public ParticleSystem deathParticles;
 
     private AudioSource audioSource;
 
-    private float timeToDeactivate = 5f;
+    private float timeToDeactivate = 60f;
 
     private void FixedUpdate()
     {

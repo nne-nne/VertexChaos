@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced4819b6ee14ce3ba8e53dd7273df2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSound: {fileID: 0}
-  deathParticles: {fileID: 0}
+  deathParticlesPrefab: {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
 --- !u!82 &2681494202776932766
 AudioSource:
   m_ObjectHideFlags: 0
