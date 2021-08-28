@@ -12,14 +12,14 @@ public class ScatterModifier : BulletModifier
         bullet_script.delay += 1;
 
 
-        for (int i = 1; i < 12; i++)
+        for (int i = 1; i < 5*strenght; i++)
         {
             GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
             if (bullet != null)
             {
                 new_bullet.transform.position = bullet.transform.position;
                 new_bullet.transform.rotation = bullet.transform.rotation;
-                new_bullet.transform.RotateAround(new_bullet.transform.position, Vector3.up, 45 * Random.Range(-1f, 1f));
+                new_bullet.transform.RotateAround(new_bullet.transform.position, Vector3.up, 35 * Random.Range(-1f, 1f));
 
                 BulletSc new_bulletSc = new_bullet.GetComponent<BulletSc>();
 
@@ -30,6 +30,7 @@ public class ScatterModifier : BulletModifier
                     new_bms.Remove(this);
                     new_bullet.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
                     new_bulletSc.damage -= 0.5f;
+                    new_bulletSc.speed *= Random.Range(0.95f, 1.05f);
                     new_bulletSc.Activate();
                     new_bulletSc.AddModifiers(new_bms);
                     new_bulletSc.Shoot();

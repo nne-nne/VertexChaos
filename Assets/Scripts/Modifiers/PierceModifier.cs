@@ -12,7 +12,7 @@ public class PierceModifier : BulletModifier
         bullet_script.speed *= 1.01f;
         bullet_script.delay += 0.25f;
         bullet.transform.localScale -= new Vector3(0.25f, 0.25f, 0.25f);
-        bullet_script.life += 5;
+        bullet_script.life += 5*strenght;
     }
 
     public override string show_message()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class CannonController : MonoBehaviour
 {
@@ -67,6 +68,27 @@ public class CannonController : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
     }
 
+    public void AddBulletModifier(BulletModifier mod)
+    {
+        bool exists = false;
+        BulletModifier existingOne = null;
+        Type typ = mod.GetType();
+        foreach (BulletModifier go in bms)
+        {
+            if (go.GetType() == typ)
+            {
+                exists = true;
+                existingOne = go;
+            }
+        }
+        if (exists)
+            existingOne.strenght++;
+        else
+            bms.Add(mod);
+        
+            
+    }
+
     void Update()
     {
         TraceMouse();
@@ -80,21 +102,23 @@ public class CannonController : MonoBehaviour
         ///DO DEBUGOWANIA
         ///~PATRYK
         if (Input.GetKeyDown(KeyCode.Q))
-            bms.Add(new CanonModifier());
+            AddBulletModifier(new CanonModifier());
         if (Input.GetKeyDown(KeyCode.E))
-            bms.Add(new PierceModifier());
+            AddBulletModifier(new PierceModifier());
         if (Input.GetKeyDown(KeyCode.R))
-            bms.Add(new FourWayShootModifier());
+            AddBulletModifier(new FourWayShootModifier());
         if (Input.GetKeyDown(KeyCode.T))
-            bms.Add(new ScatterModifier());
+            AddBulletModifier(new ScatterModifier());
         if (Input.GetKeyDown(KeyCode.P))
-            bms.Add(new HomingBullet());
+            AddBulletModifier(new HomingBullet());
         if (Input.GetKeyDown(KeyCode.F))
-            bms.Add(new DamagingAuraModifier(for_mods[0]));
+            AddBulletModifier(new DamagingAuraModifier(for_mods[0]));
         if (Input.GetKeyDown(KeyCode.G))
-            bms.Add(new ShieldModifier());
+            AddBulletModifier(new ShieldModifier());
         if (Input.GetKeyDown(KeyCode.H))
-            bms.Add(new ExplosionModifier(for_mods[1]));
+            AddBulletModifier(new ExplosionModifier(for_mods[1]));
+        if (Input.GetKeyDown(KeyCode.L))
+            AddBulletModifier(new TargetterModifier());
     }
 
     private Affiliation affiliation = Affiliation.Player;

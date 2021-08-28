@@ -14,7 +14,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class PlayerController : MonoBehaviour, ITarget
 {
-    [SerializeField] private float maxMovSpeed, acceleration, angularSpeed;
+    public float maxMovSpeed, acceleration, angularSpeed;
 
     private Rigidbody rb;
     private Vector2 speed, direction;

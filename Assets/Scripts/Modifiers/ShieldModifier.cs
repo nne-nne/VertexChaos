@@ -16,7 +16,7 @@ public class ShieldModifier : BulletModifier
             {                
                 case Affiliation.Enemy:
                     other.gameObject.SetActive(false);
-                    bullet_script.life -= 1;
+                    bullet_script.life -= 1/strenght;
                     break;
 
             }
