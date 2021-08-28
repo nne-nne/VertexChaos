@@ -11,7 +11,7 @@ public class DamagingAuraModifier : BulletModifier
 
     public DamagingAuraModifier(GameObject[] a)
     {
-        aura_prefab = a[1];
+        aura_prefab = a[0];
     }
 
     public override void create_effect(GameObject bullet)
