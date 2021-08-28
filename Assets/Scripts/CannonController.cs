@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CannonController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class CannonController : MonoBehaviour
     [SerializeField] private float cooldownTime;
     private List<BulletModifier> bms;
     private float cooldown;
+
+    public UnityEvent ShootEvent { get; set; } = new UnityEvent();
 
     void Start()
     {
@@ -46,6 +49,7 @@ public class CannonController : MonoBehaviour
                     bulletSc.AddModifiers(bms);
                     bulletSc.Shoot();
 
+                    ShootEvent.Invoke();
                 }
             }
             ResetCooldown();
