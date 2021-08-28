@@ -11,7 +11,7 @@ using UnityEngine;
 public class BulletSc : MonoBehaviour
 {
     public float damage = 1;
-    public float speed = 0.1f;
+    public float speed = 2000f;
     public float lifetime = 5.0f;
     public int life = 1;
     public float delay = 0;

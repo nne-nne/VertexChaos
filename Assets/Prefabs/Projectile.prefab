@@ -106,12 +106,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2523389836657302142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56186cf13ac5643408c9d6a4560daa08, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c781fa961e926e4eb086f75cceea749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 500
+  speed: 0.1
   lifetime: 5
+  life: 1
+  delay: 0
+  affiliation: 0
 --- !u!54 &-9126805595256047736
 Rigidbody:
   m_ObjectHideFlags: 0

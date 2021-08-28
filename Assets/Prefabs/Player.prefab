@@ -461,7 +461,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eb8600d97cd060b4c8e4fae0c48b8674, type: 3}
   - {fileID: 8300000, guid: e1a98840a13f41f4aaa6d4280295f83f, type: 3}
   shootSounds:
-  - {fileID: 8300000, guid: 2887ea7c9bff74147ad8b1e68b6dde9f, type: 3}
+  - {fileID: 8300000, guid: 62cc6d07ef60342448833f147cc02cd0, type: 3}
 --- !u!54 &7358976883842710199
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -490,7 +490,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0

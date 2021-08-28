@@ -71,7 +71,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e222f2cc23d385145b6fdad8ba757448, type: 3}
   - {fileID: 8300000, guid: a9017238542d0f74081487a678e9e422, type: 3}
   shootSounds:
-  - {fileID: 8300000, guid: 14ec89666861eca4da37d1fbd53b5ec5, type: 3}
+  - {fileID: 8300000, guid: be0d19c80e3f4ef478c2870100ac1f33, type: 3}
   minTargetDistance: 25
   maxTargetDistance: 30
   maxStrafeDistanceBias: 5
@@ -105,7 +105,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
