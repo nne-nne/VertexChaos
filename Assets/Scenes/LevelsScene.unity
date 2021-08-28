@@ -781,6 +781,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d559851770a9b8c47a56e107d687e1e1, type: 2}
+    - target: {fileID: 7214021993070545501, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: cooldownTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: rotAcc
       value: 4
