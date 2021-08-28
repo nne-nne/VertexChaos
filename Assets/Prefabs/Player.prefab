@@ -456,7 +456,7 @@ MonoBehaviour:
   angularSpeed: 0
   health: 10
   maxHealth: 10
-  deathParticles: {fileID: 0}
+  deathParticlesPrefab: {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
   deathSounds:
   - {fileID: 8300000, guid: eb8600d97cd060b4c8e4fae0c48b8674, type: 3}
   - {fileID: 8300000, guid: e1a98840a13f41f4aaa6d4280295f83f, type: 3}

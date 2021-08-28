@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2516089853416908892}
   - component: {fileID: -2973822939495057721}
   - component: {fileID: 2681494202776932766}
+  - component: {fileID: -1601558012999524473}
   m_Layer: 0
-  m_Name: PostDeathDummy
+  m_Name: ExplodingPostDeathDummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticlesPrefab: {fileID: 2527617502034329164, guid: 7cc298c5db525bf4b839c6bb45fe6d39, type: 3}
+  timeToDeactivate: 5
+  explosionDamage: 10
 --- !u!82 &2681494202776932766
 AudioSource:
   m_ObjectHideFlags: 0
@@ -141,3 +144,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &-1601558012999524473
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5307808442419674429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
