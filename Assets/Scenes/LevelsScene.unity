@@ -2617,13 +2617,21 @@ MonoBehaviour:
   - {fileID: 568809465}
   - {fileID: 651092221}
   - {fileID: 1062746005}
-  enemyFrequencies:
-  - 2
-  - 0.4
-  - 1
-  - 0.7
-  randomFrac: 0.3
-  difficultyMultiplier: 0.5
+  enemyLinearA:
+  - 1.5
+  - 0.8
+  - 1.5
+  - 0.5
+  enemyLinearB:
+  - 3
+  - -2
+  - 0.5
+  - -2
+  enemyRandomness:
+  - 0
+  - 0
+  - 0
+  - 0
   arenaRadius: 100
   arenaMinRadius: 50
 --- !u!1 &1928136412
