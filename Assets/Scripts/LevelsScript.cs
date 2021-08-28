@@ -46,7 +46,6 @@ public class LevelsScript : MonoBehaviour
     private void CheckNextLevel()
     {
         enemiesLeft -= 1;
-        Debug.LogError(enemiesLeft + " enemies to kill");
         if (enemiesLeft == 0)
         {
             NextLevel();
@@ -122,7 +121,6 @@ public class LevelsScript : MonoBehaviour
         int level = 0;
         for (int i = 0; i < numberOfTests; i++)
         {
-            PrintList(CalculateAmounts(level));
             level += 1;
         }
     }
