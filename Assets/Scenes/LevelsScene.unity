@@ -743,7 +743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1093594764742558466, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: cooldownTime
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2307239696643645864, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2534,9 +2534,9 @@ MonoBehaviour:
   - {fileID: 1062746005}
   enemyFrequencies:
   - 2
+  - 0.1
   - 1
-  - 1
-  - 1
+  - 0.3
   randomFrac: 0.3
   difficultyMultiplier: 0.5
   arenaRadius: 50
