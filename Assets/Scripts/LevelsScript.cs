@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class LevelsScript : MonoBehaviour
 {
+    public Transform player;
     public List<NotSharedPool> enemyPools;
     public List<float> enemyFrequencies;
     public float randomFrac;
@@ -94,7 +95,7 @@ public class LevelsScript : MonoBehaviour
         for(int i = 0; i < enemies.Count; i++)
         {
             float currentAngle = i * angleStep;
-            enemies[i].transform.position = new Vector3(
+            enemies[i].transform.position = player.position + new Vector3(
                      arenaRadius * Mathf.Sin(currentAngle),
                      0f,
                      arenaRadius * Mathf.Cos(currentAngle));
