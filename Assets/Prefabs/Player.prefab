@@ -304,7 +304,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivotPoint: {fileID: 0}
-  cooldownTime: 0
+  for_mods:
+  - {fileID: 7446764759604699368, guid: 4864be66836b6da4b8fb848ba8490496, type: 3}
+  - {fileID: 2527617502034329164, guid: 6b2beb2f20514ec49b4b90ae44e32050, type: 3}
+  fireRate: 1
+  cooldownTime: 1
 --- !u!1 &7358976883721217825
 GameObject:
   m_ObjectHideFlags: 0

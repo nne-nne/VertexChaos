@@ -9,7 +9,9 @@ public class ScatterModifier : BulletModifier
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();
         bullet.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
         bullet_script.damage -= 0.5f;
-        
+        bullet_script.delay += 1;
+
+
         for (int i = 1; i < 12; i++)
         {
             GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
