@@ -165,7 +165,6 @@ public class PlayerController : MonoBehaviour, ITarget
     {
         if (audioSource != null && deathSounds != null && deathSounds.Count > 0)
         {
-            Debug.Log("Death Sound");
             int audioIndex = Random.Range(0, deathSounds.Count);
             AudioClip audioClip = deathSounds[audioIndex];
             audioSource.PlayOneShot(audioClip);
@@ -176,7 +175,6 @@ public class PlayerController : MonoBehaviour, ITarget
     {
         if (audioSource != null && shootSounds != null && shootSounds.Count > 0)
         {
-            Debug.Log("Shoot Sound");
             int audioIndex = Random.Range(0, shootSounds.Count);
             AudioClip audioClip = shootSounds[audioIndex];
             audioSource.PlayOneShot(audioClip);
