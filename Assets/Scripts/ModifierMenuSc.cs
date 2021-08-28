@@ -17,12 +17,22 @@ public class ModifierMenuSc : MonoBehaviour
     public List<string> enemyModifierNames;
     public List<string> enemyModifierMessages;
 
+    private int chosenBulletModifier;
+    private int chosenEnemyModifier;
+
+    private List<int> bulletModifierOptions;
+    private List<int> enemyModifierOptions;
+
 
     void Start()
     {
-        foreach(Button button in buttons)
+        bulletModifierOptions = GenerateNaturalNumbers(2);
+        enemyModifierOptions = GenerateNaturalNumbers(2);
+
+        for(int i = 0; i < buttons.Count; i++)
         {
-            button.onClick.AddListener(ChooseModifier);
+            Button button = buttons[i];
+            button.onClick.AddListener(delegate { ChooseModifier(i); });
         }
         LevelsScript.EndLevelEvent.AddListener(InitializeMenu);
     }
@@ -57,17 +67,27 @@ public class ModifierMenuSc : MonoBehaviour
         interLevelMenu.SetActive(true);
 
         List<int> modifiersIndices = PickRandomNaturals(buttons.Count, bulletModifierNames.Count);
+        List<int> enemyIndices = PickRandomNaturals(buttons.Count, enemyModifierNames.Count);
         for(int i = 0; i < modifiersIndices.Count; i++)
         {
-            buttons[i].GetComponentInChildren<TMP_Text>().text = bulletModifierNames[modifiersIndices[i]];
+            string buttonText = bulletModifierNames[modifiersIndices[i]] + "\n\n" + 
+                                bulletModifierMessages[modifiersIndices[i]] + "\n\n" +
+                                enemyModifierNames[enemyIndices[i]] + "\n\n" +
+                                enemyModifierMessages[enemyIndices[i]] + "\n\n";
+            buttons[i].GetComponentInChildren<TMP_Text>().text = buttonText;
+
+            bulletModifierOptions[i] = modifiersIndices[i];
+            enemyModifierOptions[i] = enemyIndices[i];
         }
     }
 
-    private void ChooseModifier()
+    private void ChooseModifier(int i)
     {
-        int t = UnityEngine.Random.Range(0, 12);
+        int chosenBulletModifier = bulletModifierOptions[i];
+        int chosenEnemyModifier = bulletModifierOptions[i];
         BulletModifier bm = null;
-        switch (t)
+        EnemyModifier em = null;
+        switch (chosenBulletModifier)
         {
             case 0:
                 bm = new AddDemage();
@@ -106,13 +126,21 @@ public class ModifierMenuSc : MonoBehaviour
                 bm = new TargetterModifier();
                 break;
         }
+
+        switch(chosenEnemyModifier)
+        {
+            //TODO
+        }
+
         /*
         Debug.Log(t);
         ConstructorInfo constructor = t.GetConstructor(Type.EmptyTypes);
         BulletModifier newModifier = (BulletModifier)constructor.Invoke(null);
         cannon.AddBulletModifier(newModifier);*/
+
         cannon.AddBulletModifier(bm);
-        string message = bm.show_message();
+        //TODO tu jakoœ trzeba daæ wrogowi ten wybrany modyfikator 'em'
+
         LevelsScript.StartLevelEvent.Invoke();
         interLevelMenu.SetActive(false);
     }
@@ -120,13 +148,6 @@ public class ModifierMenuSc : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            ChooseModifier();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            cannon.PrintBms();
-        }
+
     }
 }
