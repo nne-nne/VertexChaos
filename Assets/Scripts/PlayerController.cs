@@ -29,8 +29,6 @@ public class PlayerController : MonoBehaviour, ITarget
     public float maxHealth = 10f;
 
     public static string PlayerName { get; } = "Player";
-    
-    public ParticleSystem deathParticles = null;
 
     public void ResetRigidbodyVelocity(bool resetLinear = true, bool resetAngular = true)
     {
@@ -158,10 +156,8 @@ public class PlayerController : MonoBehaviour, ITarget
         PostDeathDummy dummy = Instantiate(postDeathDummy);
         dummy.gameObject.transform.position = transform.position;
         PlayDeathSound(dummy);
-        if (deathParticles)
-        {
-            deathParticles.Play(true);
-        }
+
+        PlayDeathParticles(dummy);
         gameObject.SetActive(false);
     }
 
@@ -174,7 +170,7 @@ public class PlayerController : MonoBehaviour, ITarget
             dummy.DeathSound = audioClip;
         }
     }
-    
+
     protected virtual void PlayShootSound()
     {
         if (audioSource != null && shootSounds != null && shootSounds.Count > 0)
@@ -182,6 +178,20 @@ public class PlayerController : MonoBehaviour, ITarget
             int audioIndex = Random.Range(0, shootSounds.Count);
             AudioClip audioClip = shootSounds[audioIndex];
             audioSource.PlayOneShot(audioClip);
+        }
+    }
+
+    protected virtual void PlayDeathParticles(PostDeathDummy dummy)
+    {
+        if (dummy.deathParticlesPrefab != null)
+        {
+            GameObject particlesGameObject = Instantiate(dummy.deathParticlesPrefab);
+            particlesGameObject.gameObject.transform.position = transform.position;
+            var particleSystem = particlesGameObject.GetComponent<ParticleSystem>();
+            if (particleSystem != null)
+            {
+                particleSystem.Play();
+            }
         }
     }
 

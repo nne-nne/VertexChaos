@@ -13,13 +13,24 @@ public class PostDeathDummy : MonoBehaviour
         set { deathSound = value; audioSource.PlayOneShot(deathSound); }
     }
     
-    private AudioClip deathSound;
+    public GameObject deathParticlesPrefab = null;
+    
+    public float timeToDeactivate = 5f;
 
-    public ParticleSystem deathParticles;
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(PlayerController.PlayerName))
+        {
+            other.GetComponentInParent<PlayerController>().ReceiveDamage(explosionDamage);
+        }
+    }
+
+    private AudioClip deathSound;
 
     private AudioSource audioSource;
 
-    private float timeToDeactivate = 5f;
+    public float explosionDamage = 0;
+    
 
     private void FixedUpdate()
     {
