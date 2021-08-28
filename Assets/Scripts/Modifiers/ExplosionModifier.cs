@@ -9,7 +9,7 @@ public class ExplosionModifier : BulletModifier
 
     public ExplosionModifier(GameObject[] a)
     {
-        explotion_prefab = a[0];
+        explotion_prefab = a[1];
     }
 
     public override void create_effect(GameObject bullet)
