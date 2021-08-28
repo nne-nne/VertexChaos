@@ -97,8 +97,8 @@ public class LevelsScript : MonoBehaviour
 
     void PlaceEnemies(List<GameObject> enemiesSquad)
     {
-        List<GameObject> enemies = Shuffle(enemiesSquad);
-
+        //List<GameObject> enemies = Shuffle(enemiesSquad);
+        List<GameObject> enemies = enemiesSquad;
         int totalEnemies = enemies.Count;
         float angleStep = 2 * Mathf.PI / (totalEnemies + 1);
 

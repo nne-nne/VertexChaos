@@ -31,13 +31,10 @@ public class ModifierMenuSc : MonoBehaviour
         bulletModifierOptions = GenerateNaturalNumbers(3);
         enemyModifierOptions = GenerateNaturalNumbers(3);
 
-        for(int i = 0; i < buttons.Count; i++)
-        {
-            Button button = buttons[i];
-            button.onClick.AddListener(delegate { ChooseModifier(i); });
-        }
         LevelsScript.EndLevelEvent.AddListener(InitializeMenu);
     }
+
+    
 
     private List<int> GenerateNaturalNumbers(int maxExclusive)
     {
@@ -83,7 +80,7 @@ public class ModifierMenuSc : MonoBehaviour
         }
     }
 
-    private void ChooseModifier(int i)
+    public void ChooseModifier(int i)
     {
         int chosenBulletModifier = bulletModifierOptions[i];
         int chosenEnemyModifier = enemyModifierOptions[i];
