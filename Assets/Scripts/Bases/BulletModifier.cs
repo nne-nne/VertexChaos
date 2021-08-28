@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletModifier
 {
+    public int strenght = 1;
 
     virtual public void create_effect(GameObject bullet)
     {

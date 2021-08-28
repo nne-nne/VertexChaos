@@ -24,6 +24,7 @@ public class ExplosionModifier : BulletModifier
             new Vector3 (explotion.transform.localScale.x*bullet.transform.localScale.x,
             explotion.transform.localScale.y * bullet.transform.localScale.y,
             explotion.transform.localScale.z * bullet.transform.localScale.z);
+        explotion.GetComponent<DamagingEffect>().damage = 1f * strenght;
     }
 
 }

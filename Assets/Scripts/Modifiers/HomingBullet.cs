@@ -8,7 +8,7 @@ public class HomingBullet : BulletModifier
     {
         Rigidbody bullet_rb = bullet.GetComponent<Rigidbody>();
         Vector3 direction = ClosestEnemyDirection(bullet);
-        bullet.transform.Translate(direction.normalized*30*Time.deltaTime);
+        bullet.transform.Translate(direction.normalized*30*Time.deltaTime*strenght);
         
         //direction = new Vector3(ReversedSigmoid(direction.x), ReversedSigmoid(direction.y), ReversedSigmoid(direction.z)) * 100;
         //bullet_rb.AddForce(direction);
@@ -35,6 +35,10 @@ public class HomingBullet : BulletModifier
                 closest = go;
                 distance = curDistance;
             }
+        }
+        if (closest == null)
+        {
+            return new Vector3(0,0,0);
         }
         Vector3 direction = closest.transform.position - position;
         return direction;
