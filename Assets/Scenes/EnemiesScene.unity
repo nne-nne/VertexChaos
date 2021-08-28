@@ -689,6 +689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AgileEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8083664517279266290, guid: 98f796ac29e260048b3912a5029c0367, type: 3}
+      propertyPath: shootSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8914403357905783502, guid: 98f796ac29e260048b3912a5029c0367, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1178,6 +1182,14 @@ PrefabInstance:
     - target: {fileID: 7217388690386080259, guid: 6c57d2481f70483439cfc56b201f7ca8, type: 3}
       propertyPath: m_Name
       value: SpinningEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8083664517279266290, guid: 6c57d2481f70483439cfc56b201f7ca8, type: 3}
+      propertyPath: shootSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8083664517279266290, guid: 6c57d2481f70483439cfc56b201f7ca8, type: 3}
+      propertyPath: shootSounds.Array.data[2]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8914403357905783502, guid: 6c57d2481f70483439cfc56b201f7ca8, type: 3}
       propertyPath: m_RootOrder

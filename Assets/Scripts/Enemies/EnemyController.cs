@@ -145,6 +145,7 @@ namespace Enemies
                     bulletSc.AddModifiers(bulletModifiers);
                     bulletSc.Shoot();
 
+                    PlayShootSound();
                 }
             }
         }
