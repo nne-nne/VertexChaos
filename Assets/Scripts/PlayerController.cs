@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemies;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// WASD/arrows controller for player movement
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour, ITarget
 
     public static string PlayerName { get; } = "Player";
     
-    public ParticleSystem DeathParticles { get; set; } = null;
+    public ParticleSystem deathParticles = null;
 
     public void ResetRigidbodyVelocity(bool resetLinear = true, bool resetAngular = true)
     {
@@ -41,6 +43,10 @@ public class PlayerController : MonoBehaviour, ITarget
     /// <remarks> For cosmetics or UI </remarks>
     public UnityEvent<float> ReceiveDamageEvent { get; set; }= new UnityEvent<float>();
 
+    public List<AudioClip> deathSounds = new List<AudioClip>();
+    
+    public List<AudioClip> shootSounds = new List<AudioClip>();
+
     protected Vector2 Direction
     {
         get => direction;
@@ -52,8 +58,15 @@ public class PlayerController : MonoBehaviour, ITarget
         rb = GetComponent<Rigidbody>();
         
         gameObject.GetComponentInChildren<Collider>().tag = PlayerName;
-        DeathParticles = gameObject.GetComponent<ParticleSystem>();
         DeathEvent.AddListener(Die);
+        audioSource = GetComponent<AudioSource>();
+        
+        CannonController cannonController = GetComponentInChildren<CannonController>();
+        if (cannonController != null && cannonController.ShootEvent != null)
+        {
+            cannonController.ShootEvent.AddListener(PlayShootSound);
+        }
+        
         gameObject.tag = PlayerName;
     }
 
@@ -136,17 +149,38 @@ public class PlayerController : MonoBehaviour, ITarget
         {
             health -= amount;
         }
-        
-        Debug.Log("Player health: " + health);
     }
 
     protected virtual void Die()
     {
-        if (DeathParticles)
+        PlayDeathSound();
+        if (deathParticles)
         {
-            DeathParticles.Play(true);
+            deathParticles.Play(true);
         }
         gameObject.SetActive(false);
+    }
+
+    protected virtual void PlayDeathSound()
+    {
+        if (audioSource != null && deathSounds != null && deathSounds.Count > 0)
+        {
+            Debug.Log("Death Sound");
+            int audioIndex = Random.Range(0, deathSounds.Count);
+            AudioClip audioClip = deathSounds[audioIndex];
+            audioSource.PlayOneShot(audioClip);
+        }
+    }
+    
+    protected virtual void PlayShootSound()
+    {
+        if (audioSource != null && shootSounds != null && shootSounds.Count > 0)
+        {
+            Debug.Log("Shoot Sound");
+            int audioIndex = Random.Range(0, shootSounds.Count);
+            AudioClip audioClip = shootSounds[audioIndex];
+            audioSource.PlayOneShot(audioClip);
+        }
     }
 
     void FixedUpdate()
@@ -154,6 +188,8 @@ public class PlayerController : MonoBehaviour, ITarget
         rb.velocity = new Vector3(speed.x, 0f, speed.y);
     }
 
+    private AudioSource audioSource = null;
+    
     Vector3 ITarget.GetPosition()
     {
         return transform.position;

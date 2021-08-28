@@ -14,12 +14,14 @@ namespace Enemies.Tasks
         public float TimeToWait
         {
             get => timeToWait;
-            set { timeToWait = value; timeRemaining = value; }
+            set { timeToWait = value; timeRemaining = value + Randomize(); }
         }
 
         public bool shouldExecute = false;
 
         public bool shouldLoop = true;
+        
+        public float randomDeviation = 0f;
 
         private void FixedUpdate()
         {
@@ -35,7 +37,7 @@ namespace Enemies.Tasks
                     
                     if (shouldLoop)
                     {
-                        timeRemaining = timeToWait;
+                        timeRemaining = timeToWait + Randomize();
                     }
                     else
                     {
@@ -49,5 +51,10 @@ namespace Enemies.Tasks
         private float timeToWait = 0f;
 
         private float timeRemaining = 0f;
+
+        private float Randomize()
+        {
+            return Random.Range(0f, randomDeviation);
+        }
     }
 }

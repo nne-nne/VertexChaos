@@ -9,6 +9,8 @@ namespace Enemies
     /// </summary>
     public class SimpleBehavior : BehaviorSequence
     {
+        public float RandomDeviation { get; set; } = 0.0f;
+        
         public override void SetupTasks(EnemyController controller)
         {
             base.SetupTasks(controller);
@@ -16,6 +18,7 @@ namespace Enemies
             SimpleCombat.Target = Target;
             SimpleCombat.InterruptedEvent.AddListener(StartChase);
 
+            ParallelTask.randomDeviation = RandomDeviation;
             ParallelTask.shouldExecute = true;
         }
 
