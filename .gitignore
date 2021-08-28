@@ -64,3 +64,4 @@ Assets/UMotionEditor/Data/EditorStates.asset
 Assets/UMotionEditor/Data/EditorUndoStackPointer.asset
 *.bak
 *.bak
+*.log
