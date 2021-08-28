@@ -82,10 +82,12 @@ public class ModifierMenuSc : MonoBehaviour
 
     public void ChooseModifier(int i)
     {
+        Debug.Log(1);
         int chosenBulletModifier = bulletModifierOptions[i];
         int chosenEnemyModifier = enemyModifierOptions[i];
         BulletModifier bm = null;
         EnemyModifier em = null;
+        Debug.Log(2);
         switch (chosenBulletModifier)
         {
             case 0:
@@ -153,9 +155,9 @@ public class ModifierMenuSc : MonoBehaviour
         ConstructorInfo constructor = t.GetConstructor(Type.EmptyTypes);
         BulletModifier newModifier = (BulletModifier)constructor.Invoke(null);
         cannon.AddBulletModifier(newModifier);*/
-
+        Debug.Log(3);
         cannon.AddBulletModifier(bm);
-
+        
         foreach (NotSharedPool pool in LS.enemyPools)
         {
             foreach (Transform enemy in pool.gameObject.transform)
@@ -167,6 +169,7 @@ public class ModifierMenuSc : MonoBehaviour
 
         LevelsScript.StartLevelEvent.Invoke();
         interLevelMenu.SetActive(false);
+        Debug.Log(4);
     }
 
 
