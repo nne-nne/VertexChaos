@@ -163,12 +163,22 @@ namespace Enemies
             UpdateRotation();
         }
 
+        public void ApplyEnemyModifiers()
+        {
+            foreach (var enemyModifier in enemyModifiers)
+            {
+                enemyModifier.create_effect(gameObject);
+            }
+        }
+
         /// <summary> BehaviorSequence controls EnemyController actions' execution flow. </summary>
         protected BehaviorSequence Behavior { get; set; } = null;
 
         protected override void Awake()
         {
             base.Awake();
+            
+            CopyBaseStats();
 
             affiliation = Affiliation.Enemy;
             gameObject.tag = EnemyName;
@@ -195,7 +205,11 @@ namespace Enemies
         }
 
         private List<BulletModifier> bulletModifiers = new List<BulletModifier>();
-        
+
+        private List<EnemyModifier> enemyModifiers = new List<EnemyModifier>();
+
+        private EnemyBaseStats baseStats;
+
         private void InitializeBehavior()
         {
             Behavior = behaviorType switch
@@ -220,6 +234,17 @@ namespace Enemies
             Vector3 currentPosition = transform.position;
             return new Vector3(targetPosition.x - currentPosition.x,
                 0f, targetPosition.z - currentPosition.z).normalized;
+        }
+        
+        private void CopyBaseStats()
+        {
+            baseStats.health = health;
+            baseStats.maxHealth = maxHealth;
+            baseStats.minTargetDistance = minTargetDistance;
+            baseStats.maxTargetDistance = maxTargetDistance;
+            baseStats.maxStrafeDistanceBias = maxStrafeDistanceBias;
+            baseStats.timeBetweenShots = timeBetweenShots;
+            baseStats.behaviorType = behaviorType;
         }
     }
 }
