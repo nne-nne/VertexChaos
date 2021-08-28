@@ -178,8 +178,8 @@ namespace Enemies
         protected override void Awake()
         {
             base.Awake();
-            
-            CopyBaseStats();
+
+            CopyToBaseStats();
 
             affiliation = Affiliation.Enemy;
             gameObject.tag = EnemyName;
@@ -197,6 +197,10 @@ namespace Enemies
             {
                 Wait();
             }
+            
+            /// DEBUG ONLY!!!
+            if (Input.GetKeyDown(KeyCode.X))
+                enemyModifiers.Add(new BigBadEnemyModifier());
         }
 
         protected override void Die()
@@ -237,7 +241,7 @@ namespace Enemies
                 0f, targetPosition.z - currentPosition.z).normalized;
         }
         
-        private void CopyBaseStats()
+        private void CopyToBaseStats()
         {
             baseStats.health = health;
             baseStats.maxHealth = maxHealth;
@@ -246,10 +250,25 @@ namespace Enemies
             baseStats.maxStrafeDistanceBias = maxStrafeDistanceBias;
             baseStats.timeBetweenShots = timeBetweenShots;
             baseStats.behaviorType = behaviorType;
+            baseStats.localScale = transform.localScale;
+        }
+
+        private void CopyBaseStatsToActual()
+        {
+            health = baseStats.health;
+            maxHealth = baseStats.maxHealth;
+            minTargetDistance = baseStats.minTargetDistance;
+            maxTargetDistance = baseStats.maxTargetDistance;
+            maxStrafeDistanceBias = baseStats.maxStrafeDistanceBias;
+            timeBetweenShots = baseStats.timeBetweenShots;
+            behaviorType = baseStats.behaviorType;
+            transform.localScale = baseStats.localScale;
         }
 
         private void OnEnable()
         {
+            CopyBaseStatsToActual();
+            ApplyEnemyModifiers();
             Behavior.SetupTasks(this);
         }
     }

@@ -20,5 +20,7 @@ namespace Enemies
         public float timeBetweenShots;
 
         public EnemyController.BehaviorType behaviorType;
+
+        public Vector3 localScale;
     }
 }
