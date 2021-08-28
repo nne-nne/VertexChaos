@@ -2143,7 +2143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interLevelMenu: {fileID: 2049998991}
+
   LS: {fileID: 1905807230}
+
   bulletModifierNames:
   - AddDemage
   - AddLifeTime
@@ -2617,6 +2619,7 @@ MonoBehaviour:
   randomFrac: 0.3
   difficultyMultiplier: 0.5
   arenaRadius: 100
+  arenaMinRadius: 50
 --- !u!1 &1928136412
 GameObject:
   m_ObjectHideFlags: 0

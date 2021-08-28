@@ -13,6 +13,7 @@ public class LevelsScript : MonoBehaviour
     public float randomFrac;
     public float difficultyMultiplier;
     [SerializeField] private float arenaRadius;
+    [SerializeField] private float arenaMinRadius;
     private int levelNum;
     private int enemiesLeft;
 
@@ -113,6 +114,20 @@ public class LevelsScript : MonoBehaviour
         }
     }
 
+    void PlaceEnemiesRandomly(List<GameObject> enemies)
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            float angle = Random.Range(0f, 2 * Mathf.PI);
+            float distance = Random.Range(arenaMinRadius, arenaRadius);
+            enemies[i].transform.position = player.position + new Vector3(
+                     distance * Mathf.Sin(angle),
+                     0f,
+                     distance * Mathf.Cos(angle));
+            enemies[i].transform.rotation = transform.rotation;
+        }
+    }
+
     List<int> CalculateAmounts(int levelNum)
     {
         List<int> amounts = new List<int>();
@@ -149,7 +164,7 @@ public class LevelsScript : MonoBehaviour
     {
         List<int> amounts = CalculateAmounts(levelNum);
         List<GameObject> enemySquad = PrepareEnemySquad(amounts);
-        PlaceEnemies(enemySquad);
+        PlaceEnemiesRandomly(enemySquad);
         enemiesLeft = enemySquad.Count;
     }
 
