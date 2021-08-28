@@ -71,13 +71,12 @@ MonoBehaviour:
   angularSpeed: 15
   health: 4
   maxHealth: 4
-  deathParticles: {fileID: 0}
   deathSounds:
   - {fileID: 8300000, guid: eb8600d97cd060b4c8e4fae0c48b8674, type: 3}
   - {fileID: 8300000, guid: e1a98840a13f41f4aaa6d4280295f83f, type: 3}
   shootSounds:
   - {fileID: 8300000, guid: e8d86cda4c3f6114baaa816651f420a8, type: 3}
-  postDeathDummy: {fileID: -2973822939495057721, guid: 812cdae785f484f4986de2470a2b3253, type: 3}
+  postDeathDummy: {fileID: -2973822939495057721, guid: 838e74afaedae774aac421a60cb32f02, type: 3}
   minTargetDistance: 30
   maxTargetDistance: 35
   maxStrafeDistanceBias: 3
