@@ -275,5 +275,10 @@ namespace Enemies
             ApplyEnemyModifiers();
             Behavior.SetupTasks(this);
         }
+
+        public void AddModifier(EnemyModifier mod)
+        {
+            enemyModifiers.Add(mod);
+        }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.28101292, g: 0.2543006, b: 0.2652842, a: 1}
+  m_IndirectSpecularColor: {r: 0.280981, g: 0.25430694, b: 0.26527923, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -418,7 +418,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 412430623}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764557028}
+        m_TargetAssemblyTypeName: ModifierMenuSc, Assembly-CSharp
+        m_MethodName: ChooseModifier
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &412430623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,7 +1064,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 869911580}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764557028}
+        m_TargetAssemblyTypeName: ModifierMenuSc, Assembly-CSharp
+        m_MethodName: ChooseModifier
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &869911580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,7 +1338,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1215610323}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764557028}
+        m_TargetAssemblyTypeName: ModifierMenuSc, Assembly-CSharp
+        m_MethodName: ChooseModifier
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1215610323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2107,12 +2143,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interLevelMenu: {fileID: 2049998991}
+  LS: {fileID: 1905807230}
   bulletModifierNames:
   - AddDemage
   - AddLifeTime
   - AddSpeed
   - CanonModifier
-  - DamagingAuraModifier
+  - AddDemage
+  - ExplotionModifier
   - FourWayShootModifier
   - HomingBullet
   - PierceModifier
@@ -2127,9 +2165,32 @@ MonoBehaviour:
   mods:
   - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
   - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
-  bulletModifierMessages: []
-  enemyModifierNames: []
-  enemyModifierMessages: []
+  - {fileID: 2527617502034329164, guid: 55ec49979077a5148b8a942ab2e57868, type: 3}
+  bulletModifierMessages:
+  - Raises damage dealt by your bullets
+  - Bullets can fly further
+  - Couses bullets to fly faster
+  - Your projectiles will be bigger and badder
+  - Raises damage dealt by your bullets
+  - Bullets explode when they are destryed
+  - Bullets split to all directions
+  - Adds homing effect to your bullets
+  - Bullets pierce through the angels
+  - Shots burst of small bullets
+  - Bullets can destroy enemy projectiles
+  - Hitting enemy will couse you to shout additional bullet at the enemy
+  enemyModifierNames:
+  - Add Speed
+  - Big Bad Enemies
+  - Bomb Drop
+  - Fire Rate Up
+  - More Health
+  enemyModifierMessages:
+  - Angels move faster
+  - Angels are bigger but slower
+  - Angels drop bomb after death
+  - Couses Angels to shoot faster
+  - Angels can take more shots
 --- !u!1 &1828578065
 GameObject:
   m_ObjectHideFlags: 0
