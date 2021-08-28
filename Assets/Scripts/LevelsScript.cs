@@ -103,7 +103,6 @@ public class LevelsScript : MonoBehaviour
             if (enemyInstances < 0) enemyInstances = 0;
             amounts.Add(enemyInstances);
         }
-        PrintList(amounts);
         return amounts;
     }
 
