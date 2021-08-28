@@ -82,12 +82,22 @@ public class LevelsScript : MonoBehaviour
         return enemySquad;
     }
 
-    void PlaceEnemies(List<GameObject> enemies, bool shuffle=true)
+    private List<GameObject> Shuffle(List<GameObject> enemies)
     {
-        if(shuffle)
+        List<GameObject> result = new List<GameObject>();
+        int iterations = enemies.Count;
+        for(int i = 0; i < iterations; i++)
         {
-            enemies.OrderBy(x => Random.value).ToList();
+            int index = Random.Range(0, enemies.Count);
+            result.Add(enemies[index]);
+            enemies.RemoveAt(index);
         }
+        return result;
+    }
+
+    void PlaceEnemies(List<GameObject> enemiesSquad)
+    {
+        List<GameObject> enemies = Shuffle(enemiesSquad);
 
         int totalEnemies = enemies.Count;
         float angleStep = 2 * Mathf.PI / (totalEnemies + 1);
