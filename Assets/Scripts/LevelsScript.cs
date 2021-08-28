@@ -79,6 +79,7 @@ public class LevelsScript : MonoBehaviour
             if (enemyInstances < 0) enemyInstances = 0;
             amounts.Add(enemyInstances);
         }
+        PrintList(amounts);
         return amounts;
     }
 
@@ -106,6 +107,7 @@ public class LevelsScript : MonoBehaviour
         List<int> amounts = CalculateAmounts(levelNum);
         List<GameObject> enemySquad = PrepareEnemySquad(amounts);
         PlaceEnemies(enemySquad);
+        levelNum += 1;
     }
 
     void Update()
