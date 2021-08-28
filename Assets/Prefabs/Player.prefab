@@ -462,6 +462,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e1a98840a13f41f4aaa6d4280295f83f, type: 3}
   shootSounds:
   - {fileID: 8300000, guid: 62cc6d07ef60342448833f147cc02cd0, type: 3}
+  postDeathDummy: {fileID: -2973822939495057721, guid: 812cdae785f484f4986de2470a2b3253, type: 3}
 --- !u!54 &7358976883842710199
 Rigidbody:
   m_ObjectHideFlags: 0
