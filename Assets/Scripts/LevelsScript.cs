@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelsScript : MonoBehaviour
 {
@@ -14,10 +15,19 @@ public class LevelsScript : MonoBehaviour
     private int levelNum;
     private int enemiesLeft;
 
+    public static UnityEvent EndLevelEvent { get; set; } = new UnityEvent();
+    public static UnityEvent StartLevelEvent { get; set; } = new UnityEvent();
+
     void Start()
     {
-        levelNum = 1;
         EnemiesSubscribeEvents();
+        StartLevelEvent.AddListener(NextLevel);
+        StartGame(); //TODO: game should be started via main menu
+    }
+
+    private void StartGame()
+    {
+        levelNum = 1;
         NextLevel();
     }
 
@@ -48,7 +58,7 @@ public class LevelsScript : MonoBehaviour
         enemiesLeft -= 1;
         if (enemiesLeft == 0)
         {
-            NextLevel();
+            EndLevelEvent.Invoke();
         }
     }
 

@@ -14,6 +14,15 @@ public class CannonController : MonoBehaviour
     private List<BulletModifier> bms;
     private float cooldown;
 
+    public void PrintBms()
+    {
+        Debug.Log("there are " + bms.Count + "modifiers");
+        foreach(BulletModifier bulletModifier in bms)
+        {
+            Debug.Log(bulletModifier.GetType());
+        }
+    }
+
     public UnityEvent ShootEvent { get; set; } = new UnityEvent();
 
     void Start()
