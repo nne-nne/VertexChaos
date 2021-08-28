@@ -208,7 +208,11 @@ namespace Enemies
         protected override void Die()
         {
             Behavior.StopAllTasks();
-            base.Die();
+            foreach (var enemyModifier in enemyModifiers)
+            {
+                enemyModifier.destroy_effect(gameObject);
+            }
+             base.Die();
         }
 
         private List<BulletModifier> bulletModifiers = new List<BulletModifier>();
@@ -278,7 +282,21 @@ namespace Enemies
 
         public void AddModifier(EnemyModifier mod)
         {
-            enemyModifiers.Add(mod);
+            bool exists = false;
+            EnemyModifier existingOne = null;
+            Type typ = mod.GetType();
+            foreach (EnemyModifier go in enemyModifiers)
+            {
+                if (go.GetType() == typ)
+                {
+                    exists = true;
+                    existingOne = go;
+                }
+            }
+            if (exists) { existingOne.strenght++;Debug.Log(existingOne.strenght); }
+                
+            else
+                enemyModifiers.Add(mod);
         }
     }
 }
