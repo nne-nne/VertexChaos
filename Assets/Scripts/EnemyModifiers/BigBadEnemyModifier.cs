@@ -8,11 +8,11 @@ public class BigBadEnemyModifier : EnemyModifier
     public override void create_effect(GameObject enemy)
     {
         EnemyController enemy_sc = enemy.GetComponent<EnemyController>();
-        enemy_sc.maxHealth += 40;
+        enemy_sc.maxHealth += 40 + 10*strenght;
         enemy_sc.health = enemy_sc.maxHealth;
+        enemy.transform.localScale += new Vector3(1.5f+strenght/4, 1.5f + strenght / 4, 1.5f + strenght / 4);
+        enemy_sc.timeBetweenShots *= 1 / (1+strenght/100);
+        enemy_sc.maxMovSpeed -= 20f;
 
-        enemy.transform.localScale += new Vector3(1.2f, 1.2f, 1.2f);
-        enemy_sc.timeBetweenShots *= 1;
-        enemy_sc.maxMovSpeed -= 10f;
     }
 }
