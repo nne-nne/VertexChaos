@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
 public class FourWayShootModifier : BulletModifier
@@ -7,7 +8,7 @@ public class FourWayShootModifier : BulletModifier
     public override void create_effect(GameObject bullet)
     {
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();
-
+        bullet_script.delay += 0.1f;
         for (int i = 1; i < 4; i++)
         {
             GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();

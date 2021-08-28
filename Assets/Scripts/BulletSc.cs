@@ -14,6 +14,7 @@ public class BulletSc : MonoBehaviour
     public float speed = 0.1f;
     public float lifetime = 5.0f;
     public int life = 1;
+    public float delay = 0;
     private List<BulletModifier> bms;
     private float start_life;
     private Rigidbody rb;
@@ -35,11 +36,12 @@ public class BulletSc : MonoBehaviour
         start_life = Time.time;
     }
 
-    public void Shoot()
+    public float Shoot()
     {
         //gameObject.SetActive(true);
         //start_life = Time.time;
         rb.AddForce(transform.forward * speed);
+        return delay;
     }
 
     // Update is called once per frame
@@ -109,7 +111,9 @@ public class BulletSc : MonoBehaviour
         speed = base_speed;
         lifetime = base_lifetime;
         life = 1;
+        delay = 0;
         gameObject.transform.localScale = new Vector3(1, 1, 1);
+        affiliation = Affiliation.Player;
     }
 
     public void AddModifiers(List<BulletModifier> new_bms)

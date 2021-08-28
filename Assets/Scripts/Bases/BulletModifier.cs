@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletModifier 
+public class BulletModifier
 {
 
     virtual public void create_effect(GameObject bullet)

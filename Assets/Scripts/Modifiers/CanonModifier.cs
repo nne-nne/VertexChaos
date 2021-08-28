@@ -8,6 +8,7 @@ public class CanonModifier : BulletModifier
     {
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();
 
+        bullet_script.delay += 1;
         bullet_script.damage += 1.0f;
         bullet_script.speed *= 0.5f;
         bullet.transform.localScale += new Vector3(5, 5, 5);
