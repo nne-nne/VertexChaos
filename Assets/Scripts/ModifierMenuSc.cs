@@ -129,22 +129,70 @@ public class ModifierMenuSc : MonoBehaviour
         switch(chosenEnemyModifier)
         {
             case 0:
-                em = new AddSpeedEnemyModifier();
+                foreach (NotSharedPool pool in LS.enemyPools)
+                {
+                    foreach (Transform enemy in pool.gameObject.transform)
+                    {
+                        em = new AddSpeedEnemyModifier();
+                        EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
+                        ec.AddModifier(em);
+                    }
+                }
                 break;
             case 1:
-                em = new BigBadEnemyModifier();
+                foreach (NotSharedPool pool in LS.enemyPools)
+                {
+                    foreach (Transform enemy in pool.gameObject.transform)
+                    {
+                        em = new BigBadEnemyModifier();
+                        EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
+                        ec.AddModifier(em);
+                    }
+                }
                 break;
             case 2:
-                em = new BombDropOnDeath(mods);
+                foreach (NotSharedPool pool in LS.enemyPools)
+                {
+                    foreach (Transform enemy in pool.gameObject.transform)
+                    {
+                        em = new BombDropOnDeath(mods);
+                        EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
+                        ec.AddModifier(em);
+                    }
+                }
                 break;
             case 3:
-                em = new LowerTimeBetweenShotsModifier();
+                foreach (NotSharedPool pool in LS.enemyPools)
+                {
+                    foreach (Transform enemy in pool.gameObject.transform)
+                    {
+                        em = new LowerTimeBetweenShotsModifier();
+                        EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
+                        ec.AddModifier(em);
+                    }
+                }
                 break;
             case 4:
-                em = new MoreHealthEnemyModifier(); 
+                foreach (NotSharedPool pool in LS.enemyPools)
+                {
+                    foreach (Transform enemy in pool.gameObject.transform)
+                    {
+                        em = new MoreHealthEnemyModifier();
+                        EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
+                        ec.AddModifier(em);
+                    }
+                }
                 break;
             case 5:
-                em = new ShootOnDeath();
+                foreach (NotSharedPool pool in LS.enemyPools)
+                {
+                    foreach (Transform enemy in pool.gameObject.transform)
+                    {
+                        em = new ShootOnDeath();
+                        EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
+                        ec.AddModifier(em);
+                    }
+                }
                 break;
         }
 
@@ -153,17 +201,9 @@ public class ModifierMenuSc : MonoBehaviour
         ConstructorInfo constructor = t.GetConstructor(Type.EmptyTypes);
         BulletModifier newModifier = (BulletModifier)constructor.Invoke(null);
         cannon.AddBulletModifier(newModifier);*/
-
         cannon.AddBulletModifier(bm);
+        
 
-        foreach (NotSharedPool pool in LS.enemyPools)
-        {
-            foreach (Transform enemy in pool.gameObject.transform)
-            {
-                EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
-                ec.AddModifier(em);
-            }
-        }
 
         LevelsScript.StartLevelEvent.Invoke();
         interLevelMenu.SetActive(false);

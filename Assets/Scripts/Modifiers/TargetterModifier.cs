@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
 public class TargetterModifier : BulletModifier
@@ -20,6 +21,8 @@ public class TargetterModifier : BulletModifier
                 if (new_bulletSc != null)
                 {
                     new_bulletSc.damage = 0.5f * strenght;
+                    new_bulletSc.affiliation = Affiliation.Player;
+                    new_bulletSc.SetBulletMaterialToAffiliation();
                     new_bulletSc.Activate();
                     new_bulletSc.AddModifiers(new List<BulletModifier>());
                     new_bulletSc.Shoot();

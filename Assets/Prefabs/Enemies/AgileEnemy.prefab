@@ -62,8 +62,11 @@ MonoBehaviour:
   maxMovSpeed: 40
   acceleration: 30
   angularSpeed: 30
+  affiliation: 0
   health: 3
   maxHealth: 3
+  damageSignalizationTime: 0.1
+  damageTexture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
   deathSounds:
   - {fileID: 8300000, guid: bde5dd88b8356984999e644abe09a985, type: 3}
   - {fileID: 8300000, guid: 7ef5cd6d878e615438780e1e7cb66c14, type: 3}
@@ -73,6 +76,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: be0d19c80e3f4ef478c2870100ac1f33, type: 3}
   - {fileID: 8300000, guid: a292a61f898f79e4e8264c7d475887a8, type: 3}
   postDeathDummy: {fileID: -2973822939495057721, guid: 02eb249e21865c94190425d2311d80f6, type: 3}
+  materialTextures: []
   minTargetDistance: 15
   maxTargetDistance: 30
   maxStrafeDistanceBias: 5

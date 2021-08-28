@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Enemies;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,6 +31,12 @@ public class PlayerController : MonoBehaviour, ITarget
 
     public static string PlayerName { get; } = "Player";
 
+    public float damageSignalizationTime = 0.1f;
+    
+    private Color damageColor = Color.white;
+
+    public Texture damageTexture;
+
     public void ResetRigidbodyVelocity(bool resetLinear = true, bool resetAngular = true)
     {
         if (resetLinear) { rb.velocity = Vector3.zero; }
@@ -39,7 +46,7 @@ public class PlayerController : MonoBehaviour, ITarget
     public UnityEvent DeathEvent { get; set; } = new UnityEvent();
 
     /// <remarks> For cosmetics or UI </remarks>
-    public UnityEvent<float> ReceiveDamageEvent { get; set; }= new UnityEvent<float>();
+    public UnityEvent<float> ReceiveDamageEvent { get; set; } = new UnityEvent<float>();
 
     public List<AudioClip> deathSounds = new List<AudioClip>();
     
@@ -68,6 +75,18 @@ public class PlayerController : MonoBehaviour, ITarget
         }
         
         gameObject.tag = PlayerName;
+        
+        Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+        if (renderers != null)
+        {
+            for (int i = 0; i < renderers.Length; ++i)
+            {
+                materialColors.Add(renderers[i].material.color);
+                materialTextures.Add(renderers[i].material.mainTexture);
+            }
+        }
+        ReceiveDamageEvent.AddListener(SignalizeDamage);
+        DeathEvent.AddListener(StopSignalizingDamage);
     }
 
     protected void UpdateMovementSpeed()
@@ -131,6 +150,8 @@ public class PlayerController : MonoBehaviour, ITarget
 
     protected virtual void Update()
     {
+        ManageDamageDisplay();
+
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         UpdateMovementSpeed();
         UpdateRotation();
@@ -201,6 +222,61 @@ public class PlayerController : MonoBehaviour, ITarget
     }
 
     private AudioSource audioSource = null;
+
+    private float signalizationRemainingTime = 0f;
+
+    private bool isSignalizingDamage = false;
+
+    private List<Color> materialColors = new List<Color>();
+
+    private List<Texture> materialTextures = new List<Texture>();
+
+    protected void SignalizeDamage(float amount)
+    {
+        isSignalizingDamage = true;
+        signalizationRemainingTime = damageSignalizationTime;
+
+        Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+        if (renderers != null)
+        {
+            for (int i = 0; i < renderers.Length; ++i)
+            {
+                renderers[i].material.mainTexture = damageTexture;
+                renderers[i].material.color = damageColor;
+            }
+        }
+    }
+
+    protected void StopSignalizingDamage()
+    {
+        isSignalizingDamage = false;
+        signalizationRemainingTime = 0f;
+
+        Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+        if (renderers != null)
+        {
+            for (int i = 0; i < renderers.Length; ++i)
+            {
+                renderers[i].material.color = materialColors[i];
+                renderers[i].material.mainTexture = materialTextures[i];
+            }
+        }
+    }
+
+    protected void ManageDamageDisplay()
+    {
+        if (isSignalizingDamage)
+        {
+            if (signalizationRemainingTime > 0f)
+            {
+                signalizationRemainingTime -= Time.deltaTime;
+            }
+            else
+            {
+                StopSignalizingDamage();
+            }
+        }
+    }
     
     Vector3 ITarget.GetPosition()
     {

@@ -13,7 +13,7 @@ public class CannonController : MonoBehaviour
     [SerializeField] private float cooldownTime;
     private List<BulletModifier> bms;
     private float cooldown;
-
+    
     public void PrintBms()
     {
         Debug.Log("there are " + bms.Count + "modifiers");
@@ -58,10 +58,11 @@ public class CannonController : MonoBehaviour
                 {
                     //following method sets bullet active in hierarchy
                     bulletSc.affiliation = affiliation;
+                    bulletSc.SetBulletMaterialToAffiliation();
                     bulletSc.Activate();
                     bulletSc.AddModifiers(bms);
                     cool = bulletSc.Shoot();
-
+                    
                     ShootEvent.Invoke();
                 }
             }
