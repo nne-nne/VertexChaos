@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2527617502034329168}
   - component: {fileID: -7332070948759370787}
   m_Layer: 0
-  m_Name: EfectEnemyBlow
+  m_Name: SpinningEnemyDeathParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.47699, g: 0.032611, b: 0.052298, a: 0.5019608}
+      maxColor: {r: 0.378638, g: 0.234308, b: 0.647059, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
