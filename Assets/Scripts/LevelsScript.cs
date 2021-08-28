@@ -9,9 +9,9 @@ public class LevelsScript : MonoBehaviour
 {
     public Transform player;
     public List<NotSharedPool> enemyPools;
-    public List<float> enemyFrequencies;
-    public float randomFrac;
-    public float difficultyMultiplier;
+    public List<float> enemyLinearA;
+    public List<float> enemyLinearB;
+    public List<float> enemyRandomness;
     [SerializeField] private float arenaRadius;
     [SerializeField] private float arenaMinRadius;
     private int levelNum;
@@ -131,11 +131,11 @@ public class LevelsScript : MonoBehaviour
     List<int> CalculateAmounts(int levelNum)
     {
         List<int> amounts = new List<int>();
-        float baseCount = 1 + levelNum * difficultyMultiplier;   
-        foreach (int freq in enemyFrequencies)
+
+        for(int i = 0; i < enemyPools.Count; i++)
         {
-            int randomOffset = (int)Random.Range(-randomFrac * baseCount, randomFrac * baseCount);
-            int enemyInstances = levelNum * freq + randomOffset;
+            float randomRange = levelNum * enemyRandomness[i];
+            int enemyInstances = (int)(enemyLinearB[i] + (int)(enemyLinearA[i] * levelNum) + (int)Random.Range(-randomRange, randomRange));
             if (enemyInstances < 0) enemyInstances = 0;
             amounts.Add(enemyInstances);
         }
