@@ -82,7 +82,7 @@ public class ModifierMenuSc : MonoBehaviour
                 bm = new CanonModifier();
                 break;
             case 4:
-                bm = new DamagingAuraModifier(mods);
+                bm = new AddDemage(); // tu mia³a byæ aura
                 break;
             case 5:
                 bm = new ExplosionModifier(mods);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
 /// <summary>
@@ -19,9 +20,10 @@ public class PostDeathDummy : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(PlayerController.PlayerName))
+        PlayerController controller = other.GetComponentInParent<PlayerController>();
+        if (controller != null && controller.affiliation != Affiliation.Enemy)
         {
-            other.GetComponentInParent<PlayerController>().ReceiveDamage(explosionDamage);
+            controller.ReceiveDamage(explosionDamage);
         }
     }
 

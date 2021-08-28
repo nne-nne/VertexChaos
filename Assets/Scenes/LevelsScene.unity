@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.280981, g: 0.25430694, b: 0.26527923, a: 1}
+  m_IndirectSpecularColor: {r: 0.38444096, g: 0.47178137, b: 0.6176216, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -754,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1093594764742558466, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: cooldownTime
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2307239696643645864, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -797,6 +797,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: rotAcc
       value: 4
       objectReference: {fileID: 0}
@@ -807,6 +811,10 @@ PrefabInstance:
     - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: inertia
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: maxRotSpeed
@@ -2537,9 +2545,9 @@ MonoBehaviour:
   - {fileID: 1062746005}
   enemyFrequencies:
   - 2
+  - 0.1
   - 1
-  - 1
-  - 1
+  - 0.3
   randomFrac: 0.3
   difficultyMultiplier: 0.5
   arenaRadius: 50

@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour, ITarget
     private Vector2 speed, direction;
     private Quaternion rotation;
     
-    protected Affiliation affiliation = Affiliation.Player;
+    public Affiliation affiliation = Affiliation.Player;
 
     [FormerlySerializedAs("Health")] [SerializeField]
     public float health = 10f;
