@@ -2143,13 +2143,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interLevelMenu: {fileID: 2049998991}
-  LS: {fileID: 0}
+
+  LS: {fileID: 1905807230}
+
   bulletModifierNames:
   - AddDemage
   - AddLifeTime
   - AddSpeed
   - CanonModifier
-  - DamagingAuraModifier
+  - AddDemage
+  - ExplotionModifier
   - FourWayShootModifier
   - HomingBullet
   - PierceModifier
@@ -2171,6 +2174,7 @@ MonoBehaviour:
   - Couses bullets to fly faster
   - Your projectiles will be bigger and badder
   - Raises damage dealt by your bullets
+  - Bullets explode when they are destryed
   - Bullets split to all directions
   - Adds homing effect to your bullets
   - Bullets pierce through the angels
@@ -2183,12 +2187,14 @@ MonoBehaviour:
   - Bomb Drop
   - Fire Rate Up
   - More Health
+  - Shoot On Death
   enemyModifierMessages:
   - Angels move faster
   - Angels are bigger but slower
   - Angels drop bomb after death
   - Couses Angels to shoot faster
   - Angels can take more shots
+  - Angels shoot in all direction when they die
 --- !u!1 &1828578065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,8 +2618,8 @@ MonoBehaviour:
   - 0.3
   randomFrac: 0.3
   difficultyMultiplier: 0.5
-  arenaRadius: 40
-  arenaMinRadius: 30
+  arenaRadius: 100
+  arenaMinRadius: 50
 --- !u!1 &1928136412
 GameObject:
   m_ObjectHideFlags: 0

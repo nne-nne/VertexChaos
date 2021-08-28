@@ -31,10 +31,11 @@ public class ScatterModifier : BulletModifier
                     new_bullet.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
                     new_bulletSc.damage -= 0.5f;
                     new_bulletSc.speed *= Random.Range(0.95f, 1.05f);
+                    new_bulletSc.affiliation = bullet_script.affiliation;
+                    new_bulletSc.SetBulletMaterialToAffiliation();
                     new_bulletSc.Activate();
                     new_bulletSc.AddModifiers(new_bms);
                     new_bulletSc.Shoot();
-
                 }
             }
         }

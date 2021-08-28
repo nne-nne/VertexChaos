@@ -24,6 +24,8 @@ public class FourWayShootModifier : BulletModifier
                 {
                     //following method sets bullet active in hierarchy
                     List<BulletModifier> new_bms = new List<BulletModifier>(bullet_script.GetBulletModifiers());
+                    new_bulletSc.affiliation = bullet_script.affiliation;
+                    new_bulletSc.SetBulletMaterialToAffiliation();
                     new_bms.Remove(this);
                     new_bulletSc.Activate();
                     new_bulletSc.AddModifiers(new_bms);

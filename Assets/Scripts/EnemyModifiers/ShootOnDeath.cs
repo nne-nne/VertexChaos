@@ -7,14 +7,14 @@ public class ShootOnDeath : EnemyModifier
 {
     public override void destroy_effect(GameObject enemy)
     {
-        for (int i = 1; i < 8; i++)
+        for (int i = 1; i < 4*strenght; i++)
         {
             GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
             if (enemy != null)
             {
                 new_bullet.transform.position = enemy.transform.position;
                 new_bullet.transform.rotation = enemy.transform.rotation;
-                new_bullet.transform.RotateAround(new_bullet.transform.position, Vector3.up, (360 / (8)) * i);
+                new_bullet.transform.RotateAround(new_bullet.transform.position, Vector3.up, (360 / (4 * strenght)) * i);
 
                 BulletSc new_bulletSc = new_bullet.GetComponent<BulletSc>();
 
