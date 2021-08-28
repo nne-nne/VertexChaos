@@ -13,6 +13,9 @@ public class ModifierMenuSc : MonoBehaviour
     public List<Button> buttons;
     public CannonController cannon;
     public GameObject[] mods = new GameObject[2];
+    public List<string> bulletModifierMessages;
+    public List<string> enemyModifierNames;
+    public List<string> enemyModifierMessages;
 
 
     void Start()
