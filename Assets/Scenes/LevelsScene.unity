@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38444096, g: 0.47178137, b: 0.6176216, a: 1}
+  m_IndirectSpecularColor: {r: 0.28101292, g: 0.2543006, b: 0.2652842, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2127,6 +2127,9 @@ MonoBehaviour:
   mods:
   - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
   - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
+  bulletModifierMessages: []
+  enemyModifierNames: []
+  enemyModifierMessages: []
 --- !u!1 &1828578065
 GameObject:
   m_ObjectHideFlags: 0
