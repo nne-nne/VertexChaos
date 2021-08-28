@@ -22,8 +22,7 @@ namespace Enemies
             Simple,
             Agile,
             Exploding,
-            [InspectorName("Spin2Win")]
-            Spinning
+            [InspectorName("Spin2Win")] Spinning
         }
 
         public float minTargetDistance = 10f;
@@ -80,7 +79,7 @@ namespace Enemies
         public void InstantlyRotateTo(Vector3 targetPosition)
         {
             Vector3 directionVector = CalculateDirection(targetPosition);
-            
+
             SetRotation(directionVector);
         }
 
@@ -114,7 +113,7 @@ namespace Enemies
                 RotationDirection.Counterclockwise => Quaternion.AngleAxis(90f, Vector3.up) * directionVector,
                 _ => new Vector3()
             };
-            
+
             Vector3 spinDirectionVector = spinDirection switch
             {
                 RotationDirection.Clockwise => Quaternion.AngleAxis(-90f, Vector3.up) * transform.forward,
@@ -128,7 +127,7 @@ namespace Enemies
             UpdateRotationToFace(spinDirectionVector);
             ResetRigidbodyVelocity(false, true);
         }
-        
+
         public void Shoot()
         {
             GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
@@ -142,15 +141,16 @@ namespace Enemies
                 if (bulletSc != null)
                 {
                     bulletSc.affiliation = affiliation;
+                    bulletSc.SetBulletMaterialToAffiliation();
                     bulletSc.Activate();
                     bulletSc.AddModifiers(bulletModifiers);
                     bulletSc.Shoot();
-
+                    
                     PlayShootSound();
                 }
             }
         }
-        
+
         public void Explode()
         {
             DeathEvent.Invoke();
@@ -159,7 +159,7 @@ namespace Enemies
         public void Wait()
         {
             Direction = Vector2.zero;
-            
+
             UpdateMovementSpeed();
             UpdateRotation();
         }
@@ -179,7 +179,6 @@ namespace Enemies
         {
             base.Awake();
             
-
             CopyToBaseStats();
 
             affiliation = Affiliation.Enemy;
@@ -190,6 +189,8 @@ namespace Enemies
 
         protected override void Update()
         {
+            ManageDamageDisplay();
+            
             if (Behavior != null)
             {
                 Behavior.UpdateTaskExecution(this);
@@ -198,7 +199,7 @@ namespace Enemies
             {
                 Wait();
             }
-            
+
             /// DEBUG ONLY!!!
             if (Input.GetKeyDown(KeyCode.X))
                 enemyModifiers.Add(new BigBadEnemyModifier());
@@ -241,7 +242,7 @@ namespace Enemies
             return new Vector3(targetPosition.x - currentPosition.x,
                 0f, targetPosition.z - currentPosition.z).normalized;
         }
-        
+
 
         private void CopyToBaseStats()
         {

@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticlesPrefab: {fileID: 2527617502034329164, guid: 30959a4f4240e1048a1ac3e2686ced16, type: 3}
-  timeToDeactivate: 1
-  explosionDamage: 10
+  timeToDeactivate: 0.5
+  explosionDamage: 3
 --- !u!82 &2681494202776932766
 AudioSource:
   m_ObjectHideFlags: 0
@@ -155,5 +155,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}

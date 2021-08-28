@@ -22,6 +22,9 @@ public class BulletSc : MonoBehaviour
 
     public Affiliation affiliation = Affiliation.Player;
 
+    public Material playerMaterial;
+    public Material enemyMaterial;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -134,5 +137,22 @@ public class BulletSc : MonoBehaviour
     public void removeModifier(BulletModifier mod)
     {
         bms.Remove(mod);
+    }
+
+    public void SetBulletMaterialToAffiliation()
+    {
+        Renderer renderer = gameObject.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            switch (affiliation)
+            {
+                case Affiliation.Player:
+                    renderer.material = playerMaterial;
+                    break;
+                case Affiliation.Enemy:
+                    renderer.material = enemyMaterial;
+                    break;
+            }
+        }
     }
 }

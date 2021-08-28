@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7fd3c9814f7c4ff4d9461c03b6eefac9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,3 +131,5 @@ MonoBehaviour:
   life: 1
   delay: 0
   affiliation: 0
+  playerMaterial: {fileID: 2100000, guid: 7fd3c9814f7c4ff4d9461c03b6eefac9, type: 2}
+  enemyMaterial: {fileID: 2100000, guid: 88c5cffbfb22e5446bb47479413706ae, type: 2}
