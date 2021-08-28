@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemies.Behaviors;
@@ -245,6 +246,11 @@ namespace Enemies
             baseStats.maxStrafeDistanceBias = maxStrafeDistanceBias;
             baseStats.timeBetweenShots = timeBetweenShots;
             baseStats.behaviorType = behaviorType;
+        }
+
+        private void OnEnable()
+        {
+            Behavior.SetupTasks(this);
         }
     }
 }
