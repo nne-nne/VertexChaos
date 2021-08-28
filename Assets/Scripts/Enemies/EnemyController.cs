@@ -270,7 +270,6 @@ namespace Enemies
 
         private void OnEnable()
         {
-
             CopyBaseStatsToActual();
             ApplyEnemyModifiers();
             Behavior.SetupTasks(this);
