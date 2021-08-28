@@ -167,7 +167,6 @@ public class ModifierMenuSc : MonoBehaviour
                 ec.AddModifier(em);
             }
         }
-        //TODO tu jakoœ trzeba daæ wrogowi ten wybrany modyfikator 'em'
 
         LevelsScript.StartLevelEvent.Invoke();
         interLevelMenu.SetActive(false);
