@@ -418,7 +418,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 412430623}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764557028}
+        m_TargetAssemblyTypeName: ModifierMenuSc, Assembly-CSharp
+        m_MethodName: ChooseModifier
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &412430623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,7 +1064,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 869911580}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764557028}
+        m_TargetAssemblyTypeName: ModifierMenuSc, Assembly-CSharp
+        m_MethodName: ChooseModifier
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &869911580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,7 +1338,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1215610323}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764557028}
+        m_TargetAssemblyTypeName: ModifierMenuSc, Assembly-CSharp
+        m_MethodName: ChooseModifier
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1215610323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2107,6 +2143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interLevelMenu: {fileID: 2049998991}
+  LS: {fileID: 0}
   bulletModifierNames:
   - AddDemage
   - AddLifeTime
@@ -2575,7 +2612,8 @@ MonoBehaviour:
   - 0.3
   randomFrac: 0.3
   difficultyMultiplier: 0.5
-  arenaRadius: 50
+  arenaRadius: 40
+  arenaMinRadius: 30
 --- !u!1 &1928136412
 GameObject:
   m_ObjectHideFlags: 0
