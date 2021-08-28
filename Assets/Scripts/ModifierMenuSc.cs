@@ -5,10 +5,12 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Enemies;
 
 public class ModifierMenuSc : MonoBehaviour
 {
     public GameObject interLevelMenu;
+    public LevelsScript LS;
     public List<string> bulletModifierNames;
     public List<Button> buttons;
     public CannonController cannon;
@@ -26,8 +28,8 @@ public class ModifierMenuSc : MonoBehaviour
 
     void Start()
     {
-        bulletModifierOptions = GenerateNaturalNumbers(2);
-        enemyModifierOptions = GenerateNaturalNumbers(2);
+        bulletModifierOptions = GenerateNaturalNumbers(3);
+        enemyModifierOptions = GenerateNaturalNumbers(3);
 
         for(int i = 0; i < buttons.Count; i++)
         {
@@ -84,7 +86,7 @@ public class ModifierMenuSc : MonoBehaviour
     private void ChooseModifier(int i)
     {
         int chosenBulletModifier = bulletModifierOptions[i];
-        int chosenEnemyModifier = bulletModifierOptions[i];
+        int chosenEnemyModifier = enemyModifierOptions[i];
         BulletModifier bm = null;
         EnemyModifier em = null;
         switch (chosenBulletModifier)
@@ -129,7 +131,24 @@ public class ModifierMenuSc : MonoBehaviour
 
         switch(chosenEnemyModifier)
         {
-            //TODO
+            case 0:
+                em = new AddSpeedEnemyModifier();
+                break;
+            case 1:
+                em = new BigBadEnemyModifier();
+                break;
+            case 2:
+                em = new BombDropOnDeath(mods);
+                break;
+            case 3:
+                em = new LowerTimeBetweenShotsModifier();
+                break;
+            case 4:
+                em = new MoreHealthEnemyModifier(); 
+                break;
+            case 5:
+                em = new ShootOnDeath();
+                break;
         }
 
         /*
@@ -139,7 +158,15 @@ public class ModifierMenuSc : MonoBehaviour
         cannon.AddBulletModifier(newModifier);*/
 
         cannon.AddBulletModifier(bm);
-        //TODO tu jakoœ trzeba daæ wrogowi ten wybrany modyfikator 'em'
+
+        foreach (NotSharedPool pool in LS.enemyPools)
+        {
+            foreach (Transform enemy in pool.gameObject.transform)
+            {
+                EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
+                ec.AddModifier(em);
+            }
+        }
 
         LevelsScript.StartLevelEvent.Invoke();
         interLevelMenu.SetActive(false);
