@@ -25,10 +25,8 @@ public class LevelsScript : MonoBehaviour
     {
         foreach (NotSharedPool pool in enemyPools)
         {
-            Debug.Log("pula");
             foreach(Transform enemy in pool.gameObject.transform)
             {
-                Debug.Log("wróg");
                 EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
                 enemyController.DeathEvent.AddListener(CheckNextLevel);
             }
@@ -48,10 +46,9 @@ public class LevelsScript : MonoBehaviour
     private void CheckNextLevel()
     {
         enemiesLeft -= 1;
-        Debug.LogError(enemiesLeft);
+        Debug.LogError(enemiesLeft + " enemies to kill");
         if (enemiesLeft == 0)
         {
-            Debug.LogError("NEXT LEVEL!");
             NextLevel();
         }
     }
