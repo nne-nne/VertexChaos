@@ -1,3 +1,4 @@
+using Enemies;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,27 @@ public class LevelsScript : MonoBehaviour
     public float difficultyMultiplier;
     [SerializeField] private float arenaRadius;
     private int levelNum;
+    private int enemiesLeft;
 
     void Start()
     {
-        levelNum = 0;
+        levelNum = 1;
+        EnemiesSubscribeEvents();
+        NextLevel();
+    }
+
+    private void EnemiesSubscribeEvents()
+    {
+        foreach (NotSharedPool pool in enemyPools)
+        {
+            Debug.Log("pula");
+            foreach(Transform enemy in pool.gameObject.transform)
+            {
+                Debug.Log("wróg");
+                EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
+                enemyController.DeathEvent.AddListener(CheckNextLevel);
+            }
+        }
     }
 
     private int Sum(List<int> list)
@@ -27,6 +45,17 @@ public class LevelsScript : MonoBehaviour
         return result;
     }
 
+    private void CheckNextLevel()
+    {
+        enemiesLeft -= 1;
+        Debug.LogError(enemiesLeft);
+        if (enemiesLeft == 0)
+        {
+            Debug.LogError("NEXT LEVEL!");
+            NextLevel();
+        }
+    }
+
     List<GameObject> PrepareEnemySquad(List<int> amounts)
     {
         List<GameObject> enemySquad = new List<GameObject>();
@@ -35,7 +64,6 @@ public class LevelsScript : MonoBehaviour
             if (i >= enemyPools.Count) break;
             for (int j = 0; j < amounts[i]; j++)
             {
-                Debug.Log("spawning "+ (j+1) +" enemy of pool "+i);
                 GameObject newEnemy = enemyPools[i].GetPooledObject();
                 if (newEnemy != null)
                 {
@@ -107,14 +135,17 @@ public class LevelsScript : MonoBehaviour
         List<int> amounts = CalculateAmounts(levelNum);
         List<GameObject> enemySquad = PrepareEnemySquad(amounts);
         PlaceEnemies(enemySquad);
+        enemiesLeft = enemySquad.Count;
+    }
+
+    private void NextLevel()
+    {
+        Spawn();
         levelNum += 1;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Spawn();
-        }
+        
     }
 }

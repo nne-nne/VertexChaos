@@ -10,19 +10,19 @@ public class NotSharedPool : MonoBehaviour
 
     private void Awake()
     {
-
-    }
-
-    private void Start()
-    {
         pooledObjects = new List<GameObject>();
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
-            tmp = Instantiate(objectToPool);
+            tmp = Instantiate(objectToPool, transform);
             tmp.SetActive(false);
             pooledObjects.Add(tmp);
         }
+    }
+
+    private void Start()
+    {
+
     }
 
     public GameObject GetPooledObject()

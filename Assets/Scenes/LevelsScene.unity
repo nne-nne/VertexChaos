@@ -1576,7 +1576,7 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  randomFrac: 0.3
+  randomFrac: 0
   difficultyMultiplier: 1
   arenaRadius: 50
 --- !u!1 &1928136412
