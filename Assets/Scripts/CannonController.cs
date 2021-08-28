@@ -6,6 +6,8 @@ using UnityEngine;
 public class CannonController : MonoBehaviour
 {
     public Transform pivotPoint;
+    public GameObject[] for_mods;
+    public float fireRate;
     [SerializeField] private float cooldownTime;
     private List<BulletModifier> bms;
     private float cooldown;
@@ -21,13 +23,14 @@ public class CannonController : MonoBehaviour
         cooldown -= Time.deltaTime;
     }
 
-    private void ResetCooldown()
+    private void ResetCooldown(float bullet_cooldown)
     {
-        cooldown = cooldownTime;
+        cooldown = fireRate * (cooldownTime + bullet_cooldown);
     }
 
     private void Shoot()
     {
+        float cool = 0;
         if (cooldown <= 0.0f)
         {
             GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
@@ -44,11 +47,11 @@ public class CannonController : MonoBehaviour
                     bulletSc.affiliation = affiliation;
                     bulletSc.Activate();
                     bulletSc.AddModifiers(bms);
-                    bulletSc.Shoot();
+                    cool = bulletSc.Shoot();
 
                 }
             }
-            ResetCooldown();
+            ResetCooldown(cool);
         }
         
     }
@@ -82,6 +85,12 @@ public class CannonController : MonoBehaviour
             bms.Add(new ScatterModifier());
         if (Input.GetKeyDown(KeyCode.P))
             bms.Add(new HomingBullet());
+        if (Input.GetKeyDown(KeyCode.F))
+            bms.Add(new DamagingAuraModifier(for_mods[0]));
+        if (Input.GetKeyDown(KeyCode.G))
+            bms.Add(new ShieldModifier());
+        if (Input.GetKeyDown(KeyCode.H))
+            bms.Add(new ExplosionModifier(for_mods[1]));
     }
 
     private Affiliation affiliation = Affiliation.Player;
