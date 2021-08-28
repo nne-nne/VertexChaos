@@ -239,6 +239,14 @@ PrefabInstance:
       propertyPath: cameraSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7992646727359293341, guid: 959f01fae91057448808e4cd399a9dd8, type: 3}
+      propertyPath: cameraSwingMultiplier
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992646727359293341, guid: 959f01fae91057448808e4cd399a9dd8, type: 3}
+      propertyPath: mouseFollowRadiusFrac
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 959f01fae91057448808e4cd399a9dd8, type: 3}
 --- !u!1 &351947820
@@ -806,7 +814,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d559851770a9b8c47a56e107d687e1e1, type: 2}
     - target: {fileID: 7214021993070545501, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: cooldownTime
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: health
@@ -2611,9 +2619,9 @@ MonoBehaviour:
   - {fileID: 1062746005}
   enemyFrequencies:
   - 2
-  - 0.1
+  - 0.4
   - 1
-  - 0.3
+  - 0.7
   randomFrac: 0.3
   difficultyMultiplier: 0.5
   arenaRadius: 100
