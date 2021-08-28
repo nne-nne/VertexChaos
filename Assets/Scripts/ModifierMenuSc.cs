@@ -67,9 +67,9 @@ public class ModifierMenuSc : MonoBehaviour
 
         List<int> modifiersIndices = PickRandomNaturals(buttons.Count, bulletModifierNames.Count);
         List<int> enemyIndices = PickRandomNaturals(buttons.Count, enemyModifierNames.Count);
-        for(int i = 0; i < modifiersIndices.Count; i++)
+        for (int i = 0; i < modifiersIndices.Count; i++)
         {
-            string buttonText = bulletModifierNames[modifiersIndices[i]] + "\n\n" + 
+            string buttonText = bulletModifierNames[modifiersIndices[i]] + "\n\n" +
                                 bulletModifierMessages[modifiersIndices[i]] + "\n\n" +
                                 enemyModifierNames[enemyIndices[i]] + "\n\n" +
                                 enemyModifierMessages[enemyIndices[i]] + "\n\n";
