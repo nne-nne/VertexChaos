@@ -179,7 +179,6 @@ namespace Enemies
         {
             base.Awake();
             
-            CopyBaseStats();
 
             CopyToBaseStats();
 

@@ -6,6 +6,16 @@ public class BulletModifier
 {
     public int strenght = 1;
 
+    public BulletModifier()
+    {
+
+    }
+
+    public BulletModifier(GameObject[] a)
+    {
+
+    }
+
     virtual public void create_effect(GameObject bullet)
     {
 

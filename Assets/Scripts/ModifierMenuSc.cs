@@ -11,6 +11,7 @@ public class ModifierMenuSc : MonoBehaviour
     public List<string> bulletModifierNames;
     public List<Button> buttons;
     public CannonController cannon;
+    public GameObject[] mods;
 
 
     void Start()
@@ -32,7 +33,7 @@ public class ModifierMenuSc : MonoBehaviour
     {
         Type t = Type.GetType(bulletModifierNames[UnityEngine.Random.Range(0, bulletModifierNames.Count)]);
         ConstructorInfo constructor = t.GetConstructor(Type.EmptyTypes);
-        BulletModifier newModifier = (BulletModifier)constructor.Invoke(null);
+        BulletModifier newModifier = (BulletModifier)constructor.Invoke(mods);
         cannon.AddBulletModifier(newModifier);
 
         LevelsScript.StartLevelEvent.Invoke();

@@ -7,7 +7,7 @@ public class BombDropOnDeath : EnemyModifier
 {
     public override void destroy_effect(GameObject enemy)
     {
-
+/*
         GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
         if (new_bullet != null)
         {
@@ -20,7 +20,7 @@ public class BombDropOnDeath : EnemyModifier
             if (new_bulletSc != null)
             {
                 List<BulletModifier> new_bms = new List<BulletModifier>();
-                new_bms.Add(new ExplosionModifier(new GameObject()));
+                new_bms.Add(new ExplosionModifier(new GameObject()[]));
                 new_bulletSc.damage = 1;
                 new_bulletSc.speed *= 0.5f;
                 new_bulletSc.lifetime = 2f;
@@ -33,6 +33,6 @@ public class BombDropOnDeath : EnemyModifier
 
             }
         }
-        
+        */
     }
 }

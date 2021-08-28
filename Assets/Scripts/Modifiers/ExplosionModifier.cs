@@ -7,10 +7,11 @@ public class ExplosionModifier : BulletModifier
     public GameObject explotion_prefab;
     GameObject explotion;
 
-    public ExplosionModifier(GameObject explotion_new)
+    public ExplosionModifier(GameObject[] a)
     {
-        explotion_prefab = explotion_new;
+        explotion_prefab = a[0];
     }
+
     public override void create_effect(GameObject bullet)
     {
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();

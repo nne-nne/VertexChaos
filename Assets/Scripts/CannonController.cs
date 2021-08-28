@@ -120,11 +120,11 @@ public class CannonController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
             AddBulletModifier(new HomingBullet());
         if (Input.GetKeyDown(KeyCode.F))
-            AddBulletModifier(new DamagingAuraModifier(for_mods[0]));
+            AddBulletModifier(new DamagingAuraModifier(for_mods));
         if (Input.GetKeyDown(KeyCode.G))
             AddBulletModifier(new ShieldModifier());
         if (Input.GetKeyDown(KeyCode.H))
-            AddBulletModifier(new ExplosionModifier(for_mods[1]));
+            AddBulletModifier(new ExplosionModifier(for_mods));
         if (Input.GetKeyDown(KeyCode.L))
             AddBulletModifier(new TargetterModifier());
     }

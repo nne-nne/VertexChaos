@@ -9,9 +9,9 @@ public class DamagingAuraModifier : BulletModifier
     GameObject aura;
     Vector3 base_scale;
 
-    public DamagingAuraModifier(GameObject aura_new)
+    public DamagingAuraModifier(GameObject[] a)
     {
-        aura_prefab = aura_new;
+        aura_prefab = a[1];
     }
 
     public override void create_effect(GameObject bullet)

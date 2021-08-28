@@ -2060,6 +2060,9 @@ MonoBehaviour:
   - {fileID: 412430622}
   - {fileID: 1215610322}
   cannon: {fileID: 264775717}
+  mods:
+  - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
+  - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
 --- !u!1 &1828578065
 GameObject:
   m_ObjectHideFlags: 0
