@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ModifierMenuSc : MonoBehaviour
 {
@@ -23,10 +24,40 @@ public class ModifierMenuSc : MonoBehaviour
         LevelsScript.EndLevelEvent.AddListener(InitializeMenu);
     }
 
+    private List<int> GenerateNaturalNumbers(int maxExclusive)
+    {
+        List<int> naturals = new List<int>();
+        for(int i = 0; i < maxExclusive; i++)
+        {
+            naturals.Add(i);
+        }
+        return naturals;
+    }
+
+    private List<int> PickRandomNaturals(int howMany, int maxExclusive)
+    {
+        List<int> naturals = GenerateNaturalNumbers(maxExclusive);
+        List<int> result = new List<int>();
+        for(int i = 0; i < howMany; i++)
+        {
+            int index = UnityEngine.Random.Range(0, naturals.Count);
+            int num = naturals[index];
+            result.Add(num);
+            naturals.Remove(num);
+        }
+        return result;
+    }
+
     private void InitializeMenu()
     {
         Debug.Log("initializing menu");
         interLevelMenu.SetActive(true);
+
+        List<int> modifiersIndices = PickRandomNaturals(buttons.Count, bulletModifierNames.Count);
+        for(int i = 0; i < modifiersIndices.Count; i++)
+        {
+            buttons[i].GetComponentInChildren<TMP_Text>().text = bulletModifierNames[modifiersIndices[i]];
+        }
     }
 
     private void ChooseModifier()
