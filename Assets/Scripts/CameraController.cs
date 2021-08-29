@@ -24,7 +24,6 @@ public class CameraController : MonoBehaviour
         if (Mathf.Abs(offset.x) > mouseFollowRadius) offset.x = mouseFollowRadius * Mathf.Sign(offset.x);
         if (Mathf.Abs(offset.y) > mouseFollowRadius) offset.y = mouseFollowRadius * Mathf.Sign(offset.y);
         offset *= cameraSwingMultiplier;
-        Debug.Log(offset);
         return new Vector3(offset.x, 0f, offset.y);
     }
 
