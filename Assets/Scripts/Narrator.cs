@@ -47,5 +47,6 @@ public class Narrator : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
 
         LevelsScript.EndLevelEvent.AddListener(SayLore);
+        MenuEventBroker.MenuAppear += SayLore;
     }
 }

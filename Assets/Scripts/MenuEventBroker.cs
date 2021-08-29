@@ -11,6 +11,8 @@ public class MenuEventBroker
     
     public static event Action<int> LevelChange;
     
+    public static event Action MenuAppear;
+    
 
     public static void CallPlayerKilled()
     {
@@ -40,5 +42,10 @@ public class MenuEventBroker
     public static void CallLevelChange(int level)
     {
         LevelChange?.Invoke(level);
+    }
+
+    public static void CallMenuAppear()
+    {
+        MenuAppear?.Invoke();
     }
 }
