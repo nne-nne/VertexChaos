@@ -9,14 +9,14 @@ public class FourWayShootModifier : BulletModifier
     {
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();
         bullet_script.delay += 0.1f;
-        for (int i = 1; i < 2*strenght; i++)
+        for (int i = 1; i < 4*strenght; i++)
         {
             GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
             if (bullet != null)
             {
                 new_bullet.transform.position = bullet.transform.position;
                 new_bullet.transform.rotation = bullet.transform.rotation;
-                new_bullet.transform.RotateAround(new_bullet.transform.position, Vector3.up, (360/(2 * strenght))*i);
+                new_bullet.transform.RotateAround(new_bullet.transform.position, Vector3.up, (360/(4 * strenght))*i);
 
                 BulletSc new_bulletSc = new_bullet.GetComponent<BulletSc>();
 

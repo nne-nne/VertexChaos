@@ -178,10 +178,10 @@ namespace Enemies
         protected override void Awake()
         {
             base.Awake();
-            
-            CopyToBaseStats();
 
             affiliation = Affiliation.Enemy;
+            CopyToBaseStats();
+
             gameObject.tag = EnemyName;
             gameObject.GetComponentInChildren<Collider>().tag = EnemyName;
             InitializeBehavior();

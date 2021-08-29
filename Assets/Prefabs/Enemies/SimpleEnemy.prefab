@@ -75,11 +75,10 @@ MonoBehaviour:
   shootSounds:
   - {fileID: 8300000, guid: be0d19c80e3f4ef478c2870100ac1f33, type: 3}
   postDeathDummy: {fileID: -2973822939495057721, guid: 02eb249e21865c94190425d2311d80f6, type: 3}
-  materialTextures: []
   minTargetDistance: 25
   maxTargetDistance: 30
   maxStrafeDistanceBias: 5
-  timeBetweenShots: 0.33
+  timeBetweenShots: 1
   behaviorType: 0
 --- !u!54 &6922267231102003771
 Rigidbody:
