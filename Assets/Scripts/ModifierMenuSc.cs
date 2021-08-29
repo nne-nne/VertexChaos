@@ -144,7 +144,7 @@ public class ModifierMenuSc : MonoBehaviour
                 {
                     foreach (Transform enemy in pool.gameObject.transform)
                     {
-                        em = new BigBadEnemyModifier();
+                        em = new MoreHealthEnemyModifier();
                         EnemyController ec = enemy.gameObject.GetComponent<EnemyController>();
                         ec.AddModifier(em);
                     }

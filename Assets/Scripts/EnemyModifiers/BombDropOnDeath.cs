@@ -27,7 +27,7 @@ public class BombDropOnDeath : EnemyModifier
                 List<BulletModifier> new_bms = new List<BulletModifier>();
                 new_bms.Add(new ExplosionModifier(explotion));
                 new_bulletSc.damage = 1;
-                new_bulletSc.speed *= 0.5f;
+                new_bulletSc.speed *= 1.5f;
                 new_bulletSc.lifetime = 2f;
 
                 new_bulletSc.affiliation = Affiliation.Enemy;
