@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be485fd292c5451aaad2066c8786270f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMovSpeed: 20
+  maxMovSpeed: 15
   acceleration: 2
   angularSpeed: 10
   affiliation: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e1a98840a13f41f4aaa6d4280295f83f, type: 3}
   shootSounds: []
   postDeathDummy: {fileID: -2973822939495057721, guid: 32d329e4bd0c0254c94d8896449c3a57, type: 3}
-  materialTextures: []
+  healthBar: {fileID: 0}
   minTargetDistance: 5
   maxTargetDistance: 3
   maxStrafeDistanceBias: 3

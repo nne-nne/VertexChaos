@@ -200,9 +200,6 @@ namespace Enemies
                 Wait();
             }
 
-            /// DEBUG ONLY!!!
-            if (Input.GetKeyDown(KeyCode.X))
-                enemyModifiers.Add(new BigBadEnemyModifier());
         }
 
         protected override void Die()
