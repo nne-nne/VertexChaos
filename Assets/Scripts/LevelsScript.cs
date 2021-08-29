@@ -1,9 +1,11 @@
+using System;
 using Enemies;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class LevelsScript : MonoBehaviour
 {
@@ -179,5 +181,26 @@ public class LevelsScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void Awake()
+    {
+        MenuEventBroker.Retry += OnRetry;
+    }
+
+    private void OnRetry()
+    {
+        foreach (NotSharedPool pool in enemyPools)
+        {
+            foreach(Transform enemy in pool.gameObject.transform)
+            {
+                EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
+                enemyController.gameObject.SetActive(false);
+            }
+        }
+        
+        levelNum = 0;
+        MenuEventBroker.CallLevelChange(levelNum);
+        StartGame();
     }
 }

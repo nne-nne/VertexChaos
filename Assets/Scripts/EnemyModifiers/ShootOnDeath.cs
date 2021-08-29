@@ -23,6 +23,7 @@ public class ShootOnDeath : EnemyModifier
                     //following method sets bullet active in hierarchy
                     List<BulletModifier> new_bms = new List<BulletModifier>();
                     new_bulletSc.affiliation = Affiliation.Enemy;
+                    new_bulletSc.SetBulletMaterialToAffiliation();
                     new_bulletSc.Activate();
                     new_bulletSc.AddModifiers(new_bms);
                     new_bulletSc.Shoot();

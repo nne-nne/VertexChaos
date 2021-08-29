@@ -149,8 +149,8 @@ public class MenuManager : MonoBehaviour
 
     private void ReloadLevel()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        // Scene scene = SceneManager.GetActiveScene();
+        // SceneManager.LoadScene(scene.name);
     }
 
     private bool addedEvents = false;

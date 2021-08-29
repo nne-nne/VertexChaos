@@ -129,10 +129,20 @@ public class CannonController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
             AddBulletModifier(new TargetterModifier());
         
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Escape))
             MenuEventBroker.CallPauseMenuSwitch();
         
     }
 
     private Affiliation affiliation = Affiliation.Player;
+
+    private void Awake()
+    {
+        MenuEventBroker.Retry += OnRetry;
+    }
+
+    private void OnRetry()
+    {
+        bms.Clear();
+    }
 }
