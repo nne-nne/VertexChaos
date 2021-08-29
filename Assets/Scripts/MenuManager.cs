@@ -59,6 +59,7 @@ public class MenuManager : MonoBehaviour
         endMenu.gameObject.SetActive(false);
         
         SwitchMainMenu();
+        MenuEventBroker.CallMenuAppear();
     }
 
     // Update is called once per frame
