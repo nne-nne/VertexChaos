@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour, ITarget
         {
             for (int i = 0; i < renderers.Length; ++i)
             {
-                if (renderers[i].material.mainTexture != null)
+                if (renderers[i].material.HasProperty("_Color"))
                 {
                     materialTextures.Add(renderers[i].material.mainTexture);
                     materialColors.Add(renderers[i].material.color);
@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour, ITarget
         {
             for (int i = 0; i < renderers.Length; ++i)
             {
-                if (renderers[i].material.mainTexture != null)
+                if (renderers[i].material.HasProperty("_Color"))
                 {
                     renderers[i].material.color = damageColor;
                     renderers[i].material.mainTexture = damageTexture;
@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour, ITarget
         {
             for (int i = 0; i < renderers.Length; ++i)
             {
-                if (renderers[i].material.mainTexture != null)
+                if (renderers[i].material.HasProperty("_Color"))
                 {
                     renderers[i].material.color = materialColors[i];
                     renderers[i].material.mainTexture = materialTextures[i];
