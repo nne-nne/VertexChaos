@@ -251,7 +251,6 @@ public class PlayerController : MonoBehaviour, ITarget
         Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
         if (renderers != null)
         {
-            Debug.Log("Signal");
             for (int i = 0; i < renderers.Length; ++i)
             {
                 if (renderers[i].material.mainTexture != null)

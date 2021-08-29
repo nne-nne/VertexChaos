@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  cameraSpeed: 0.5
+  mouseFollowRadiusFrac: 0
+  cameraSwingMultiplier: 0
 --- !u!82 &-9214118853958705955
 AudioSource:
   m_ObjectHideFlags: 0
@@ -209,13 +210,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   remarks:
-  - {fileID: 8300000, guid: b6a7d4bc2b0056845a6bf89c88eaf6d4, type: 3}
-  - {fileID: 8300000, guid: 405ce92fc40d42640a4fb5949d599667, type: 3}
-  - {fileID: 8300000, guid: d964e74b9a66da94d884cddf1e7ba656, type: 3}
-  - {fileID: 8300000, guid: af78c27489f0ea84bbf3f86c57504a2a, type: 3}
-  - {fileID: 8300000, guid: 7da46822974b9964983730f5813c6e38, type: 3}
-  - {fileID: 8300000, guid: 28ad53ce6e974c4499e33437815b6bfd, type: 3}
-  - {fileID: 8300000, guid: ab5bfa11fe3869b4cba9c6bcebd23a11, type: 3}
-  - {fileID: 8300000, guid: 7e86817e7aa1cca45a51fe4911a236a1, type: 3}
-  - {fileID: 8300000, guid: f5ea2e25d7028ae4b80ab50e03c671b3, type: 3}
-  loreInfo: []
+  - {fileID: 8300000, guid: b28f005c8b5b16a4087f30ade9061885, type: 3}
+  - {fileID: 8300000, guid: 51406ffafb991ee47842d94983c60bad, type: 3}
+  - {fileID: 8300000, guid: 39576c833559ff54fbf2fde6a96ac88e, type: 3}
+  - {fileID: 8300000, guid: 1423927bc521d454db9de2141c8700f1, type: 3}
+  - {fileID: 8300000, guid: 791a98ff2aa77a140a6a194ce664d532, type: 3}
+  - {fileID: 8300000, guid: 47e511ac026de7b4fa6f21ebebdc6794, type: 3}
+  - {fileID: 8300000, guid: 0f01462fa1ba0ef42ac1b0c445596603, type: 3}
+  - {fileID: 8300000, guid: 75d4f1aef665d464fbadae044a183f0c, type: 3}
+  - {fileID: 8300000, guid: 78319b9d8d65bce4eb48e22466788e9c, type: 3}
+  loreInfo:
+  - {fileID: 8300000, guid: b8a7f5410786fed4da7ca2597fc05151, type: 3}
