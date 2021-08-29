@@ -300,5 +300,16 @@ namespace Enemies
             else
                 enemyModifiers.Add(mod);
         }
+
+        public override void ReceiveDamage(float amount)
+        {
+            base.ReceiveDamage(amount);
+            foreach (var enemyModifier in enemyModifiers)
+            {
+                enemyModifier.trigger_effect(gameObject);
+            }
+
+        }
+
     }
 }
