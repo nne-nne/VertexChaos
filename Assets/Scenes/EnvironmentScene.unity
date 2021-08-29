@@ -764,7 +764,7 @@ MonoBehaviour:
   - Add Damage
   - Exploding Bullets
   - All Way Bullets
-  - Homing Bullets
+  - Add Speed
   - Piercing Bullets
   - Scatter Bullets
   - Shield Bullets
@@ -786,21 +786,21 @@ MonoBehaviour:
   - Raises damage dealt by your bullets
   - Bullets explode when they are destryed
   - Bullets split to all directions
-  - Adds homing effect to your bullets
+  - Couses bullets to fly faster
   - Bullets pierce through the angels
   - Shots burst of small bullets
   - Bullets can destroy enemy projectiles
   - Hitting enemy will couse you to shout additional bullet at the enemy
   enemyModifierNames:
   - Add Speed
-  - Big Bad Enemies
+  - Enraged Enemies
   - Bomb Drop
   - Fire Rate Up
   - More Health
   - Shoot on Death
   enemyModifierMessages:
   - Angels move faster
-  - Angels are bigger but slower
+  - Angels get feaster when they take damage
   - Angels drop bomb after death
   - Couses Angels to shoot faster
   - Angels can take more shots
@@ -19970,7 +19970,7 @@ MonoBehaviour:
   enemyLinearA:
   - 1.5
   - 0.8
-  - 1.5
+  - 1
   - 0.5
   enemyLinearB:
   - 4.5
