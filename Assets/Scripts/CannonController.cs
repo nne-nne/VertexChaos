@@ -110,26 +110,8 @@ public class CannonController : MonoBehaviour
 
         ///DO DEBUGOWANIA
         ///~PATRYK
-        if (Input.GetKeyDown(KeyCode.Q))
-            AddBulletModifier(new CanonModifier());
-        if (Input.GetKeyDown(KeyCode.E))
-            AddBulletModifier(new PierceModifier());
-        if (Input.GetKeyDown(KeyCode.R))
-            AddBulletModifier(new FourWayShootModifier());
-        if (Input.GetKeyDown(KeyCode.T))
-            AddBulletModifier(new ScatterModifier());
-        if (Input.GetKeyDown(KeyCode.P))
-            AddBulletModifier(new HomingBullet());
-        if (Input.GetKeyDown(KeyCode.F))
-            AddBulletModifier(new DamagingAuraModifier(for_mods));
-        if (Input.GetKeyDown(KeyCode.G))
-            AddBulletModifier(new ShieldModifier());
-        if (Input.GetKeyDown(KeyCode.H))
-            AddBulletModifier(new ExplosionModifier(for_mods));
-        if (Input.GetKeyDown(KeyCode.L))
-            AddBulletModifier(new TargetterModifier());
         
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Escape))
             MenuEventBroker.CallPauseMenuSwitch();
         
     }
