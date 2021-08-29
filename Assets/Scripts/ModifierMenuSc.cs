@@ -110,7 +110,7 @@ public class ModifierMenuSc : MonoBehaviour
                 bm = new FourWayShootModifier();
                 break;
             case 7:
-                bm = new HomingBullet();
+                bm = new AddSpeed();
                 break;
             case 8:
                 bm = new PierceModifier();

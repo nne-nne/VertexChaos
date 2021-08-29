@@ -9,24 +9,28 @@ public class TargetterModifier : BulletModifier
     {
         if (other.CompareTag("Enemy"))
         {
-            GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
-            if (bullet != null)
+            for (int i = 0; i < strenght; i++)
             {
-                GameObject Player = GameObject.FindGameObjectsWithTag("Player")[0];
-                new_bullet.transform.position = Player.transform.position;
-                new_bullet.transform.LookAt(other.transform);
-
-                BulletSc new_bulletSc = new_bullet.GetComponent<BulletSc>();
-
-                if (new_bulletSc != null)
+                GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
+                if (bullet != null)
                 {
-                    new_bulletSc.damage = 0.5f * strenght;
-                    new_bulletSc.affiliation = Affiliation.Player;
-                    new_bulletSc.SetBulletMaterialToAffiliation();
-                    new_bulletSc.Activate();
-                    new_bulletSc.AddModifiers(new List<BulletModifier>());
-                    new_bulletSc.Shoot();
+                    GameObject Player = GameObject.FindGameObjectsWithTag("Player")[0];
+                    new_bullet.transform.position = Player.transform.position;
+                    new_bullet.transform.LookAt(other.transform);
 
+                    BulletSc new_bulletSc = new_bullet.GetComponent<BulletSc>();
+
+                    if (new_bulletSc != null)
+                    {
+                        new_bulletSc.damage = 1f;
+                        new_bulletSc.speed *= 1 + 0.15f * i;
+                        new_bulletSc.affiliation = Affiliation.Player;
+                        new_bulletSc.SetBulletMaterialToAffiliation();
+                        new_bulletSc.Activate();
+                        new_bulletSc.AddModifiers(new List<BulletModifier>());
+                        new_bulletSc.Shoot();
+
+                    }
                 }
             }
         }
