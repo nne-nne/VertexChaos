@@ -24,12 +24,12 @@ public class LevelsScript : MonoBehaviour
     {
         EnemiesSubscribeEvents();
         StartLevelEvent.AddListener(NextLevel);
-        StartGame(); //TODO: game should be started via main menu
+        StartGame();
     }
 
     private void StartGame()
     {
-        levelNum = 1;
+        levelNum = 0;
         MenuEventBroker.CallLevelChange(levelNum);
         NextLevel();
     }
