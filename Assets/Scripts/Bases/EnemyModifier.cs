@@ -15,7 +15,7 @@ public class EnemyModifier
 
     }
 
-    virtual public void trigger_effect(GameObject enemy, Collider other)
+    virtual public void trigger_effect(GameObject enemy)
     {
 
     }

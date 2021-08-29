@@ -3955,14 +3955,14 @@ MonoBehaviour:
   - Hitting enemy will couse you to shout additional bullet at the enemy
   enemyModifierNames:
   - Add Speed
-  - Big Bad Enemies
+  - Enrage
   - Bomb Drop
   - Fire Rate Up
   - More Health
   - Shoot on Death
   enemyModifierMessages:
   - Angels move faster
-  - Angels are bigger but slower
+  - Every time Angel receives damage it get's faster
   - Angels drop bomb after death
   - Couses Angels to shoot faster
   - Angels can take more shots
