@@ -4,10 +4,12 @@ using System;
 public class MenuEventBroker
 {
     public static event Action PlayerKilled;
-    public static event Action<float> ShipDamage;
+    public static event Action<float> HealthChange;
     public static event Action PauseMenuSwitch;
     public static event Action EndMenuSwitch;
     public static event Action Retry;
+    
+    public static event Action<int> LevelChange;
     
 
     public static void CallPlayerKilled()
@@ -15,9 +17,9 @@ public class MenuEventBroker
         PlayerKilled?.Invoke();
     }
 
-    public static void CallShipDamage(float damage)
+    public static void CallHealthChange(float ratio)
     {
-        ShipDamage?.Invoke(damage);
+        HealthChange?.Invoke(ratio);
     }
     
     public static void CallPauseMenuSwitch()
@@ -33,5 +35,10 @@ public class MenuEventBroker
     public static void CallRetry()
     {
         Retry?.Invoke();
+    }
+    
+    public static void CallLevelChange(int level)
+    {
+        LevelChange?.Invoke(level);
     }
 }

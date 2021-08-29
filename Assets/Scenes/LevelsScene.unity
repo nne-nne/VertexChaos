@@ -3988,6 +3988,8 @@ MonoBehaviour:
   quitPauseButton: {fileID: 696957385}
   retryEndButton: {fileID: 1218217119}
   quitEndButton: {fileID: 392186190}
+  healthbar: {fileID: 1221167650}
+  level: {fileID: 216345053}
 --- !u!1 &1806861040
 GameObject:
   m_ObjectHideFlags: 0
