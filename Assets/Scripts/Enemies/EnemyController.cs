@@ -254,8 +254,10 @@ namespace Enemies
             baseStats.maxStrafeDistanceBias = maxStrafeDistanceBias;
             baseStats.timeBetweenShots = timeBetweenShots;
             baseStats.behaviorType = behaviorType;
-
             baseStats.localScale = transform.localScale;
+            baseStats.acceleration = acceleration;
+            baseStats.angularSpeed = angularSpeed;
+            baseStats.maxMovSpeed = maxMovSpeed;
         }
 
         private void CopyBaseStatsToActual()
@@ -268,6 +270,9 @@ namespace Enemies
             timeBetweenShots = baseStats.timeBetweenShots;
             behaviorType = baseStats.behaviorType;
             transform.localScale = baseStats.localScale;
+            acceleration = baseStats.acceleration;
+            angularSpeed = baseStats.angularSpeed;
+            maxMovSpeed = baseStats.maxMovSpeed;
         }
 
         private void OnEnable()

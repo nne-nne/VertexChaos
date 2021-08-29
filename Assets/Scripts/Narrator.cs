@@ -23,13 +23,21 @@ public class Narrator : MonoBehaviour
         }
         else if (remarks != null)
         {
-            audioSource.PlayOneShot(remarks[Random.Range(0, remarks.Count)]);
+            int randomIndex = Random.Range(0, remarks.Count);
+            if (currentRemarkIndex == randomIndex)
+            {
+                randomIndex = (randomIndex + 1) % remarks.Count;
+            }
+            currentRemarkIndex = randomIndex;
+            audioSource.PlayOneShot(remarks[currentRemarkIndex]);
         }
     }
 
     private AudioSource audioSource;
 
     private IEnumerator<AudioClip> currentLoreInfo;
+
+    private int currentRemarkIndex = 0;
 
     private void Awake()
     {

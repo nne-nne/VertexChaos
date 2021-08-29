@@ -22,5 +22,11 @@ namespace Enemies
         public EnemyController.BehaviorType behaviorType;
 
         public Vector3 localScale;
+
+        public float maxMovSpeed;
+        
+        public float acceleration;
+        
+        public float angularSpeed;
     }
 }
