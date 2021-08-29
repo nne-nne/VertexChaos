@@ -10,7 +10,7 @@ namespace Enemies
     /// </summary>
     public class ExplodingBehavior : BehaviorSequence
     {
-        public const float ExplosionRange = 5f;
+        public const float ExplosionRange = 8f;
 
         public ExplodingBehavior()
         {

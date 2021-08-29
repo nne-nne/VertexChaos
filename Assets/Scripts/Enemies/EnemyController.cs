@@ -305,7 +305,13 @@ namespace Enemies
             {
                 enemyModifier.trigger_effect(gameObject);
             }
+        }
 
+        protected override void OnRetry()
+        {
+            CopyBaseStatsToActual();
+            enemyModifiers.Clear();
+            bulletModifiers.Clear();
         }
 
     }

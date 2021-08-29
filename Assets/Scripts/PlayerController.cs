@@ -83,12 +83,19 @@ public class PlayerController : MonoBehaviour, ITarget
         {
             for (int i = 0; i < renderers.Length; ++i)
             {
-                materialColors.Add(renderers[i].material.color);
-                materialTextures.Add(renderers[i].material.mainTexture);
+                if (renderers[i].material.mainTexture != null)
+                {
+                    materialTextures.Add(renderers[i].material.mainTexture);
+                    materialColors.Add(renderers[i].material.color);
+                }
             }
         }
         ReceiveDamageEvent.AddListener(SignalizeDamage);
         DeathEvent.AddListener(StopSignalizingDamage);
+
+        retryBaseHealth = maxHealth;
+        initialTransform = gameObject.transform;
+        MenuEventBroker.Retry += OnRetry;
     }
 
     protected void UpdateMovementSpeed()
@@ -244,10 +251,14 @@ public class PlayerController : MonoBehaviour, ITarget
         Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
         if (renderers != null)
         {
+            Debug.Log("Signal");
             for (int i = 0; i < renderers.Length; ++i)
             {
-                renderers[i].material.mainTexture = damageTexture;
-                renderers[i].material.color = damageColor;
+                if (renderers[i].material.mainTexture != null)
+                {
+                    renderers[i].material.color = damageColor;
+                    renderers[i].material.mainTexture = damageTexture;
+                }
             }
         }
     }
@@ -262,8 +273,11 @@ public class PlayerController : MonoBehaviour, ITarget
         {
             for (int i = 0; i < renderers.Length; ++i)
             {
-                renderers[i].material.color = materialColors[i];
-                renderers[i].material.mainTexture = materialTextures[i];
+                if (renderers[i].material.mainTexture != null)
+                {
+                    renderers[i].material.color = materialColors[i];
+                    renderers[i].material.mainTexture = materialTextures[i];
+                }
             }
         }
     }
@@ -282,6 +296,20 @@ public class PlayerController : MonoBehaviour, ITarget
             }
         }
     }
+
+    protected virtual void OnRetry()
+    {
+        gameObject.SetActive(true);
+        maxHealth = retryBaseHealth;
+        health = retryBaseHealth;
+        gameObject.transform.position = initialTransform.position;
+        gameObject.transform.rotation = initialTransform.rotation;
+        MenuEventBroker.CallHealthChange(health/maxHealth);
+    }
+
+    private float retryBaseHealth;
+
+    private Transform initialTransform;
 
     Vector3 ITarget.GetPosition()
     {

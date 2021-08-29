@@ -31,6 +31,7 @@ public class BombDropOnDeath : EnemyModifier
                 new_bulletSc.lifetime = 2f;
 
                 new_bulletSc.affiliation = Affiliation.Enemy;
+                new_bulletSc.SetBulletMaterialToAffiliation();
                 new_bulletSc.Activate();
                 new_bulletSc.AddModifiers(new_bms);
                 new_bulletSc.Shoot();
