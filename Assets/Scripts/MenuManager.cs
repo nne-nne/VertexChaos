@@ -18,6 +18,9 @@ public class MenuManager : MonoBehaviour
     public Button quitPauseButton;
     public Button retryEndButton;
     public Button quitEndButton;
+
+    public Image healthbar;
+    public Image level;
     
     private enum ActiveMenu
     {
@@ -32,12 +35,29 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        playMainButton.onClick.AddListener(SwitchNoMenu);
-        quitMainButton.onClick.AddListener(QuitGame);
-        continuePauseButton.onClick.AddListener(SwitchNoMenu);
-        quitPauseButton.onClick.AddListener(QuitGame);
-        retryEndButton.onClick.AddListener(Retry);
-        quitEndButton.onClick.AddListener(QuitGame);
+        if (!addedEvents)
+        {
+            MenuEventBroker.PauseMenuSwitch += SwitchPauseMenu;
+            MenuEventBroker.EndMenuSwitch += SwitchEndMenu;
+            MenuEventBroker.PlayerKilled += SwitchEndMenu;
+            MenuEventBroker.Retry += ReloadLevel;
+            MenuEventBroker.HealthChange += UpdateHealthbar;
+            MenuEventBroker.LevelChange += UpdateLevel;
+            
+            playMainButton.onClick.AddListener(SwitchNoMenu);
+            quitMainButton.onClick.AddListener(QuitGame);
+            continuePauseButton.onClick.AddListener(SwitchNoMenu);
+            quitPauseButton.onClick.AddListener(QuitGame);
+            retryEndButton.onClick.AddListener(Retry);
+            quitEndButton.onClick.AddListener(QuitGame);
+            
+            addedEvents = true;
+        }
+
+        mainMenu.gameObject.SetActive(false);
+        pauseMenu.gameObject.SetActive(false);
+        endMenu.gameObject.SetActive(false);
+        
         SwitchMainMenu();
     }
 
@@ -49,14 +69,7 @@ public class MenuManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MenuEventBroker.PauseMenuSwitch += SwitchPauseMenu;
-        MenuEventBroker.EndMenuSwitch += SwitchEndMenu;
-        MenuEventBroker.PlayerKilled += SwitchEndMenu;
-        MenuEventBroker.Retry += ReloadLevel;
-
-        mainMenu.gameObject.SetActive(false);
-        pauseMenu.gameObject.SetActive(false);
-        endMenu.gameObject.SetActive(false);
+        
     }
 
     private void SwitchMainMenu()
@@ -124,9 +137,21 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    private void UpdateHealthbar(float ratio)
+    {
+        healthbar.fillAmount = ratio;
+    }
+    
+    private void UpdateLevel(int levelNum)
+    {
+        level.GetComponentInChildren<Text>().text = levelNum.ToString();
+    }
+
     private void ReloadLevel()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+
+    private bool addedEvents = false;
 }

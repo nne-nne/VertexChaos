@@ -167,12 +167,13 @@ public class PlayerController : MonoBehaviour, ITarget
         {
             health = 0f;
             DeathEvent.Invoke();
+            if (affiliation == Affiliation.Player) { MenuEventBroker.CallHealthChange(health/maxHealth); }
             if (affiliation == Affiliation.Player) { MenuEventBroker.CallPlayerKilled(); }
         }
         else
         {
             health -= amount;
-            if (affiliation == Affiliation.Player) { MenuEventBroker.CallShipDamage(amount); }
+            if (affiliation == Affiliation.Player) { MenuEventBroker.CallHealthChange(health/maxHealth); }
         }
     }
 
