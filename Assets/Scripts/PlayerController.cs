@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour, ITarget
 
     public Texture damageTexture;
 
+    public float healFrac;
+
     public void ResetRigidbodyVelocity(bool resetLinear = true, bool resetAngular = true)
     {
         if (resetLinear) { rb.velocity = Vector3.zero; }
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour, ITarget
         }
         ReceiveDamageEvent.AddListener(SignalizeDamage);
         DeathEvent.AddListener(StopSignalizingDamage);
+        LevelsScript.EndLevelEvent.AddListener(delegate { Heal(healFrac * maxHealth); });
 
         retryBaseHealth = maxHealth;
         initialTransform = gameObject.transform;
@@ -164,6 +167,16 @@ public class PlayerController : MonoBehaviour, ITarget
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         UpdateMovementSpeed();
         UpdateRotation();
+    }
+
+    private void Heal(float amount)
+    {
+        if(affiliation == Affiliation.Player)
+        {
+            health += amount;
+            if (health > maxHealth) health = maxHealth;
+            MenuEventBroker.CallHealthChange(health / maxHealth);
+        }
     }
     
     public virtual void ReceiveDamage(float amount)
