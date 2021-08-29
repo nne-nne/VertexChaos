@@ -128,6 +128,10 @@ public class CannonController : MonoBehaviour
             AddBulletModifier(new ExplosionModifier(for_mods));
         if (Input.GetKeyDown(KeyCode.L))
             AddBulletModifier(new TargetterModifier());
+        
+        if (Input.GetKeyDown(KeyCode.M))
+            MenuEventBroker.CallPauseMenuSwitch();
+        
     }
 
     private Affiliation affiliation = Affiliation.Player;

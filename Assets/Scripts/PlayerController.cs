@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour, ITarget
 
     public PostDeathDummy postDeathDummy;
 
+    public Scrollbar healthBar;
+
     protected Vector2 Direction
     {
         get => direction;
@@ -165,10 +167,12 @@ public class PlayerController : MonoBehaviour, ITarget
         {
             health = 0f;
             DeathEvent.Invoke();
+            if (affiliation == Affiliation.Player) { MenuEventBroker.CallPlayerKilled(); }
         }
         else
         {
             health -= amount;
+            if (affiliation == Affiliation.Player) { MenuEventBroker.CallShipDamage(amount); }
         }
     }
 
@@ -277,7 +281,7 @@ public class PlayerController : MonoBehaviour, ITarget
             }
         }
     }
-    
+
     Vector3 ITarget.GetPosition()
     {
         return transform.position;
