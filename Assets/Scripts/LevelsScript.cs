@@ -30,6 +30,7 @@ public class LevelsScript : MonoBehaviour
     private void StartGame()
     {
         levelNum = 1;
+        MenuEventBroker.CallLevelChange(levelNum);
         NextLevel();
     }
 
@@ -172,6 +173,7 @@ public class LevelsScript : MonoBehaviour
     {
         Spawn();
         levelNum += 1;
+        MenuEventBroker.CallLevelChange(levelNum);
     }
 
     void Update()

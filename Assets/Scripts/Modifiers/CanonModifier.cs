@@ -8,11 +8,11 @@ public class CanonModifier : BulletModifier
     {
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();
 
-        bullet_script.delay += 1*(strenght/2);
-        bullet_script.damage += 1.0f * strenght;
-        bullet_script.speed *= 0.5f / strenght;
-        bullet.transform.localScale += new Vector3(5, 5, 5) * strenght;
-        bullet_script.life += 5 * strenght;
+        bullet_script.delay += 1*(strenght/4);
+        bullet_script.damage += 0.5f * strenght;
+        bullet_script.speed *= 0.25f / strenght;
+        bullet.transform.localScale += new Vector3(5, 5, 5) * strenght/2;
+        bullet_script.life += 4 * strenght;
     }
 
     public override string show_message()
