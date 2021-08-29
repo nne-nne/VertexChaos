@@ -136,4 +136,14 @@ public class CannonController : MonoBehaviour
     }
 
     private Affiliation affiliation = Affiliation.Player;
+
+    private void Awake()
+    {
+        MenuEventBroker.Retry += OnRetry;
+    }
+
+    private void OnRetry()
+    {
+        bms.Clear();
+    }
 }
