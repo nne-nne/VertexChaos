@@ -70,7 +70,7 @@ public class ModifierMenuSc : MonoBehaviour
         for (int i = 0; i < modifiersIndices.Count; i++)
         {
             string buttonText = bulletModifierNames[modifiersIndices[i]] + "\n\n" +
-                                bulletModifierMessages[modifiersIndices[i]] + "\n\n" +
+                                bulletModifierMessages[modifiersIndices[i]] + "\n\n\n------\n\n\n" +
                                 enemyModifierNames[enemyIndices[i]] + "\n\n" +
                                 enemyModifierMessages[enemyIndices[i]] + "\n\n";
             buttons[i].GetComponentInChildren<TMP_Text>().text = buttonText;
