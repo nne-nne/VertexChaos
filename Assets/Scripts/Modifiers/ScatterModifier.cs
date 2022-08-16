@@ -8,10 +8,10 @@ public class ScatterModifier : BulletModifier
     {
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();
         bullet.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
-        bullet_script.damage -= 0.5f;
+        bullet_script.damage_mul *= 0.5f;
         bullet_script.delay += 1;
 
-
+        
         for (int i = 1; i < 5*strenght; i++)
         {
             GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
@@ -29,7 +29,7 @@ public class ScatterModifier : BulletModifier
                     List<BulletModifier> new_bms = new List<BulletModifier>(bullet_script.GetBulletModifiers());
                     new_bms.Remove(this);
                     new_bullet.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
-                    new_bulletSc.damage -= 0.5f;
+                    new_bulletSc.damage_mul *= 0.5f;
                     new_bulletSc.speed *= Random.Range(0.95f, 1.05f);
                     new_bulletSc.affiliation = bullet_script.affiliation;
                     new_bulletSc.SetBulletMaterialToAffiliation();

@@ -18,7 +18,11 @@ public class BulletSc : MonoBehaviour
     private List<BulletModifier> bms;
     private float start_life;
     private Rigidbody rb;
-    float base_damage, base_speed, base_lifetime;
+    float base_damage = 1;
+    float base_speed, base_lifetime;
+    public float damage_add = 0;
+    public float damage_mul = 1;
+
 
     public Affiliation affiliation = Affiliation.Player;
 
@@ -28,7 +32,6 @@ public class BulletSc : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        base_damage = damage;
         base_speed = speed;
         base_lifetime = lifetime;
     }
@@ -37,6 +40,11 @@ public class BulletSc : MonoBehaviour
     {
         gameObject.SetActive(true);
         start_life = Time.time;
+    }
+
+    public void update_damage()
+    {
+        damage = (base_damage + damage_add) * damage_mul;
     }
 
     public float Shoot()
@@ -70,7 +78,7 @@ public class BulletSc : MonoBehaviour
         {
             bm.trigger_effect(gameObject, other);
         }
-
+        update_damage();
         switch (affiliation)
         {
             case Affiliation.Player:
@@ -110,11 +118,12 @@ public class BulletSc : MonoBehaviour
         }
         rb.velocity = Vector3.zero;
         rb.rotation = Quaternion.Euler(Vector3.zero);
-        damage = base_damage;
         speed = base_speed;
         lifetime = base_lifetime;
         life = 1;
         delay = 0;
+        damage_mul = 1;
+        damage_add = 0;
         gameObject.transform.localScale = new Vector3(1, 1, 1);
         affiliation = Affiliation.Player;
     }

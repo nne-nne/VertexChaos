@@ -11,10 +11,12 @@ public class ModifierMenuSc : MonoBehaviour
 {
     public GameObject interLevelMenu;
     public LevelsScript LS;
-    public List<string> bulletModifierNames;
+    
     public List<Button> buttons;
     public CannonController cannon;
     public GameObject[] mods = new GameObject[2];
+    private List<BulletModifier> bulletModifiers;
+    public List<string> bulletModifierNames;
     public List<string> bulletModifierMessages;
     public List<string> enemyModifierNames;
     public List<string> enemyModifierMessages;
@@ -28,10 +30,12 @@ public class ModifierMenuSc : MonoBehaviour
 
     void Start()
     {
+        
         bulletModifierOptions = GenerateNaturalNumbers(3);
         enemyModifierOptions = GenerateNaturalNumbers(3);
 
         LevelsScript.EndLevelEvent.AddListener(InitializeMenu);
+        bulletModifiers = AllModifiers.instance.GetModifiers();
     }
 
     
@@ -63,6 +67,7 @@ public class ModifierMenuSc : MonoBehaviour
     private void InitializeMenu()
     {
         Debug.Log("initializing menu");
+        
         interLevelMenu.SetActive(true);
 
         List<int> modifiersIndices = PickRandomNaturals(buttons.Count, bulletModifierNames.Count);
@@ -86,45 +91,7 @@ public class ModifierMenuSc : MonoBehaviour
         int chosenEnemyModifier = enemyModifierOptions[i];
         BulletModifier bm = null;
         EnemyModifier em = null;
-        switch (chosenBulletModifier)
-        {
-            case 0:
-                bm = new AddDemage();
-                break;
-            case 1:
-                bm = new AddLifeTime();
-                break;
-            case 2:
-                bm = new AddSpeed();
-                break;
-            case 3:
-                bm = new CanonModifier();
-                break;
-            case 4:
-                bm = new AddDemage(); // tu mia³a byæ aura
-                break;
-            case 5:
-                bm = new ExplosionModifier(mods);
-                break;
-            case 6:
-                bm = new FourWayShootModifier();
-                break;
-            case 7:
-                bm = new AddSpeed();
-                break;
-            case 8:
-                bm = new PierceModifier();
-                break;
-            case 9:
-                bm = new ScatterModifier();
-                break;
-            case 10:
-                bm = new ShieldModifier();
-                break;
-            case 11:
-                bm = new TargetterModifier();
-                break;
-        }
+        bm = bulletModifiers[chosenBulletModifier];
 
         switch(chosenEnemyModifier)
         {

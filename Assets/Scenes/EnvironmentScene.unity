@@ -880,6 +880,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interLevelMenu: {fileID: 924074872}
   LS: {fileID: 1905807230}
+  buttons:
+  - {fileID: 1040117841}
+  - {fileID: 2057100766}
+  - {fileID: 1795051853}
+  cannon: {fileID: 195660359}
+  mods:
+  - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
+  - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
+  - {fileID: 2527617502034329164, guid: 55ec49979077a5148b8a942ab2e57868, type: 3}
   bulletModifierNames:
   - Add Damage
   - Add Life Time
@@ -891,17 +900,7 @@ MonoBehaviour:
   - Add Speed
   - Piercing Bullets
   - Scatter Bullets
-  - Shield Bullets
   - Targetter Bullets
-  buttons:
-  - {fileID: 1040117841}
-  - {fileID: 2057100766}
-  - {fileID: 1795051853}
-  cannon: {fileID: 195660359}
-  mods:
-  - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
-  - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
-  - {fileID: 2527617502034329164, guid: 55ec49979077a5148b8a942ab2e57868, type: 3}
   bulletModifierMessages:
   - Raises damage dealt by your bullets
   - Bullets can fly further
@@ -913,7 +912,6 @@ MonoBehaviour:
   - Couses bullets to fly faster
   - Bullets pierce through the angels
   - Shots burst of small bullets
-  - Bullets can destroy enemy projectiles
   - Hitting enemy will couse you to shout additional bullet at the enemy
   enemyModifierNames:
   - Add Speed
@@ -11419,36 +11417,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &532799912
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 532799913}
-  m_Layer: 0
-  m_Name: a
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &532799913
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532799912}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 125.83226, y: -3.0678368, z: -123.016266}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &540647524
 GameObject:
   m_ObjectHideFlags: 0
@@ -27099,6 +27067,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869911577}
   m_CullTransparentMesh: 1
+--- !u!1 &881856163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881856165}
+  - component: {fileID: 881856164}
+  m_Layer: 0
+  m_Name: ModifierHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &881856164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881856163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ea494e50c1d35429ca06ca2e44a4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mods:
+  - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
+  - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
+  - {fileID: 2527617502034329164, guid: 55ec49979077a5148b8a942ab2e57868, type: 3}
+--- !u!4 &881856165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881856163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8447533, y: -21.492733, z: 1.7972095}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &887401931
 GameObject:
   m_ObjectHideFlags: 0
@@ -48951,6 +48966,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interLevelMenu: {fileID: 2049998991}
   LS: {fileID: 1905807230}
+  buttons:
+  - {fileID: 869911579}
+  - {fileID: 412430622}
+  - {fileID: 1215610322}
+  cannon: {fileID: 195660359}
+  mods:
+  - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
+  - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
+  - {fileID: 2527617502034329164, guid: 55ec49979077a5148b8a942ab2e57868, type: 3}
   bulletModifierNames:
   - Add Damage
   - Add Life Time
@@ -48964,15 +48988,6 @@ MonoBehaviour:
   - Scatter Bullets
   - Shield Bullets
   - Targetter Bullets
-  buttons:
-  - {fileID: 869911579}
-  - {fileID: 412430622}
-  - {fileID: 1215610322}
-  cannon: {fileID: 195660359}
-  mods:
-  - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
-  - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
-  - {fileID: 2527617502034329164, guid: 55ec49979077a5148b8a942ab2e57868, type: 3}
   bulletModifierMessages:
   - Raises damage dealt by your bullets
   - Bullets can fly further

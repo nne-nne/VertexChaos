@@ -8,8 +8,8 @@ public class PierceModifier : BulletModifier
     {
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();
 
-        bullet_script.damage -= 0.2f;
-        bullet_script.speed *= 1.01f;
+        bullet_script.damage_add += 0.2f;
+        bullet_script.speed *= 1f + 0.05f*strenght;
         bullet_script.delay += 0.25f;
         bullet.transform.localScale -= new Vector3(0.25f, 0.25f, 0.25f);
         bullet_script.life += 5*strenght;

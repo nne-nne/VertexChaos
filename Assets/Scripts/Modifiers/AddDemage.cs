@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddDemage : BulletModifier
+public class AddDamage : BulletModifier
 {
 
     public override void create_effect(GameObject bullet)
     {
         BulletSc bullet_script = bullet.GetComponent<BulletSc>();
-        bullet_script.damage += 0.5f*strenght;
+        bullet_script.damage_add += 0.5f*strenght;
     }
 
     public override string show_message()

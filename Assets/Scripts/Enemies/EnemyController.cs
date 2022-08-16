@@ -169,7 +169,9 @@ namespace Enemies
             foreach (var enemyModifier in enemyModifiers)
             {
                 enemyModifier.create_effect(gameObject);
-            }
+                maxHealth += 0.5f;
+                health = maxHealth;
+    }
         }
 
         /// <summary> BehaviorSequence controls EnemyController actions' execution flow. </summary>
@@ -284,8 +286,6 @@ namespace Enemies
 
         public void AddModifier(EnemyModifier mod)
         {
-            baseStats.maxHealth += 0.5f;
-            baseStats.health += 0.5f;
             bool exists = false;
             EnemyModifier existingOne = null;
             Type typ = mod.GetType();
