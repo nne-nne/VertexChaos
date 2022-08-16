@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 8083664517279266290}
   - component: {fileID: 6922267231102003771}
   - component: {fileID: 6593152963329095550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ExplodingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -67,6 +67,7 @@ MonoBehaviour:
   maxHealth: 2
   damageSignalizationTime: 0.1
   damageTexture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
+  healFrac: 0
   deathSounds:
   - {fileID: 8300000, guid: eb8600d97cd060b4c8e4fae0c48b8674, type: 3}
   - {fileID: 8300000, guid: e1a98840a13f41f4aaa6d4280295f83f, type: 3}
@@ -252,6 +253,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 270831106bf73684fb24d09dd57cecda, type: 3}
       propertyPath: m_Name
       value: Angel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 270831106bf73684fb24d09dd57cecda, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 270831106bf73684fb24d09dd57cecda, type: 3}

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - bullet
+  - ElectricWall
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Wall
+  - Enemy
   - 
   - 
   - 
