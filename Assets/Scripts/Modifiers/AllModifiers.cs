@@ -19,7 +19,9 @@ public class AllModifiers : MonoBehaviour
 
     private void init_modifiers()
     {
+
         modifiers = new List<GeneralModifier>();
+        
         modifierNames = new List<string>();
         modifierDesc = new List<string>();
 
@@ -78,6 +80,19 @@ public class AllModifiers : MonoBehaviour
         modifiers.Add(new PlayerHeal());
         modifierNames.Add("Heal Player");
         modifierDesc.Add("Fully heals player, also raises maximum health slightly");
+
+        modifiers.Add(new StaticShock());
+        modifierNames.Add("Static Shock");
+        modifierDesc.Add("Shocks nearby enemies");
+
+        modifiers.Add(new PlayerManuverability());
+        modifierNames.Add("Manuverability");
+        modifierDesc.Add("Player gets more Manuverable");
+
+        modifiers.Add(new PlayerSpeed());
+        modifierNames.Add("Player Speed");
+        modifierDesc.Add("Player moves quicker");
+
 
     }
 

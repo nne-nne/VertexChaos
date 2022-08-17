@@ -7,8 +7,8 @@ public class ShootOnDeath : EnemyModifier
 {
     public override void destroy_effect(GameObject enemy)
     {
-        float actual_value = 3 + (2 * (strenght - 1));
-        for (int i = 1; i < 3*strenght; i++)
+        float actual_value = 1.25f + (1.25f * (strenght - 1));
+        for (int i = 1; i < actual_value; i++)
         {
             GameObject new_bullet = ObjectPool.SharedInstance.GetPooledObject();
             if (enemy != null)

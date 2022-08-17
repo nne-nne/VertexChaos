@@ -26,7 +26,7 @@ public class BombDropOnDeath : EnemyModifier
             {
                 List<BulletModifier> new_bms = new List<BulletModifier>();
                 new_bms.Add(new ExplosionModifier(explotion));
-                new_bulletSc.damage = 1;
+                new_bulletSc.damage = 1f;
                 new_bulletSc.speed *= 1.5f;
                 new_bulletSc.lifetime = 2f;
 
@@ -35,7 +35,7 @@ public class BombDropOnDeath : EnemyModifier
                 new_bulletSc.Activate();
                 new_bulletSc.AddModifiers(new_bms);
                 new_bulletSc.Shoot();
-                new_bullet.transform.localScale *= 1 + strenght/3;
+                new_bullet.transform.localScale *= 1 + strenght;
 
             }
         }

@@ -8,7 +8,7 @@ public class EnrageEnemyModifier : EnemyModifier
     public override void trigger_effect(GameObject enemy)
     {
         EnemyController ec = enemy.GetComponent<EnemyController>();
-        ec.maxMovSpeed += 0.5f * strenght;
-        ec.timeBetweenShots -= 0.01f * strenght;
+        ec.maxMovSpeed += 1f * strenght;
+        ec.timeBetweenShots -= 0.05f * strenght;
     }
 }
