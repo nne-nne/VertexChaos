@@ -19,7 +19,7 @@ public class ScatterModifier : BulletModifier
             {
                 new_bullet.transform.position = bullet.transform.position;
                 new_bullet.transform.rotation = bullet.transform.rotation;
-                new_bullet.transform.RotateAround(new_bullet.transform.position, Vector3.up, 35 * Random.Range(-1f, 1f));
+                new_bullet.transform.RotateAround(new_bullet.transform.position, Vector3.up, 25 * Random.Range(-1f, 1f));
 
                 BulletSc new_bulletSc = new_bullet.GetComponent<BulletSc>();
 

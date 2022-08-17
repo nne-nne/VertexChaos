@@ -71,6 +71,32 @@ public class CannonController : MonoBehaviour
         
     }
 
+    public GameObject instantShoot()
+    {
+        float cool = 0;
+        GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
+        if (bullet != null)
+        {
+            bullet.transform.position = pivotPoint.position;
+            bullet.transform.rotation = transform.rotation;
+
+            BulletSc bulletSc = bullet.GetComponent<BulletSc>();
+
+            if (bulletSc != null)
+            {
+                //following method sets bullet active in hierarchy
+                bulletSc.affiliation = affiliation;
+                bulletSc.SetBulletMaterialToAffiliation();
+                bulletSc.Activate();
+                bulletSc.AddModifiers(bms);
+                cool = bulletSc.Shoot();
+
+                ShootEvent.Invoke();
+            }
+        }
+        return bullet;
+    }
+
     private void TraceMouse()
     {
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
@@ -144,6 +170,7 @@ public class CannonController : MonoBehaviour
 
     private void OnRetry()
     {
+        AllModifiers.instance.clearStrenght();
         bms.Clear();
     }
 }

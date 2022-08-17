@@ -14,10 +14,11 @@ public class ModifierMenuSc : MonoBehaviour
     
     public List<Button> buttons;
     public CannonController cannon;
+    public PlayerController player;
     public GameObject[] mods = new GameObject[2];
-    private List<BulletModifier> bulletModifiers;
-    public List<string> bulletModifierNames;
-    public List<string> bulletModifierMessages;
+    private List<GeneralModifier> modifiers;
+    private List<string> bulletModifierNames;
+    private List<string> bulletModifierMessages;
     public List<string> enemyModifierNames;
     public List<string> enemyModifierMessages;
 
@@ -35,10 +36,9 @@ public class ModifierMenuSc : MonoBehaviour
         enemyModifierOptions = GenerateNaturalNumbers(3);
 
         LevelsScript.EndLevelEvent.AddListener(InitializeMenu);
-        bulletModifiers = AllModifiers.instance.GetModifiers();
     }
 
-    
+
 
     private List<int> GenerateNaturalNumbers(int maxExclusive)
     {
@@ -67,7 +67,9 @@ public class ModifierMenuSc : MonoBehaviour
     private void InitializeMenu()
     {
         Debug.Log("initializing menu");
-        
+        modifiers = AllModifiers.instance.GetModifiers();
+        bulletModifierNames = AllModifiers.instance.modifierNames;
+        bulletModifierMessages = AllModifiers.instance.modifierDesc;
         interLevelMenu.SetActive(true);
 
         List<int> modifiersIndices = PickRandomNaturals(buttons.Count, bulletModifierNames.Count);
@@ -89,9 +91,9 @@ public class ModifierMenuSc : MonoBehaviour
     {
         int chosenBulletModifier = bulletModifierOptions[i];
         int chosenEnemyModifier = enemyModifierOptions[i];
-        BulletModifier bm = null;
+        GeneralModifier bm = null;
         EnemyModifier em = null;
-        bm = bulletModifiers[chosenBulletModifier];
+        bm = modifiers[chosenBulletModifier];
 
         switch(chosenEnemyModifier)
         {
@@ -162,13 +164,15 @@ public class ModifierMenuSc : MonoBehaviour
                 }
                 break;
         }
-
-        /*
-        Debug.Log(t);
-        ConstructorInfo constructor = t.GetConstructor(Type.EmptyTypes);
-        BulletModifier newModifier = (BulletModifier)constructor.Invoke(null);
-        cannon.AddBulletModifier(newModifier);*/
-        cannon.AddBulletModifier(bm);
+        if (bm.type == ModType.modType.Bullet)
+        {
+            cannon.AddBulletModifier(bm as BulletModifier);
+        }
+        else if (bm.type == ModType.modType.Player)
+        {
+            player.AddModifier(bm as PlayerModifier);
+        }
+        
         
 
 

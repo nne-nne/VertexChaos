@@ -885,34 +885,11 @@ MonoBehaviour:
   - {fileID: 2057100766}
   - {fileID: 1795051853}
   cannon: {fileID: 195660359}
+  player: {fileID: 291035126}
   mods:
   - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
   - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
   - {fileID: 2527617502034329164, guid: 55ec49979077a5148b8a942ab2e57868, type: 3}
-  bulletModifierNames:
-  - Add Damage
-  - Add Life Time
-  - Add Speed
-  - Canon Modifier
-  - Add Damage
-  - Exploding Bullets
-  - All Way Bullets
-  - Add Speed
-  - Piercing Bullets
-  - Scatter Bullets
-  - Targetter Bullets
-  bulletModifierMessages:
-  - Raises damage dealt by your bullets
-  - Bullets can fly further
-  - Couses bullets to fly faster
-  - Your projectiles will be bigger and badder
-  - Raises damage dealt by your bullets
-  - Bullets explode when they are destryed
-  - Bullets split to all directions
-  - Couses bullets to fly faster
-  - Bullets pierce through the angels
-  - Shots burst of small bullets
-  - Hitting enemy will couse you to shout additional bullet at the enemy
   enemyModifierNames:
   - Add Speed
   - Enraged Enemies
@@ -5822,6 +5799,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 27bfdb9a40efac94b969eaf77cea92d9, type: 3}
   m_PrefabInstance: {fileID: 266591849}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &291035126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7358976883842710192, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+  m_PrefabInstance: {fileID: 664533253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba771fd78e2254b4f9e21326bd8a90a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &334710334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16991,6 +16979,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3619015241350964309, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: m_TagString
+      value: PlayerCannon
+      objectReference: {fileID: 0}
     - target: {fileID: 3646153010250657071, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -17062,6 +17054,10 @@ PrefabInstance:
     - target: {fileID: 6801181614259588879, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801181614259588879, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: m_TagString
+      value: PlayerCannon
       objectReference: {fileID: 0}
     - target: {fileID: 6861824067598375979, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_Layer
@@ -17166,6 +17162,10 @@ PrefabInstance:
     - target: {fileID: 7358976883842710194, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358976883842710194, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7358976883842710199, guid: bd214c603db92ee43aa6f656e5bb387b, type: 3}
       propertyPath: m_Drag
@@ -27096,6 +27096,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ea494e50c1d35429ca06ca2e44a4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifierNames: []
+  modifierDesc: []
   mods:
   - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
   - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
@@ -48971,36 +48973,11 @@ MonoBehaviour:
   - {fileID: 412430622}
   - {fileID: 1215610322}
   cannon: {fileID: 195660359}
+  player: {fileID: 0}
   mods:
   - {fileID: 7446764759604699368, guid: e39e1d289c1423a45b6e78a1beece8cb, type: 3}
   - {fileID: 2527617502034329164, guid: a7290bf07f39bce42bf4859ab90b8c0c, type: 3}
   - {fileID: 2527617502034329164, guid: 55ec49979077a5148b8a942ab2e57868, type: 3}
-  bulletModifierNames:
-  - Add Damage
-  - Add Life Time
-  - Add Speed
-  - Canon Modifier
-  - Add Damage
-  - Exploding Bullets
-  - All Way Bullets
-  - Homing Bullets
-  - Piercing Bullets
-  - Scatter Bullets
-  - Shield Bullets
-  - Targetter Bullets
-  bulletModifierMessages:
-  - Raises damage dealt by your bullets
-  - Bullets can fly further
-  - Couses bullets to fly faster
-  - Your projectiles will be bigger and badder
-  - Raises damage dealt by your bullets
-  - Bullets explode when they are destryed
-  - Bullets split to all directions
-  - Adds homing effect to your bullets
-  - Bullets pierce through the angels
-  - Shots burst of small bullets
-  - Bullets can destroy enemy projectiles
-  - Hitting enemy will couse you to shout additional bullet at the enemy
   enemyModifierNames:
   - Add Speed
   - Big Bad Enemies
@@ -54596,9 +54573,9 @@ MonoBehaviour:
   - 0.75
   - 0.25
   enemyLinearB:
-  - 5
+  - 8
   - -2
-  - 1
+  - 0
   - -2
   enemyRandomness:
   - 0
@@ -54606,7 +54583,7 @@ MonoBehaviour:
   - 0
   - 0
   arenaRadius: 300
-  arenaMinRadius: 75
+  arenaMinRadius: 50
 --- !u!1 &1923538331
 GameObject:
   m_ObjectHideFlags: 0

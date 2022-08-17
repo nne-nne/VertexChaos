@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour, ITarget
 
     public Scrollbar healthBar;
 
+    private List<PlayerModifier> playerModifiers;
+
     protected Vector2 Direction
     {
         get => direction;
@@ -66,6 +68,7 @@ public class PlayerController : MonoBehaviour, ITarget
 
     protected virtual void Awake()
     {
+        playerModifiers = new List<PlayerModifier>();
         rb = GetComponent<Rigidbody>();
         
         gameObject.GetComponentInChildren<Collider>().tag = PlayerName;
@@ -97,6 +100,9 @@ public class PlayerController : MonoBehaviour, ITarget
         LevelsScript.EndLevelEvent.AddListener(delegate { Heal(healFrac * maxHealth); });
 
         retryBaseHealth = maxHealth;
+        retryBaseAcceleration = acceleration;
+        retryBaseAngularSpeed = angularSpeed;
+        retryBaseMaxMovSpeed = maxMovSpeed;
         initialTransform = gameObject.transform;
         MenuEventBroker.Retry += OnRetry;
     }
@@ -167,6 +173,11 @@ public class PlayerController : MonoBehaviour, ITarget
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         UpdateMovementSpeed();
         UpdateRotation();
+
+        foreach (PlayerModifier pm in playerModifiers)
+        {
+            pm.update_effect();
+        }
     }
 
     private void Heal(float amount)
@@ -183,6 +194,11 @@ public class PlayerController : MonoBehaviour, ITarget
     {
         ReceiveDamageEvent.Invoke(amount);
 
+        foreach (PlayerModifier pm in playerModifiers)
+        {
+            pm.damaged_effect();
+        }
+
         if (health - amount <= 0f)
         {
             health = 0f;
@@ -197,6 +213,26 @@ public class PlayerController : MonoBehaviour, ITarget
         }
     }
 
+    internal void AddModifier(PlayerModifier playerModifier)
+    {
+        bool exists = false;
+        PlayerModifier existingOne = null;
+        Type typ = playerModifier.GetType();
+        foreach (PlayerModifier go in playerModifiers)
+        {
+            if (go.GetType() == typ)
+            {
+                exists = true;
+                existingOne = go;
+            }
+        }
+        if (exists)
+            existingOne.strenght++;
+        else
+            playerModifiers.Add(playerModifier);
+        playerModifier.normal_effect(this);
+    }
+
     protected virtual void Die()
     {
         PostDeathDummy dummy = Instantiate(postDeathDummy);
@@ -205,6 +241,7 @@ public class PlayerController : MonoBehaviour, ITarget
 
         PlayDeathParticles(dummy);
         gameObject.SetActive(false);
+        playerModifiers = new List<PlayerModifier>();
     }
 
     protected virtual void PlayDeathSound(PostDeathDummy dummy)
@@ -314,12 +351,16 @@ public class PlayerController : MonoBehaviour, ITarget
         gameObject.SetActive(true);
         maxHealth = retryBaseHealth;
         health = retryBaseHealth;
+        acceleration = retryBaseAcceleration;
+        angularSpeed = retryBaseAngularSpeed;
+        maxMovSpeed = retryBaseMaxMovSpeed;
         gameObject.transform.position = initialTransform.position;
         gameObject.transform.rotation = initialTransform.rotation;
         MenuEventBroker.CallHealthChange(health/maxHealth);
     }
 
     private float retryBaseHealth;
+    private float retryBaseMaxMovSpeed, retryBaseAcceleration, retryBaseAngularSpeed;
 
     private Transform initialTransform;
 
