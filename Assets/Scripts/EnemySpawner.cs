@@ -54,10 +54,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        /// prowizorka tymczasowa ofkors
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            NextWave();
-        }
+
     }
 }

@@ -16,6 +16,7 @@ public class LevelsScript : MonoBehaviour
     public List<float> enemyRandomness;
     [SerializeField] private float arenaRadius;
     [SerializeField] private float arenaMinRadius;
+    [SerializeField] private float arenaLevelRaise;
     private int levelNum;
     private int enemiesLeft;
 
@@ -110,19 +111,32 @@ public class LevelsScript : MonoBehaviour
         {
             float currentAngle = i * angleStep;
             enemies[i].transform.position = player.position + new Vector3(
-                     arenaRadius * Mathf.Sin(currentAngle),
+                     (arenaRadius + arenaMinRadius) * Mathf.Sin(currentAngle),
                      0f,
-                     arenaRadius * Mathf.Cos(currentAngle));
+                     (arenaRadius + arenaMinRadius) * Mathf.Cos(currentAngle));
             enemies[i].transform.rotation = transform.rotation;
         }
     }
 
     void PlaceEnemiesRandomly(List<GameObject> enemies)
     {
+        bool generated = false;
         for (int i = 0; i < enemies.Count; i++)
         {
+            float distance = Random.Range(arenaMinRadius, (arenaRadius + arenaMinRadius));
+            while (!generated)
+            {
+                if (distance > Random.Range(arenaMinRadius, (arenaRadius + arenaMinRadius)))
+                {
+                    distance = Random.Range(arenaMinRadius, (arenaRadius + arenaMinRadius));
+                }
+                else
+                {
+                    generated = true;
+                }
+            }generated = false;
             float angle = Random.Range(0f, 2 * Mathf.PI);
-            float distance = Random.Range(arenaMinRadius, arenaRadius);
+            
             enemies[i].transform.position = player.position + new Vector3(
                      distance * Mathf.Sin(angle),
                      0f,

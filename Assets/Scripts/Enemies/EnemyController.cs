@@ -169,7 +169,7 @@ namespace Enemies
             foreach (var enemyModifier in enemyModifiers)
             {
                 enemyModifier.create_effect(gameObject);
-                maxHealth += 0.5f;
+                maxHealth += 0.25f;
                 health = maxHealth;
     }
         }

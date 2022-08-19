@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticlesPrefab: {fileID: 2527617502034329164, guid: 30959a4f4240e1048a1ac3e2686ced16, type: 3}
   timeToDeactivate: 0.5
-  explosionDamage: 3
+  explosionDamage: 1.5
 --- !u!82 &2681494202776932766
 AudioSource:
   m_ObjectHideFlags: 0

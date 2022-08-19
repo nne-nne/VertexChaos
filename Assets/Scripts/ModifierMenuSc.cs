@@ -32,8 +32,8 @@ public class ModifierMenuSc : MonoBehaviour
     void Start()
     {
         
-        bulletModifierOptions = GenerateNaturalNumbers(3);
-        enemyModifierOptions = GenerateNaturalNumbers(3);
+        bulletModifierOptions = GenerateNaturalNumbers(4);
+        enemyModifierOptions = GenerateNaturalNumbers(4);
 
         LevelsScript.EndLevelEvent.AddListener(InitializeMenu);
     }
@@ -77,7 +77,7 @@ public class ModifierMenuSc : MonoBehaviour
         for (int i = 0; i < modifiersIndices.Count; i++)
         {
             string buttonText = bulletModifierNames[modifiersIndices[i]] + "\n\n" +
-                                bulletModifierMessages[modifiersIndices[i]] + "\n\n\n------\n\n\n" +
+                                bulletModifierMessages[modifiersIndices[i]] + "\n\n------\n\n" +
                                 enemyModifierNames[enemyIndices[i]] + "\n\n" +
                                 enemyModifierMessages[enemyIndices[i]] + "\n\n";
             buttons[i].GetComponentInChildren<TMP_Text>().text = buttonText;

@@ -5,10 +5,14 @@ using Enemies;
 
 public class EnrageEnemyModifier : EnemyModifier
 {
+    bool used = false;
     public override void trigger_effect(GameObject enemy)
     {
-        EnemyController ec = enemy.GetComponent<EnemyController>();
-        ec.maxMovSpeed += 1f * strenght;
-        ec.timeBetweenShots -= 0.05f * strenght;
+        if (!used)
+        {
+            used = true;
+            EnemyController ec = enemy.GetComponent<EnemyController>();
+            ec.maxMovSpeed += 10f * strenght;
+        }
     }
 }

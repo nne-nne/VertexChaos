@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour, ITarget
     [FormerlySerializedAs("MaxHealth")] [SerializeField]
     public float maxHealth = 10f;
 
+    public float invincibilityTime = 0f;
+    private float lastDamage = 0f;
+
     public static string PlayerName { get; } = "Player";
 
     public float damageSignalizationTime = 0.1f;
@@ -192,25 +195,31 @@ public class PlayerController : MonoBehaviour, ITarget
     
     public virtual void ReceiveDamage(float amount)
     {
-        ReceiveDamageEvent.Invoke(amount);
+        if(invincibilityTime + lastDamage < Time.time)
+        {
+            lastDamage = Time.time;
 
-        foreach (PlayerModifier pm in playerModifiers)
-        {
-            pm.damaged_effect();
-        }
+            ReceiveDamageEvent.Invoke(amount);
 
-        if (health - amount <= 0f)
-        {
-            health = 0f;
-            DeathEvent.Invoke();
-            if (affiliation == Affiliation.Player) { MenuEventBroker.CallHealthChange(health/maxHealth); }
-            if (affiliation == Affiliation.Player) { MenuEventBroker.CallPlayerKilled(); }
+            foreach (PlayerModifier pm in playerModifiers)
+            {
+                pm.damaged_effect();
+            }
+
+            if (health - amount <= 0f)
+            {
+                health = 0f;
+                DeathEvent.Invoke();
+                if (affiliation == Affiliation.Player) { MenuEventBroker.CallHealthChange(health / maxHealth); }
+                if (affiliation == Affiliation.Player) { MenuEventBroker.CallPlayerKilled(); }
+            }
+            else
+            {
+                health -= amount;
+                if (affiliation == Affiliation.Player) { MenuEventBroker.CallHealthChange(health / maxHealth); }
+            }
         }
-        else
-        {
-            health -= amount;
-            if (affiliation == Affiliation.Player) { MenuEventBroker.CallHealthChange(health/maxHealth); }
-        }
+        
     }
 
     internal void AddModifier(PlayerModifier playerModifier)
